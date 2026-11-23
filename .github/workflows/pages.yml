@@ -13,11 +13,10 @@ concurrency:
   group: github-pages
   cancel-in-progress: false
 jobs:
-  publish:
+  build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.publish.outputs.page_url }}
+    outputs:
+      artifact: ${{ steps.name.outputs.artifact }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -37,8 +36,20 @@ jobs:
         run: |
           mkdir public
           cp -r index.html style.css assets community docs download issues news packages wiki LICENSE public/
-      - uses: actions/upload-pages-artifact@v3
+      - id: name
+        run: echo "artifact=site-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-pages-artifact@v5
         with:
+          name: ${{ steps.name.outputs.artifact }}
           path: public
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.publish.outputs.page_url }}
+    steps:
       - id: publish
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
+        with:
+          artifact_name: ${{ needs.build.outputs.artifact }}
