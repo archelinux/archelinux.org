@@ -1,2 +1,7 @@
-{% extends "base.html" %}{% block main %}<h1>Documentation</h1><p class="lead">Install archelinux, configure your workspace, or build the distribution from source.</p>
-{% for group,slugs in groups.items() %}<h2 class="line">{{ group }}</h2><ul class="topiclist">{% for slug in slugs %}<li><a href="{{ slug }}.html">{{ articles[slug].title }}</a></li>{% endfor %}</ul>{% endfor %}{% endblock %}
+{% extends "base.html" %}{% block main %}
+<h1>Documentation</h1><p class="lead">Install archelinux, configure your workspace, or build the distribution from source.</p>
+<form class="search" id="wiki-search" hidden><input type="search" name="q" aria-label="Search guides" placeholder="Search guides by topic or command"><button>Search</button></form>
+<p role="status" id="wiki-count"></p>
+{% for group,slugs in groups.items() %}<section class="wiki-group"><h2 class="line">{{ group }}</h2><ul class="topiclist">{% for slug in slugs %}
+<li data-terms="{{ articles[slug].body|striptags|lower|trim }}"><a href="{{ slug }}.html">{{ articles[slug].title }}</a></li>{% endfor %}</ul></section>{% endfor %}
+<script src="../assets/wiki-search.js" defer></script>{% endblock %}
