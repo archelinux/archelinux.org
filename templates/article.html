@@ -8,6 +8,9 @@
   <figcaption id="clip-caption">Ctrl+H and Ctrl+L move between Neovim splits and tmux panes. The silent recording shows each key on screen.</figcaption>
 </figure>
 {% endif %}
-{{ body|safe }}
+{% if path == 'wiki/rolling-updates.html' and package_source.kind != 'rolling' %}
+<p>The first signed archelinux package update is in testing. The 2.0.0 ISO uses its bundled package snapshot. Once the stable channel is published and its signature is verified, this page will show how to enable it on an existing installation.</p>
+<p><a href="../packages/index.html">Browse the packages shipped with 2.0.0 →</a></p>
+{% else %}{{ body|safe }}{% endif %}
 </article>
 {% endblock %}

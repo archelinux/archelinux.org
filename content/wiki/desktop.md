@@ -1,6 +1,6 @@
 # SwayFX and Litho Dark
 
-![SwayFX desktop with Waybar and Twin Blades wallpaper](../assets/archelinux-desktop.jpg)
+![SwayFX desktop with Waybar and Graphite wallpaper](../assets/archelinux-desktop.jpg)
 
 The selected desktop adapts [okubax/dotfiles](https://github.com/okubax/dotfiles)'s
 Litho Dark palette and inset Waybar panel with a centered clock. Provenance and the upstream
@@ -20,7 +20,7 @@ not a guarantee for every driver. No hook is added to the live root installer.
 new user's home and assigns their ownership. Package templates never claim
 Bash-owned `/etc/skel` files.
 
-Sway fills the output with Twin Blades from `/usr/share/arche/twin-blades.jpg`. The artwork comes from the [dharmx/walls collection](https://github.com/dharmx/walls/blob/e8d8a42e4fbecb2cf9619995edbc7ce19610bbd8/anime/aeb9uhrbr41a1.webp). Artist and redistribution license are unverified.
+The screenshot previews Graphite, the archelinux project’s original wallpaper for `arche-workspace-defaults` 2.0.0-42. It installs at `/usr/share/arche/graphite.jpg`. An existing Sway configuration pointing to `/usr/share/arche/twin-blades.jpg` will pick up Graphite through a compatibility symlink. [Download Graphite](../assets/graphite.svg) and read its [0BSD license](../assets/LICENSE.graphite).
 
 For automated UEFI installation acceptance on a disposable qcow2 disk, see
 [QEMU installation tests](qemu.html).

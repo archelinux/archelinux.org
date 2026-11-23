@@ -5,6 +5,7 @@ These results apply to the named release and configuration. A VM check verifies 
 | Release and test date | System | Kernel and graphics | Observed result |
 | --- | --- | --- | --- |
 | 2.0.0 release candidate build promoted to stable, 23 Nov 2026 | QEMU/KVM x86_64, OVMF UEFI, virtio disk and virtual graphics | linux-lts, SwayFX, one virtual output | Passed guided XFS installation, installed-system boot, Sway IPC and Waybar startup. [Build and boot record](https://github.com/archelinux/archelinux/actions/runs/45154069630) |
+| Local build from 2.0.0 release source, 23 Nov 2026 | QEMU/KVM x86_64, XFS | Linux 6.18.64-1-lts, SwayFX | Passed [TTY2 cached package recovery](recovery.html): downgrade, restore, cold boot and preservation of edited Sway and Zsh files. |
 | 2.0.0 | Physical laptops, desktops and docks | Intel, AMD and NVIDIA | Awaiting model-specific reports for graphics, screen sharing, suspend, Wi-Fi, audio and external monitors. |
 
 ## Test a physical machine
