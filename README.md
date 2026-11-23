@@ -19,3 +19,5 @@ Package versions, dependencies and licenses come from the promoted pacman databa
 For local development, skip the refresh to rebuild from the checked-in snapshot. Run `python3 -m unittest discover -s tests` to check release selection and package metadata parsing. Commit rendered HTML with edits to its sources. The CNAME declares archelinux.org.
 
 The symbol and screenshots come from [archelinux](https://github.com/archelinux/archelinux). The desktop features the [Twin Blades wallpaper](https://github.com/dharmx/walls/blob/e8d8a42e4fbecb2cf9619995edbc7ce19610bbd8/anime/aeb9uhrbr41a1.webp).
+
+The release archive publishes Atom at `news/feed.xml`. During the Pages deployment, `scripts/stage_mirror.py public/mirror/stable` fetches the exact rolling commit recorded in the verified package catalog. It verifies detached signatures and archive hashes before copying packages into the Pages artifact. Primary and secondary endpoints are documented in `wiki/mirrors.html`. The repository contains the generator and rendered pages. The mirror files are deployed as build artifacts.

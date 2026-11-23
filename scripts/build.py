@@ -6,6 +6,7 @@ from pathlib import Path
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from markdown_it import MarkdownIt
 
+from release_feed import SITE, write_feed
 from release_metadata import installation_files, stable_iso, verification_files
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -19,8 +20,8 @@ releases = json.loads((CONTENT / "releases.json").read_text())
 latest = stable_iso(releases)
 groups = {
     "Getting started": ["installation", "first-session", "verify", "about", "shortcuts", "hardware"],
-    "Your workspace": ["desktop", "shell", "configuration", "rolling-updates", "recovery", "maintenance"],
-    "Building archelinux": ["system", "installer-internals", "build", "publication", "acceptance", "qemu"],
+    "Your workspace": ["desktop", "shell", "arch-tools", "configuration", "rolling-updates", "recovery", "maintenance"],
+    "Building archelinux": ["system", "installer-internals", "build", "publication", "mirrors", "security", "acceptance", "qemu"],
 }
 articles = {}
 for path in sorted((CONTENT / "wiki").glob("*.md")):
@@ -32,7 +33,7 @@ def render(path, template, title, section, **context):
     page.parent.mkdir(exist_ok=True)
     prefix = os.path.relpath(ROOT, page.parent) + "/"
     html = env.get_template(template + ".html").render(
-        root=prefix, path=path, section=section, title=title, groups=groups,
+        site_url=SITE, root=prefix, path=path, section=section, title=title, groups=groups,
         articles=articles, packages=packages, package_source=catalog["source"],
         releases=releases, latest=latest, **context)
     page.write_text(html + "\n")
@@ -46,6 +47,7 @@ for package in packages:
     render(f'packages/{package["name"]}.html', "package", package["name"], "Packages",
            package=package, package_names={p["name"] for p in packages})
 render("news/index.html", "news", "Release archive", "News")
+write_feed(ROOT / "news/feed.xml", releases)
 for release in releases:
     tag = release["tag"]
     editorial = CONTENT / "news" / (tag + ".md")

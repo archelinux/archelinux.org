@@ -98,7 +98,12 @@ def parse_database(data):
             name = fields["NAME"][0]
             if not PACKAGE_NAME.fullmatch(name) or name in packages or name == "index":
                 raise ValueError(f"Invalid or duplicate package name: {name!r}")
+            filename = fields["FILENAME"][0]
+            digest = fields["SHA256SUM"][0]
+            if not re.fullmatch(r"[a-zA-Z0-9@_+.:-]+\.pkg\.tar\.zst", filename) or not re.fullmatch(r"[0-9a-f]{64}", digest):
+                raise ValueError(f"Invalid archive metadata for {name}")
             packages[name] = {
+                "filename": filename, "sha256": digest,
                 "name": name, "base": fields.get("BASE", [name])[0],
                 "description": fields["DESC"][0], "version": fields["VERSION"][0],
                 "arch": fields["ARCH"][0], "license": " / ".join(fields.get("LICENSE", [])),

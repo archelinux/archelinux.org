@@ -5,7 +5,8 @@
 <title>Rolling updates · archelinux</title>
 <meta name="description" content="Rolling updates for the archelinux distribution.">
 <link rel="icon" href="../assets/arche-logo.svg"><link rel="stylesheet" href="../style.css">
-<link rel="canonical" href="https://archelinux.org/wiki/rolling-updates.html">
+<link rel="alternate" type="application/atom+xml" title="archelinux releases" href="../news/feed.xml">
+<link rel="canonical" href="https://archelinux.github.io/archelinux.org/wiki/rolling-updates.html">
 </head><body>
 <a class="skip" href="#main">Skip to content</a>
 <header><div class="mast"><a class="brand" aria-label="archelinux home" href="../index.html"><img src="../assets/arche-logo.svg" alt="">arche<span>linux</span></a>
@@ -22,9 +23,32 @@
 <article class="prose">
 <h1>Rolling updates</h1>
 
-
-<p>The first signed archelinux package update is in testing. The 2.0.0 ISO uses its bundled package snapshot. Once the stable channel is published and its signature is verified, this page will show how to enable it on an existing installation.</p>
-<p><a href="../packages/index.html">Browse the packages shipped with 2.0.0 →</a></p>
+<p>Arch mirrors provide the upstream system. The archelinux stable channel provides the distro packages. After the channel is active, update both with a full upgrade:</p>
+<pre><code class="language-sh">sudo pacman -Syu
+</code></pre>
+<p>The stable server is <code>https://raw.githubusercontent.com/archelinux/archelinux/rolling-channel/stable</code>. ISO release numbers identify installation media. Packages have their own versions. User-owned dotfiles remain yours when packaged templates change.</p>
+<h2>Enabling stable on an existing 2.0.0 installation</h2>
+<p>Use the public release key you verified when you installed. If you need a new copy, obtain it from the signed ISO release and independently check the fingerprint <strong>E446 C26A 0B7B A1A6 6A3D CC9F 7EC5 6400 3573 C80B</strong>. Use the following commands in a shell with Bash syntax, replacing the key path with your own. A failed check stops the transition.</p>
+<pre><code class="language-bash">(
+  set -euo pipefail
+  key=/path/to/archelinux-release-public.asc
+  server=https://raw.githubusercontent.com/archelinux/archelinux/rolling-channel/stable
+  signer=E446C26A0B7BA1A66A3DCC9F7EC564003573C80B
+  work=$(mktemp -d)
+  trap 'rm -rf &quot;$work&quot;' EXIT
+  gpg --homedir &quot;$work&quot; --batch --import &quot;$key&quot;
+  gpg --homedir &quot;$work&quot; --batch --export &quot;$signer&quot; &gt; &quot;$work/release.gpg&quot;
+  test -s &quot;$work/release.gpg&quot;
+  curl -fLSs &quot;$server/arche-enable-rolling&quot; -o &quot;$work/enable&quot;
+  curl -fLSs &quot;$server/arche-enable-rolling.sig&quot; -o &quot;$work/enable.sig&quot;
+  gpgv --homedir &quot;$work&quot; --keyring &quot;$work/release.gpg&quot; &quot;$work/enable.sig&quot; &quot;$work/enable&quot;
+  sudo python &quot;$work/enable&quot; --key &quot;$work/release.gpg&quot;
+)
+</code></pre>
+<p>The helper verifies the signed database against the pinned key, locally signs that key in pacman's keyring, and replaces the <code>[arche]</code> section in place. It leaves the Arch mirror configuration alone. The setup refuses an active pacman database lock. It can be run again after pacman finishes. Now run the full upgrade above. Check <code>pacman-conf --repo arche Server</code> and <code>pacman -Si arche/arche-maintenance</code> to see the selected server and package version.</p>
+<p>Future installation media ship the helper and key in <code>arche-maintenance</code>. The guided and unattended installers install from the bundled repository first and switch the target at the end. If the channel is unavailable during installation, the installer keeps the bundled repository and prints a retry command. Run <code>sudo arche-enable-rolling</code> when the server is reachable. If signature verification fails, the installer keeps the bundled repository and displays a warning. Check project announcements before retrying.</p>
+<h2>Recovery</h2>
+<p>If an update fails signature verification, stop and retry a full upgrade after checking the system clock and network. The database and detached signature are separate HTTP requests. A client crossing a promotion can temporarily receive different revisions from a cache. Verification fails closed until both files match. Keep signature checks enabled. If a new package breaks a previously working setup, the alternate LTS boot entry, TTY2 and <code>sudo arche-rollback PACKAGE</code> are available according to the <a href="recovery.html">recovery guide</a>. Cached rollback needs the earlier archive and related packages may need coordinated downgrades.</p>
 
 </article>
 </div>
@@ -33,7 +57,7 @@
 <section class="box"><h2>Package search</h2><form class="search" action="../packages/index.html"><input type="search" name="q" aria-label="Package name or description" placeholder="Name or description"><button>Search</button></form></section>
 
 
-<section class="box directory"><h2>Documentation</h2><h3>Getting started</h3><ul><li><a href="../wiki/installation.html" >Installation guide</a></li><li><a href="../wiki/first-session.html" >Your first ten minutes in archelinux</a></li><li><a href="../wiki/verify.html" >Verify the ISO</a></li><li><a href="../wiki/about.html" >About archelinux</a></li><li><a href="../wiki/shortcuts.html" >Your first few shortcuts</a></li><li><a href="../wiki/hardware.html" >Hardware compatibility</a></li></ul><h3>Your workspace</h3><ul><li><a href="../wiki/desktop.html" >SwayFX and Litho Dark</a></li><li><a href="../wiki/shell.html" >The Zsh workspace</a></li><li><a href="../wiki/configuration.html" >Packages and configuration</a></li><li><a href="../wiki/rolling-updates.html" aria-current="page">Rolling updates</a></li><li><a href="../wiki/recovery.html" >Recovery and maintenance</a></li><li><a href="../wiki/maintenance.html" >Recovery and local inference</a></li></ul><h3>Building archelinux</h3><ul><li><a href="../wiki/system.html" >System architecture</a></li><li><a href="../wiki/installer-internals.html" >Guided installer internals</a></li><li><a href="../wiki/build.html" >Build the ISO</a></li><li><a href="../wiki/publication.html" >CI and package signing</a></li><li><a href="../wiki/acceptance.html" >Release acceptance checks</a></li><li><a href="../wiki/qemu.html" >Disposable UEFI installation acceptance</a></li></ul>
+<section class="box directory"><h2>Documentation</h2><h3>Getting started</h3><ul><li><a href="../wiki/installation.html" >Installation guide</a></li><li><a href="../wiki/first-session.html" >Your first ten minutes in archelinux</a></li><li><a href="../wiki/verify.html" >Verify the ISO</a></li><li><a href="../wiki/about.html" >About archelinux</a></li><li><a href="../wiki/shortcuts.html" >Your first few shortcuts</a></li><li><a href="../wiki/hardware.html" >Hardware compatibility</a></li></ul><h3>Your workspace</h3><ul><li><a href="../wiki/desktop.html" >SwayFX and Litho Dark</a></li><li><a href="../wiki/shell.html" >The Zsh workspace</a></li><li><a href="../wiki/arch-tools.html" >Standalone tools on Arch Linux</a></li><li><a href="../wiki/configuration.html" >Packages and configuration</a></li><li><a href="../wiki/rolling-updates.html" aria-current="page">Rolling updates</a></li><li><a href="../wiki/recovery.html" >Recovery and maintenance</a></li><li><a href="../wiki/maintenance.html" >Recovery and local inference</a></li></ul><h3>Building archelinux</h3><ul><li><a href="../wiki/system.html" >System architecture</a></li><li><a href="../wiki/installer-internals.html" >Guided installer internals</a></li><li><a href="../wiki/build.html" >Build the ISO</a></li><li><a href="../wiki/publication.html" >CI and package signing</a></li><li><a href="../wiki/mirrors.html" >Package repository mirrors</a></li><li><a href="../wiki/security.html" >Security reports and advisories</a></li><li><a href="../wiki/acceptance.html" >Release acceptance checks</a></li><li><a href="../wiki/qemu.html" >Disposable UEFI installation acceptance</a></li></ul>
 <a href="../wiki/index.html">Browse the wiki →</a></section>
 </aside></div></main>
 <footer><a class="footbrand" href="../index.html">archelinux</a><span>Independent Arch-based distribution</span><a href="../issues/index.html">Report an issue</a><a href="../wiki/about.html">About the project</a></footer>

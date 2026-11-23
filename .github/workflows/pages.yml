@@ -36,6 +36,7 @@ jobs:
         run: |
           mkdir public
           cp -r index.html style.css assets community docs download issues news packages wiki LICENSE public/
+          python scripts/stage_mirror.py public/mirror/stable
       - id: name
         run: echo "artifact=site-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}" >> "$GITHUB_OUTPUT"
       - uses: actions/upload-pages-artifact@v5

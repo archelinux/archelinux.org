@@ -81,7 +81,7 @@ class DatabaseTests(unittest.TestCase):
     def test_uses_built_desc_and_handles_split_packages(self):
         data = io.BytesIO()
         with tarfile.open(fileobj=data, mode="w:gz") as tar:
-            desc = b"%NAME%\narche-example\n\n%BASE%\narche-suite\n\n%VERSION%\n2:1.2-3\n\n%ARCH%\nany\n\n%DESC%\nExample\n\n%LICENSE%\nMIT\n\n%DEPENDS%\nfoo>=2\nbar\n\n"
+            desc = b"%FILENAME%\narche-example-1.2-3-any.pkg.tar.zst\n\n%SHA256SUM%\n" + b"1" * 64 + b"\n\n%NAME%\narche-example\n\n%BASE%\narche-suite\n\n%VERSION%\n2:1.2-3\n\n%ARCH%\nany\n\n%DESC%\nExample\n\n%LICENSE%\nMIT\n\n%DEPENDS%\nfoo>=2\nbar\n\n"
             info = tarfile.TarInfo("arche-example-1.2-3/desc")
             info.size = len(desc)
             tar.addfile(info, io.BytesIO(desc))

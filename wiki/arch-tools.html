@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Standalone tools on Arch Linux · archelinux</title>
+<meta name="description" content="Standalone tools on Arch Linux for the archelinux distribution.">
+<link rel="icon" href="../assets/arche-logo.svg"><link rel="stylesheet" href="../style.css">
+<link rel="alternate" type="application/atom+xml" title="archelinux releases" href="../news/feed.xml">
+<link rel="canonical" href="https://archelinux.github.io/archelinux.org/wiki/arch-tools.html">
+</head><body>
+<a class="skip" href="#main">Skip to content</a>
+<header><div class="mast"><a class="brand" aria-label="archelinux home" href="../index.html"><img src="../assets/arche-logo.svg" alt="">arche<span>linux</span></a>
+<nav aria-label="Primary">
+<a href="../index.html" >Home</a>
+<a href="../packages/index.html" >Packages</a>
+<a href="../wiki/index.html" aria-current="location">Wiki</a>
+<a href="../news/index.html" >News</a>
+<a href="../community/index.html" >Forum</a>
+<a href="../download/index.html" >Download</a></nav></div></header>
+<main id="main">
+<div class="crumb"><a href="../index.html">Home</a> / <a href="index.html">Wiki</a> / Standalone tools on Arch Linux</div>
+<div class="layout"><div class="column">
+<article class="prose">
+<h1>Standalone tools on Arch Linux</h1>
+
+<p>These three utilities can be installed on a plain Arch Linux system. Their recipes build from a versioned source file and list dependencies available in Arch’s official repositories. <a href="https://github.com/archelinux/arch-tools">Source and packaging recipes</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>arche-waybar-github</code></td>
+<td>Counts unread pull requests and issues. Hover to see repository names and titles.</td>
+</tr>
+<tr>
+<td><code>arche-waybar-status</code></td>
+<td>Produces Waybar JSON for low disk space, active VPNs or GPU readings.</td>
+</tr>
+<tr>
+<td><code>arche-rollback</code></td>
+<td>Reinstalls the newest older version of a package available in your configured pacman cache.</td>
+</tr>
+</tbody>
+</table>
+<h2>Install a package on plain Arch</h2>
+<p>Install the build tools, clone the packaging repository and review the recipe you want. Build as your regular user. For example:</p>
+<pre><code>sudo pacman -S --needed base-devel git
+git clone https://github.com/archelinux/arch-tools.git
+cd arch-tools/aur/arche-waybar-github
+less PKGBUILD
+makepkg -si
+</code></pre>
+<p>On archelinux, the signed repository supplies <code>arche-waybar-github</code>. Its workspace package includes the status indicators, and <code>arche-maintenance</code> provides the rollback command.</p>
+<h2>Set up the GitHub indicator</h2>
+<p>Sign in with <code>gh auth login --hostname github.com</code>. Your account needs access to read its notifications. Add <code>custom/github</code> to a Waybar module list, add this object to your Waybar configuration and restart Waybar:</p>
+<pre><code class="language-json">&quot;custom/github&quot;: {
+  &quot;exec&quot;: &quot;arche-waybar-github&quot;,
+  &quot;return-type&quot;: &quot;json&quot;,
+  &quot;interval&quot;: 120,
+  &quot;hide-empty-text&quot;: true,
+  &quot;on-click&quot;: &quot;xdg-open https://github.com/notifications&quot;
+}
+</code></pre>
+<p>In standalone version 2.0.1, an empty inbox hides the module. <code>GH login</code> asks you to sign in. <code>GH ?</code> means the notification check failed. The optional click action uses xdg-utils.</p>
+<p>For other indicators, use <code>arche-waybar-status disk</code>, <code>arche-waybar-status vpn</code> or <code>arche-waybar-status gpu</code> as the module command. For a known package regression, <code>sudo arche-rollback PACKAGE</code> applies the cached downgrade immediately. Check <a href="recovery.html">recovery and maintenance</a> before downgrading related libraries.</p>
+
+</article>
+</div>
+<aside>
+
+<section class="box"><h2>Package search</h2><form class="search" action="../packages/index.html"><input type="search" name="q" aria-label="Package name or description" placeholder="Name or description"><button>Search</button></form></section>
+
+
+<section class="box directory"><h2>Documentation</h2><h3>Getting started</h3><ul><li><a href="../wiki/installation.html" >Installation guide</a></li><li><a href="../wiki/first-session.html" >Your first ten minutes in archelinux</a></li><li><a href="../wiki/verify.html" >Verify the ISO</a></li><li><a href="../wiki/about.html" >About archelinux</a></li><li><a href="../wiki/shortcuts.html" >Your first few shortcuts</a></li><li><a href="../wiki/hardware.html" >Hardware compatibility</a></li></ul><h3>Your workspace</h3><ul><li><a href="../wiki/desktop.html" >SwayFX and Litho Dark</a></li><li><a href="../wiki/shell.html" >The Zsh workspace</a></li><li><a href="../wiki/arch-tools.html" aria-current="page">Standalone tools on Arch Linux</a></li><li><a href="../wiki/configuration.html" >Packages and configuration</a></li><li><a href="../wiki/rolling-updates.html" >Rolling updates</a></li><li><a href="../wiki/recovery.html" >Recovery and maintenance</a></li><li><a href="../wiki/maintenance.html" >Recovery and local inference</a></li></ul><h3>Building archelinux</h3><ul><li><a href="../wiki/system.html" >System architecture</a></li><li><a href="../wiki/installer-internals.html" >Guided installer internals</a></li><li><a href="../wiki/build.html" >Build the ISO</a></li><li><a href="../wiki/publication.html" >CI and package signing</a></li><li><a href="../wiki/mirrors.html" >Package repository mirrors</a></li><li><a href="../wiki/security.html" >Security reports and advisories</a></li><li><a href="../wiki/acceptance.html" >Release acceptance checks</a></li><li><a href="../wiki/qemu.html" >Disposable UEFI installation acceptance</a></li></ul>
+<a href="../wiki/index.html">Browse the wiki →</a></section>
+</aside></div></main>
+<footer><a class="footbrand" href="../index.html">archelinux</a><span>Independent Arch-based distribution</span><a href="../issues/index.html">Report an issue</a><a href="../wiki/about.html">About the project</a></footer>
+</body></html>

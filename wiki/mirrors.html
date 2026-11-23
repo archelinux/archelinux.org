@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Package repository mirrors · archelinux</title>
+<meta name="description" content="Package repository mirrors for the archelinux distribution.">
+<link rel="icon" href="../assets/arche-logo.svg"><link rel="stylesheet" href="../style.css">
+<link rel="alternate" type="application/atom+xml" title="archelinux releases" href="../news/feed.xml">
+<link rel="canonical" href="https://archelinux.github.io/archelinux.org/wiki/mirrors.html">
+</head><body>
+<a class="skip" href="#main">Skip to content</a>
+<header><div class="mast"><a class="brand" aria-label="archelinux home" href="../index.html"><img src="../assets/arche-logo.svg" alt="">arche<span>linux</span></a>
+<nav aria-label="Primary">
+<a href="../index.html" >Home</a>
+<a href="../packages/index.html" >Packages</a>
+<a href="../wiki/index.html" aria-current="location">Wiki</a>
+<a href="../news/index.html" >News</a>
+<a href="../community/index.html" >Forum</a>
+<a href="../download/index.html" >Download</a></nav></div></header>
+<main id="main">
+<div class="crumb"><a href="../index.html">Home</a> / <a href="index.html">Wiki</a> / Package repository mirrors</div>
+<div class="layout"><div class="column">
+<article class="prose">
+<h1>Package repository mirrors</h1>
+
+<p>The signed stable repository contains the archelinux packages used for rolling updates. Arch dependencies come from your Arch mirror list. Both archelinux endpoints below use GitHub infrastructure.</p>
+<table>
+<thead>
+<tr>
+<th>Package endpoint</th>
+<th>What it serves</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>https://raw.githubusercontent.com/archelinux/archelinux/rolling-channel/stable</code></td>
+<td>Primary. Updated when a tested package snapshot is promoted.</td>
+</tr>
+<tr>
+<td><code>https://archelinux.github.io/archelinux.org/mirror/stable</code></td>
+<td>Secondary. The website verifies the signed database, file index, helper and package signatures before deploying the snapshot. The mirror can lag the primary until the next website refresh.</td>
+</tr>
+</tbody>
+</table>
+<p>On an existing archelinux installation, follow <a href="rolling-updates.html">Rolling updates</a> to trust the release key and configure the signed repository. To use the secondary endpoint as a fallback, append the following line under the existing <code>Server</code> in the <strong>same</strong> <code>[arche]</code> section of <code>/etc/pacman.conf</code>. Preserve the section’s signature requirements.</p>
+<pre><code>Server = https://archelinux.github.io/archelinux.org/mirror/stable
+</code></pre>
+<p>Run <code>pacman-conf --repo arche Server</code> to inspect the configured order. See the <a href="https://github.com/archelinux/archelinux.org/actions/workflows/pages.yml">latest website builds</a> for mirror verification and publication results.</p>
+
+</article>
+</div>
+<aside>
+
+<section class="box"><h2>Package search</h2><form class="search" action="../packages/index.html"><input type="search" name="q" aria-label="Package name or description" placeholder="Name or description"><button>Search</button></form></section>
+
+
+<section class="box directory"><h2>Documentation</h2><h3>Getting started</h3><ul><li><a href="../wiki/installation.html" >Installation guide</a></li><li><a href="../wiki/first-session.html" >Your first ten minutes in archelinux</a></li><li><a href="../wiki/verify.html" >Verify the ISO</a></li><li><a href="../wiki/about.html" >About archelinux</a></li><li><a href="../wiki/shortcuts.html" >Your first few shortcuts</a></li><li><a href="../wiki/hardware.html" >Hardware compatibility</a></li></ul><h3>Your workspace</h3><ul><li><a href="../wiki/desktop.html" >SwayFX and Litho Dark</a></li><li><a href="../wiki/shell.html" >The Zsh workspace</a></li><li><a href="../wiki/arch-tools.html" >Standalone tools on Arch Linux</a></li><li><a href="../wiki/configuration.html" >Packages and configuration</a></li><li><a href="../wiki/rolling-updates.html" >Rolling updates</a></li><li><a href="../wiki/recovery.html" >Recovery and maintenance</a></li><li><a href="../wiki/maintenance.html" >Recovery and local inference</a></li></ul><h3>Building archelinux</h3><ul><li><a href="../wiki/system.html" >System architecture</a></li><li><a href="../wiki/installer-internals.html" >Guided installer internals</a></li><li><a href="../wiki/build.html" >Build the ISO</a></li><li><a href="../wiki/publication.html" >CI and package signing</a></li><li><a href="../wiki/mirrors.html" aria-current="page">Package repository mirrors</a></li><li><a href="../wiki/security.html" >Security reports and advisories</a></li><li><a href="../wiki/acceptance.html" >Release acceptance checks</a></li><li><a href="../wiki/qemu.html" >Disposable UEFI installation acceptance</a></li></ul>
+<a href="../wiki/index.html">Browse the wiki →</a></section>
+</aside></div></main>
+<footer><a class="footbrand" href="../index.html">archelinux</a><span>Independent Arch-based distribution</span><a href="../issues/index.html">Report an issue</a><a href="../wiki/about.html">About the project</a></footer>
+</body></html>

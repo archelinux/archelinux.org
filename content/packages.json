@@ -1,10 +1,12 @@
 {
   "source": {
-    "kind": "iso",
-    "revision": "v2.0.0"
+    "kind": "rolling",
+    "revision": "6e5cee10a1253adf3fe66af65d5f925a17282656"
   },
   "packages": [
     {
+      "filename": "arche-agentic-core-2.0.0-3-any.pkg.tar.zst",
+      "sha256": "e33c90c6138bb6ece37419875ebf2699b2de2982dedc2ca3686534fd6e87b0fc",
       "name": "arche-agentic-core",
       "base": "arche-agentic-core",
       "description": "Local agent runtimes and opt-in inference units",
@@ -22,10 +24,12 @@
       ]
     },
     {
+      "filename": "arche-base-2.0.0-3-any.pkg.tar.zst",
+      "sha256": "8820e10b50ec874103f8b9b1e6a8976157fc7122a0d4d21b24a34d55568bdd75",
       "name": "arche-base",
       "base": "arche-base",
       "description": "Base system, tuned XFS and dual kernels",
-      "version": "2.0.0-2",
+      "version": "2.0.0-3",
       "arch": "any",
       "license": "GPL-3.0-only",
       "depends": [
@@ -55,6 +59,8 @@
       ]
     },
     {
+      "filename": "arche-cuda-2.0.0-1-any.pkg.tar.zst",
+      "sha256": "6dc50bb34b5c028590e63558f9ea3f199bc402379957fad99911161d5917e6ac",
       "name": "arche-cuda",
       "base": "arche-cuda",
       "description": "Optional NVIDIA open drivers and CUDA toolkit",
@@ -70,6 +76,8 @@
       ]
     },
     {
+      "filename": "arche-inference-defaults-2.0.0-3-any.pkg.tar.zst",
+      "sha256": "567c7225579d88acb04a821b39c51d7d5637907b2249b7bba3196775d2d39efb",
       "name": "arche-inference-defaults",
       "base": "arche-agentic-core",
       "description": "Opt-in user services for local model servers",
@@ -79,21 +87,26 @@
       "depends": []
     },
     {
+      "filename": "arche-maintenance-2.0.0-3-any.pkg.tar.zst",
+      "sha256": "57b4276b8b8172491f2395d49aae9bf49ae0f4c55b99282eceb15e630bff7f8a",
       "name": "arche-maintenance",
       "base": "arche-base",
       "description": "Arche package cache retention and rollback",
-      "version": "2.0.0-2",
+      "version": "2.0.0-3",
       "arch": "any",
       "license": "GPL-3.0-only",
       "depends": [
-        "pacman-contrib"
+        "pacman-contrib",
+        "python"
       ]
     },
     {
+      "filename": "arche-neovim-parsers-2.0.0-42-any.pkg.tar.zst",
+      "sha256": "47fdfb0c2becb7a50b880dcaa098ac1ad103e2a2b56578df34c697e43e05204d",
       "name": "arche-neovim-parsers",
       "base": "arche-tui-stack",
       "description": "Neovim parser links and highlight queries for Python and Rust",
-      "version": "2.0.0-40",
+      "version": "2.0.0-42",
       "arch": "any",
       "license": "GPL-3.0-only",
       "depends": [
@@ -102,6 +115,8 @@
       ]
     },
     {
+      "filename": "arche-swayfx-1.0.0-8-any.pkg.tar.zst",
+      "sha256": "b1a85f431b5965bbf764bf0c419e1409c254f567ce1772eab92f6ec8c17b13d4",
       "name": "arche-swayfx",
       "base": "arche-swayfx",
       "description": "Rounded window corners for the archelinux SwayFX session",
@@ -113,10 +128,12 @@
       ]
     },
     {
+      "filename": "arche-tui-stack-2.0.0-42-any.pkg.tar.zst",
+      "sha256": "ecbd1dfa94bf3fde1bfeac31f02b7c4e5993231773a587f9aa7a031751d4565a",
       "name": "arche-tui-stack",
       "base": "arche-tui-stack",
       "description": "Terminal development, Neovim and Litho Dark Sway desktop",
-      "version": "2.0.0-40",
+      "version": "2.0.0-42",
       "arch": "any",
       "license": "GPL-3.0-only",
       "depends": [
@@ -181,10 +198,12 @@
       ]
     },
     {
+      "filename": "arche-waybar-github-2.0.0-42-any.pkg.tar.zst",
+      "sha256": "19544644da906949f8d9b0f20129bfb5f4ca1597efc2da673a9cb4389fc1f81a",
       "name": "arche-waybar-github",
       "base": "arche-tui-stack",
       "description": "Unread GitHub pull requests and issues for Waybar",
-      "version": "2.0.0-40",
+      "version": "2.0.0-42",
       "arch": "any",
       "license": "GPL-3.0-only",
       "depends": [
@@ -194,15 +213,21 @@
       ]
     },
     {
+      "filename": "arche-workspace-defaults-2.0.0-42-any.pkg.tar.zst",
+      "sha256": "ad5d6d2fd22bf583a74990edfd57b59ec2617a940ad0ed1388c3de8215a2d751",
       "name": "arche-workspace-defaults",
       "base": "arche-tui-stack",
       "description": "Arche workspace templates, shell hooks and desktop artwork",
-      "version": "2.0.0-40",
+      "version": "2.0.0-42",
       "arch": "any",
       "license": "GPL-3.0-only",
-      "depends": []
+      "depends": [
+        "less"
+      ]
     },
     {
+      "filename": "arche-zsh-2026.11.22-3-any.pkg.tar.zst",
+      "sha256": "6c856a1852cb52cbb0f651d08f9b54c0968cad66f85fe4334243c15511a113f3",
       "name": "arche-zsh",
       "base": "arche-zsh",
       "description": "Arche Zsh login environment with Oh My Zsh",
@@ -219,6 +244,8 @@
       ]
     },
     {
+      "filename": "basedpyright-1.40.2-1-any.pkg.tar.zst",
+      "sha256": "45ed85e099e77a2d1e94cb727eb5a29f45452b2be4a25538f61cb5a31ab55323",
       "name": "basedpyright",
       "base": "basedpyright",
       "description": "Python type checker and language server",
@@ -230,6 +257,8 @@
       ]
     },
     {
+      "filename": "swayfx-0.6.1-3-x86_64.pkg.tar.zst",
+      "sha256": "f998709499a7d56c291cbceeec419c06dc919baf6d2e56a0f294fcecf495ba2a",
       "name": "swayfx",
       "base": "swayfx",
       "description": "Sway compositor with blur and rounded corners",

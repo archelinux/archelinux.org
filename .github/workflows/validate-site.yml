@@ -16,5 +16,5 @@ jobs:
       - run: python scripts/check_site.py
       - name: Check rendered pages match their sources
         run: |
-          git diff --exit-code -- '*.html'
+          git diff --exit-code -- '*.html' news/feed.xml
           test -z "$(git ls-files --others --exclude-standard -- '*.html')"

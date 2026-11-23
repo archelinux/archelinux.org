@@ -5,7 +5,8 @@
 <title>{{ title }} · archelinux</title>
 <meta name="description" content="{% block description %}{{ title }} for the archelinux distribution.{% endblock %}">
 <link rel="icon" href="{{ root }}assets/arche-logo.svg"><link rel="stylesheet" href="{{ root }}style.css">
-<link rel="canonical" href="https://archelinux.org/{{ path|replace('index.html','') }}">
+<link rel="alternate" type="application/atom+xml" title="archelinux releases" href="{{ root }}news/feed.xml">
+<link rel="canonical" href="{{ site_url }}{{ path|replace('index.html','') }}">
 </head><body>
 <a class="skip" href="#main">Skip to content</a>
 <header><div class="mast"><a class="brand" aria-label="archelinux home" href="{{ root }}index.html"><img src="{{ root }}assets/arche-logo.svg" alt="">arche<span>linux</span></a>
