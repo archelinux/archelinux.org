@@ -15,4 +15,5 @@
 <div class="section-title"><h2>Latest news</h2><a href="news/index.html">Release archive →</a></div>
 {% for r in releases[:3] %}<article class="entry"><time>{{ r.date }}</time><div><h3><a href="news/{{ r.tag }}.html">{{ r.title }}</a></h3>{% if r.summary %}<p>{{ r.summary }}</p>{% endif %}</div></article>{% endfor %}
 <h2 class="line">Older news</h2><ul class="history">{% for r in releases[3:] %}<li><time>{{ r.date }}</time><a href="news/{{ r.tag }}.html">{{ r.title }}</a></li>{% endfor %}</ul>
-<h2 class="line">Desktop screenshots</h2><div class="gallery">{% for file,cap in [('development','Development workspace'),('tiling','SwayFX tiling')] %}<a href="assets/archelinux-{{ file }}.jpg"><img src="assets/archelinux-{{ file }}.jpg" alt="{{ cap }}" loading="lazy"><span>{{ cap }}</span></a>{% endfor %}</div>{% endblock %}
+<h2 class="line">Desktop screenshots</h2><div class="gallery">{% for file,cap in [('development','Development workspace'),('tiling','SwayFX tiling')] %}<a href="assets/archelinux-{{ file }}.jpg"><img src="assets/archelinux-{{ file }}.jpg" alt="{{ cap }}" loading="lazy"><span>{{ cap }}</span></a>{% endfor %}</div>
+<p>Wallpaper: <a href="https://github.com/dharmx/walls/blob/e8d8a42e4fbecb2cf9619995edbc7ce19610bbd8/anime/aeb9uhrbr41a1.webp">Twin Blades from the dharmx/walls collection</a>.</p>{% endblock %}
