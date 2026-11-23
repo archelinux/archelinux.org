@@ -1,12 +1,13 @@
 # Standalone tools on Arch Linux
 
-These three utilities can be installed on a plain Arch Linux system. Their recipes build from a versioned source file and list dependencies available in Arch’s official repositories. [Source and packaging recipes](https://github.com/archelinux/arch-tools).
+These utilities and the archevim colorscheme can be installed on a plain Arch Linux system. Their recipes build from a versioned source file and list dependencies available in Arch’s official repositories. [Source and packaging recipes](https://github.com/archelinux/arch-tools).
 
 | Package | What it does |
 | --- | --- |
 | `arche-waybar-github` | Counts unread pull requests and issues. Hover to see repository names and titles. |
 | `arche-waybar-status` | Produces Waybar JSON for low disk space, active VPNs or GPU readings. |
 | `arche-rollback` | Reinstalls the newest older version of a package available in your configured pacman cache. |
+| `neovim-archevim` | The distro’s Neovim colorscheme and matching lualine theme. Enable it with `:colorscheme archevim`. |
 
 ## Install a package on plain Arch
 
