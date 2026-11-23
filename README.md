@@ -18,4 +18,4 @@ Package versions, dependencies and licenses come from the promoted pacman databa
 
 For local development, skip the refresh to rebuild from the checked-in snapshot. Run `python3 -m unittest discover -s tests` to check release selection and package metadata parsing. Commit rendered HTML with edits to its sources. The CNAME declares archelinux.org.
 
-The symbol and SwayFX screenshots come from [archelinux](https://github.com/archelinux/archelinux). The project created the [Graphite wallpaper](assets/graphite.svg) and released it under [0BSD](assets/LICENSE.graphite).
+The symbol and screenshots come from [archelinux](https://github.com/archelinux/archelinux). The desktop features the [Twin Blades wallpaper](https://github.com/dharmx/walls/blob/e8d8a42e4fbecb2cf9619995edbc7ce19610bbd8/anime/aeb9uhrbr41a1.webp).
