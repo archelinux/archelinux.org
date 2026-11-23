@@ -1,7 +1,17 @@
 {% extends "base.html" %}
 {% block description %}A keyboard-driven Arch-based Linux distribution. Explore the packages, read the installation guide and download the signed ISO.{% endblock %}
 {% block main %}
-<section class="welcome"><div class="welcome-copy"><h1>A keyboard-driven Arch desktop.</h1><p>archelinux pairs the simplicity of Arch with an i3-style SwayFX desktop. Boot the USB, choose your tools, and settle into Zsh, tmux and Neovim.</p><div class="actions"><a class="button" href="download/index.html">Download {{ latest.tag[1:] }} ↓</a><a href="wiki/installation.html">Installation guide →</a></div></div><a class="desktop" href="wiki/desktop.html" aria-label="Explore the SwayFX desktop"><img src="assets/archelinux-desktop.jpg" alt="Twin Blades wallpaper on the archelinux desktop"></a></section>
+<section class="welcome">
+  <div class="welcome-copy">
+    <p class="platform">Distribution / x86_64</p>
+    <h1>arche<span>linux</span></h1>
+    <p class="intro">An Arch-based distro for people who still think in i3 keybindings.</p>
+    <div class="actions">
+      <a class="button" href="download/index.html">Download {{ latest.tag[1:] }} ↓</a>
+      <a href="wiki/installation.html">Installation guide →</a>
+    </div>
+  </div>
+</section>
 <div class="section-title"><h2>Latest news</h2><a href="news/index.html">Release archive →</a></div>
 {% for r in releases[:3] %}<article class="entry"><time>{{ r.date }}</time><div><h3><a href="news/{{ r.tag }}.html">{{ r.title }}</a></h3><p>{{ r.summary }}</p></div></article>{% endfor %}
 <h2 class="line">Older news</h2><ul class="history">{% for r in releases[3:] %}<li><time>{{ r.date }}</time><a href="news/{{ r.tag }}.html">{{ r.title }}</a></li>{% endfor %}</ul>
