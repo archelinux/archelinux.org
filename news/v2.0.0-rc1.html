@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>archelinux 2.0.0-rc1 · archelinux</title>
+<meta name="description" content="archelinux 2.0.0-rc1 for the archelinux distribution.">
+<link rel="icon" href="../assets/arche-logo.svg"><link rel="stylesheet" href="../style.css">
+<link rel="canonical" href="https://archelinux.org/news/v2.0.0-rc1.html">
+</head><body>
+<a class="skip" href="#main">Skip to content</a>
+<header><div class="mast"><a class="brand" aria-label="archelinux home" href="../index.html"><img src="../assets/arche-logo.svg" alt="">arche<span>linux</span></a>
+<nav aria-label="Primary">
+<a href="../index.html" >Home</a>
+<a href="../packages/index.html" >Packages</a>
+<a href="../wiki/index.html" >Wiki</a>
+<a href="../news/index.html" aria-current="location">News</a>
+<a href="../download/index.html" >Download</a></nav></div></header>
+<main id="main">
+<div class="crumb"><a href="../index.html">Home</a> / <a href="index.html">News</a> / archelinux 2.0.0-rc1</div>
+<div class="layout"><div class="column"><article class="prose"><time>2026-11-11</time><h1>archelinux 2.0.0-rc1</h1><p>Archelinux 2.0.0 is a terminal-focused Arch distribution with Sway, Neovim, Tmux, and local agent tooling.</p>
+<p>A fresh 25 GiB UEFI QEMU/KVM installation and separate Zen/LTS cold boots passed XFS geometry/reflink, mount flags, boot entries, ZRAM, sysctls, service activation, user ownership, and Neovim LSP/parser checks. The desktop includes the text-free SVG logo on black, borderless windows, and the corrected Litho Dark status bar.</p>
+<h2>Download and reconstruct</h2>
+<p>Download both ISO parts, the ISO signature, SHA256SUMS and its signature, and archelinux-release.asc. GitHub limits individual release assets to under 2 GiB.</p>
+<pre><code>cat archelinux-2026.11.10-x86_64.iso.part01 archelinux-2026.11.10-x86_64.iso.part02 &gt; archelinux-2026.11.10-x86_64.iso
+gpg --import archelinux-release.asc
+gpg --fingerprint E446C26A0B7BA1A66A3DCC9F7EC564003573C80B
+gpg --verify SHA256SUMS.sig SHA256SUMS
+gpg --verify archelinux-2026.11.10-x86_64.iso.sig archelinux-2026.11.10-x86_64.iso
+sha256sum archelinux-2026.11.10-x86_64.iso
+</code></pre>
+<p>Write the reconstructed ISO to installation media; the individual parts are not bootable images.</p>
+<p>Expected ISO SHA256: 59724126d210f69e50032ac55255278b8036f61a898a2d093f0ecf08871e9985</p>
+<p>New release-key fingerprint: E446 C26A 0B7B A1A6 6A3D CC9F 7EC5 6400 3573 C80B.
+This replaces the lost prior signing key. Verify this fingerprint through a trusted independent channel before granting trust.</p>
+<h2>Signed pacman repository</h2>
+<p>After verifying the public key and importing it into pacman's keyring, configure:</p>
+<pre><code>[arche]
+SigLevel = Required DatabaseOptional
+Server = https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1
+</code></pre>
+<p>Before enabling the repository, verify the fingerprint above, then establish pacman trust explicitly:</p>
+<pre><code>sudo pacman-key --add archelinux-release.asc
+sudo pacman-key --lsign-key E446C26A0B7BA1A66A3DCC9F7EC564003573C80B
+</code></pre>
+<p>Packages and repository databases are signed. The ISO's bundled staging repository retains its scoped local-build trust setting. The published repository above requires signed packages.</p>
+<h2>Limits and evidence</h2>
+<p>Physical NVIDIA/CUDA, Wi-Fi, suspend/resume, multiple monitors, BIOS installation, and hosted CI execution remain unverified. Test VM control fixtures and console autologin are not shipped as ISO defaults. The full test log and refreshed screenshots are attached.</p>
+<h2>Release files</h2><ul><li><a href="https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/arche-agentic-core-2.0.0-1-any.pkg.tar.zst" download>arche-agentic-core-2.0.0-1-any.pkg.tar.zst</a></li><li><a href="https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/arche-agentic-core-2.0.0-1-any.pkg.tar.zst.sig" download>arche-agentic-core-2.0.0-1-any.pkg.tar.zst.sig</a></li><li><a href="https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/arche-base-2.0.0-1-any.pkg.tar.zst" download>arche-base-2.0.0-1-any.pkg.tar.zst</a></li><li><a href="https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/arche-base-2.0.0-1-any.pkg.tar.zst.sig" download>arche-base-2.0.0-1-any.pkg.tar.zst.sig</a></li><li><a href="https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/arche-cuda-2.0.0-1-any.pkg.tar.zst" download>arche-cuda-2.0.0-1-any.pkg.tar.zst</a></li><li><a href="https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/arche-cuda-2.0.0-1-any.pkg.tar.zst.sig" download>arche-cuda-2.0.0-1-any.pkg.tar.zst.sig</a></li><li><a href="https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/arche-tui-stack-2.0.0-9-any.pkg.tar.zst" download>arche-tui-stack-2.0.0-9-any.pkg.tar.zst</a></li><li><a href="https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/arche-tui-stack-2.0.0-9-any.pkg.tar.zst.sig" download>arche-tui-stack-2.0.0-9-any.pkg.tar.zst.sig</a></li><li><a href="https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/arche.db" download>arche.db</a></li><li><a href="https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/arche.db.sig" download>arche.db.sig</a></li><li><a href="https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/arche.db.tar.gz" download>arche.db.tar.gz</a></li><li><a href="https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/arche.db.tar.gz.sig" download>arche.db.tar.gz.sig</a></li><li><a href="https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/arche.files" download>arche.files</a></li><li><a href="https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/arche.files.sig" download>arche.files.sig</a></li><li><a href="https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/arche.files.tar.gz" download>arche.files.tar.gz</a></li><li><a href="https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/arche.files.tar.gz.sig" download>arche.files.tar.gz.sig</a></li><li><a href="https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/archelinux-2026.11.10-x86_64.iso.part01" download>archelinux-2026.11.10-x86_64.iso.part01</a></li><li><a href="https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/archelinux-2026.11.10-x86_64.iso.part02" download>archelinux-2026.11.10-x86_64.iso.part02</a></li><li><a href="https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/archelinux-2026.11.10-x86_64.iso.sig" download>archelinux-2026.11.10-x86_64.iso.sig</a></li><li><a href="https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/archelinux-release.asc" download>archelinux-release.asc</a></li><li><a href="https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/basedpyright-bin-1.40.2-1-any.pkg.tar.zst" download>basedpyright-bin-1.40.2-1-any.pkg.tar.zst</a></li><li><a href="https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/basedpyright-bin-1.40.2-1-any.pkg.tar.zst.sig" download>basedpyright-bin-1.40.2-1-any.pkg.tar.zst.sig</a></li><li><a href="https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/bun-bin-1.4.4-1-x86_64.pkg.tar.zst" download>bun-bin-1.4.4-1-x86_64.pkg.tar.zst</a></li><li><a href="https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/bun-bin-1.4.4-1-x86_64.pkg.tar.zst.sig" download>bun-bin-1.4.4-1-x86_64.pkg.tar.zst.sig</a></li><li><a href="https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/e2e-fuzzel-neovim.png" download>e2e-fuzzel-neovim.png</a></li><li><a href="https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/e2e-live-desktop.png" download>e2e-live-desktop.png</a></li><li><a href="https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/e2e-storage-terminal.png" download>e2e-storage-terminal.png</a></li><li><a href="https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/install-test.log" download>install-test.log</a></li><li><a href="https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/SHA256SUMS" download>SHA256SUMS</a></li><li><a href="https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/SHA256SUMS.sig" download>SHA256SUMS.sig</a></li></ul></article></div>
+<aside>
+
+<section class="box"><h2>Package search</h2><form class="search" action="../packages/index.html"><input type="search" name="q" aria-label="Package name or description" placeholder="Name or description"><button>Search</button></form></section>
+
+
+<section class="box directory"><h2>Documentation</h2><h3>Getting started</h3><ul><li><a href="../wiki/about.html" >About archelinux</a></li><li><a href="../wiki/verify.html" >Verify the ISO</a></li><li><a href="../wiki/installation.html" >Installation guide</a></li></ul><h3>Your workspace</h3><ul><li><a href="../wiki/desktop.html" >SwayFX and Litho Dark</a></li><li><a href="../wiki/shell.html" >The Zsh workspace</a></li><li><a href="../wiki/configuration.html" >Packages and configuration</a></li></ul><h3>Building archelinux</h3><ul><li><a href="../wiki/system.html" >System architecture</a></li><li><a href="../wiki/installer-internals.html" >Guided installer internals</a></li><li><a href="../wiki/build.html" >Build the ISO</a></li></ul>
+<a href="../wiki/index.html">Browse the wiki →</a></section>
+</aside></div></main>
+<footer><a class="footbrand" href="../index.html">archelinux</a><span>Independent Arch-based distribution</span><a href="../wiki/about.html">About the project</a></footer>
+</body></html>

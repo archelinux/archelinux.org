@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Installation guide · archelinux</title>
+<meta name="description" content="Installation guide for the archelinux distribution.">
+<link rel="icon" href="../assets/arche-logo.svg"><link rel="stylesheet" href="../style.css">
+<link rel="canonical" href="https://archelinux.org/wiki/installation.html">
+</head><body>
+<a class="skip" href="#main">Skip to content</a>
+<header><div class="mast"><a class="brand" aria-label="archelinux home" href="../index.html"><img src="../assets/arche-logo.svg" alt="">arche<span>linux</span></a>
+<nav aria-label="Primary">
+<a href="../index.html" >Home</a>
+<a href="../packages/index.html" >Packages</a>
+<a href="../wiki/index.html" aria-current="location">Wiki</a>
+<a href="../news/index.html" >News</a>
+<a href="../download/index.html" >Download</a></nav></div></header>
+<main id="main">
+<div class="crumb"><a href="../index.html">Home</a> / <a href="index.html">Wiki</a> / Installation guide</div>
+<div class="layout"><div class="column"><article class="prose"><h1>Installation guide</h1><p>The recommended system is a keyboard-driven Sway desktop with Zsh, Oh My Zsh, Neovim and tmux. The USB boots to a console and needs internet access to install. Arche uses XFS for root. You can enable LUKS and choose your software. If you depend on booting filesystem snapshots, factor that into your choice: Arche provides individual cached-package rollback.</p>
+<h2>Install from USB</h2>
+<p>archelinux 2.0.0 starts its guided archinstall 4.5 installer on TTY1.</p>
+<ol>
+<li><a href="../download/index.html">Download the signed ISO</a> and verify it using the <a href="verify.html">verification guide</a>, then write it to installation media.</li>
+<li>Boot the console and connect to the network. Use NetworkManager or <code>nmcli</code> if needed.</li>
+<li>Open <strong>Arche software</strong> to keep the recommended SwayFX workspace or toggle individual tools with Space. SwayFX supplies nine-pixel window corners and terminal background blur. For stock Sway, clear <strong>arche-swayfx</strong> and select <strong>sway</strong>. Both compositors use a slim mauve focus outline, small gaps and a floating Waybar panel. Optional tools include <strong>github-cli</strong> (<code>gh</code>), <strong>yazi</strong> (file manager) and <strong>btop</strong> (system monitor). For unread GitHub PRs and issues on the Sway bar, select <strong>arche-waybar-github</strong>, then run <code>gh auth login</code> after login. If your token needs notification access, run <code>gh auth refresh -h github.com -s notifications</code>. Hover for thread titles or click to open your inbox. Choose <strong>spotify</strong> for the desktop app from Flathub or <strong>spotify-player</strong> for the terminal client (Spotify Premium required). You can select both. Clear the list for a console system. Selecting Sway includes its terminal, launcher, bar, lock, media controls and region screenshots (<code>grim -g &quot;$(slurp)&quot; - | wl-copy --type image/png</code>). Select other packages in <strong>Additional packages</strong>.</li>
+<li>New accounts start in Zsh with Oh My Zsh, the <code>bureau</code> theme and the <a href="shell.html">shell plugins and shortcuts</a>. Edit <code>~/.zshrc</code> to personalize them.</li>
+<li>In <strong>Disk configuration</strong>, select the target and layout. Archelinux uses XFS for the root filesystem. UEFI uses a separate FAT32 EFI partition. Configure LUKS encryption here if wanted and retain your passphrase. The installer does not choose a target disk for you.</li>
+<li>Review kernels, bootloader, networking, locale, time zone and authentication. Check the final configuration and selected disk before confirming. Formatting erases the selected partitions.</li>
+</ol>
+<p>Release signing-key fingerprint:</p>
+<pre><code>E446 C26A 0B7B A1A6 6A3D CC9F 7EC5 6400 3573 C80B
+</code></pre>
+<p>See the <a href="verify.html">verification commands</a> and <a href="publication.html">signed package-repository setup</a>. Download the <a href="../assets/archelinux-release-public.asc">public key</a>.</p>
+<p>On first launch, Neovim downloads the LazyVim plugins. Keep the internet connection active until setup finishes. Change the default <code>archevim</code> colorscheme in <code>~/.config/nvim/lua/plugins/colors.lua</code>.</p>
+</article></div>
+<aside>
+
+<section class="box"><h2>Package search</h2><form class="search" action="../packages/index.html"><input type="search" name="q" aria-label="Package name or description" placeholder="Name or description"><button>Search</button></form></section>
+
+
+<section class="box directory"><h2>Documentation</h2><h3>Getting started</h3><ul><li><a href="../wiki/about.html" >About archelinux</a></li><li><a href="../wiki/verify.html" >Verify the ISO</a></li><li><a href="../wiki/installation.html" aria-current="page">Installation guide</a></li><li><a href="../wiki/shortcuts.html" >Your first few shortcuts</a></li><li><a href="../wiki/hardware.html" >Check your hardware after the first login</a></li></ul><h3>Your workspace</h3><ul><li><a href="../wiki/desktop.html" >SwayFX and Litho Dark</a></li><li><a href="../wiki/shell.html" >The Zsh workspace</a></li><li><a href="../wiki/configuration.html" >Packages and configuration</a></li><li><a href="../wiki/recovery.html" >Recovery and maintenance</a></li><li><a href="../wiki/maintenance.html" >Recovery and local inference</a></li></ul><h3>Building archelinux</h3><ul><li><a href="../wiki/system.html" >System architecture</a></li><li><a href="../wiki/installer-internals.html" >Guided installer internals</a></li><li><a href="../wiki/build.html" >Build the ISO</a></li><li><a href="../wiki/publication.html" >CI and package signing</a></li><li><a href="../wiki/acceptance.html" >Release acceptance checks</a></li><li><a href="../wiki/qemu.html" >Disposable UEFI installation acceptance</a></li></ul>
+<a href="../wiki/index.html">Browse the wiki →</a></section>
+</aside></div></main>
+<footer><a class="footbrand" href="../index.html">archelinux</a><span>Independent Arch-based distribution</span><a href="../wiki/about.html">About the project</a></footer>
+</body></html>

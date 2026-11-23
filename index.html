@@ -1,30 +1,37 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>archelinux | An Arch-based SwayFX desktop</title>
-<meta name="description" content="Download archelinux, a keyboard-driven Arch-based distribution with SwayFX, Zsh, tmux and Neovim.">
-<link rel="canonical" href="https://archelinux.org/"><link rel="icon" href="assets/arche-logo.svg"><link rel="stylesheet" href="style.css">
-</head>
-<body>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Home · archelinux</title>
+<meta name="description" content="A keyboard-driven Arch-based Linux distribution. Explore the packages, read the installation guide and download the signed ISO.">
+<link rel="icon" href="./assets/arche-logo.svg"><link rel="stylesheet" href="./style.css">
+<link rel="canonical" href="https://archelinux.org/">
+</head><body>
 <a class="skip" href="#main">Skip to content</a>
-<header><div class="bar"><a class="brand" href="./"><img src="assets/arche-logo.svg" alt="">arche<b>linux</b></a>
-<nav aria-label="Primary"><a href="./" aria-current="page">Home</a><a href="#packages">Packages</a><a href="https://github.com/archelinux/archelinux/blob/main/docs/getting-started.md">Guide</a><a href="https://github.com/archelinux/archelinux">GitHub ↗</a></nav></div></header>
+<header><div class="mast"><a class="brand" aria-label="archelinux home" href="./index.html"><img src="./assets/arche-logo.svg" alt="">arche<span>linux</span></a>
+<nav aria-label="Primary">
+<a href="./index.html" aria-current="page">Home</a>
+<a href="./packages/index.html" >Packages</a>
+<a href="./wiki/index.html" >Wiki</a>
+<a href="./news/index.html" >News</a>
+<a href="./download/index.html" >Download</a></nav></div></header>
 <main id="main">
-<section class="hero"><div class="hero-copy"><p class="eyebrow"><i></i> Distribution / x86_64</p>
-<h1>arche<span>linux</span></h1>
-<p class="intro">An Arch-based distro for people who still think in i3 keybindings.</p>
-<div class="actions"><a class="primary" href="https://github.com/archelinux/archelinux/releases/latest">↓ &nbsp; Download ISO</a><a class="secondary" href="https://github.com/archelinux/archelinux/blob/main/docs/getting-started.md">Install guide &nbsp; →</a></div></div></section>
-<div class="columns"><div>
-<section><div class="heading"><h2>Latest news</h2><a href="https://github.com/archelinux/archelinux/releases">All releases ↗</a></div>
-<article><time datetime="2026-11-23">23 NOV 2026</time><h3><a href="https://github.com/archelinux/archelinux/releases/tag/v2.0.0">archelinux 2.0.0 is available</a></h3><p>The signed installation image includes a guided installer and a SwayFX workspace. Keep the recommended tools, choose your own bundles, or start with a console system.</p><a href="https://github.com/archelinux/archelinux/releases/tag/v2.0.0">Release notes →</a></article></section>
-<section><div class="heading"><h2>On the desktop</h2></div><div class="gallery">
-<a href="assets/archelinux-development.jpg"><img src="assets/archelinux-development.jpg" loading="lazy" alt="Neovim file tree beside Git history and a terminal"><span>Development workspace ↗</span></a>
-<a href="assets/archelinux-tiling.jpg"><img src="assets/archelinux-tiling.jpg" loading="lazy" alt="Four tiled windows on the SwayFX desktop"><span>SwayFX tiling ↗</span></a></div></section></div>
-<aside><section id="packages"><div class="heading"><h2>Packages</h2><a href="https://github.com/archelinux/archelinux/tree/main/pkgs">Browse ↗</a></div><ul class="packages">
-<li><a href="https://github.com/archelinux/archelinux/tree/main/pkgs/arche-swayfx">arche-swayfx <small>Desktop</small></a></li>
-<li><a href="https://github.com/archelinux/archelinux/tree/main/pkgs/arche-zsh">arche-zsh <small>Shell</small></a></li>
-<li><a href="https://github.com/archelinux/archelinux/tree/main/pkgs/arche-tui-stack">arche-tui-stack <small>Terminal</small></a></li>
-</ul></section><section><div class="heading"><h2>Resources</h2></div><ul><li><a href="https://github.com/archelinux/archelinux/blob/main/docs/architecture.md">Build the ISO ↗</a></li><li><a href="https://github.com/archelinux/archelinux/issues">Hardware reports ↗</a></li><li><a href="https://wiki.archlinux.org/">ArchWiki ↗</a></li></ul></section></aside></div>
-</main><footer><strong>archelinux.org</strong><span>Independent Arch-based distribution</span></footer>
+
+<div class="layout"><div class="column">
+<section class="welcome"><div class="welcome-copy"><h1>A keyboard-driven Arch desktop.</h1><p>archelinux pairs the simplicity of Arch with an i3-style SwayFX desktop. Boot the USB, choose your tools, and settle into Zsh, tmux and Neovim.</p><div class="actions"><a class="button" href="download/index.html">Download 2.0.0 ↓</a><a href="wiki/installation.html">Installation guide →</a></div></div><a class="desktop" href="wiki/desktop.html" aria-label="Explore the SwayFX desktop"><img src="assets/archelinux-desktop.jpg" alt="Twin Blades wallpaper on the archelinux desktop"></a></section>
+<div class="section-title"><h2>Latest news</h2><a href="news/index.html">Release archive →</a></div>
+<article class="entry"><time>2026-11-23</time><div><h3><a href="news/v2.0.0.html">archelinux 2.0.0</a></h3><p>The signed 2.0.0 image is available for x86_64. The guided installer offers SwayFX, optional LUKS encryption, and a console-only setup.</p></div></article><article class="entry"><time>2026-11-23</time><div><h3><a href="news/v2.0.0-rc2.html">archelinux 2.0.0-rc2</a></h3><p>The second release candidate includes the guided installer, optional software bundles and the archevim colorscheme.</p></div></article><article class="entry"><time>2026-11-11</time><div><h3><a href="news/v2.0.0-rc1.html">archelinux 2.0.0-rc1</a></h3><p>The first 2.0.0 candidate introduces the terminal workspace and records the results of installed-system tests with the Zen and LTS kernels.</p></div></article>
+<h2 class="line">Older news</h2><ul class="history"><li><time>2026-07-25</time><a href="news/rolling-20260725.html">archelinux rolling 20260725</a></li><li><time>2025-08-12</time><a href="news/rolling-20250812.html">archelinux rolling 20250812</a></li><li><time>2025-07-26</time><a href="news/v2025.07.26.html">archelinux 2025.07.26</a></li></ul>
+<h2 class="line">Desktop screenshots</h2><div class="gallery"><a href="assets/archelinux-development.jpg"><img src="assets/archelinux-development.jpg" alt="Development workspace" loading="lazy"><span>Development workspace</span></a><a href="assets/archelinux-tiling.jpg"><img src="assets/archelinux-tiling.jpg" alt="SwayFX tiling" loading="lazy"><span>SwayFX tiling</span></a></div></div>
+<aside>
+
+<section class="box"><h2>Package search</h2><form class="search" action="./packages/index.html"><input type="search" name="q" aria-label="Package name or description" placeholder="Name or description"><button>Search</button></form></section>
+
+
+<section class="box"><div class="labelrow"><h2>In the repository</h2><a href="packages/index.html">All 13 →</a></div><ul class="ledger"><li><a href="packages/arche-base.html">arche-base</a><small>2.0.0-2</small></li><li><a href="packages/arche-swayfx.html">arche-swayfx</a><small>1.0.0-8</small></li><li><a href="packages/arche-tui-stack.html">arche-tui-stack</a><small>2.0.0-40</small></li><li><a href="packages/arche-zsh.html">arche-zsh</a><small>2026.11.22-3</small></li><li><a href="packages/basedpyright.html">basedpyright</a><small>1.40.2-1</small></li><li><a href="packages/swayfx.html">swayfx</a><small>0.6.1-3</small></li></ul></section>
+
+<section class="box directory"><h2>Documentation</h2><h3>Getting started</h3><ul><li><a href="./wiki/about.html" >About archelinux</a></li><li><a href="./wiki/verify.html" >Verify the ISO</a></li><li><a href="./wiki/installation.html" >Installation guide</a></li></ul><h3>Your workspace</h3><ul><li><a href="./wiki/desktop.html" >SwayFX and Litho Dark</a></li><li><a href="./wiki/shell.html" >The Zsh workspace</a></li><li><a href="./wiki/configuration.html" >Packages and configuration</a></li></ul><h3>Building archelinux</h3><ul><li><a href="./wiki/system.html" >System architecture</a></li><li><a href="./wiki/installer-internals.html" >Guided installer internals</a></li><li><a href="./wiki/build.html" >Build the ISO</a></li></ul>
+<a href="./wiki/index.html">Browse the wiki →</a></section>
+</aside></div></main>
+<footer><a class="footbrand" href="./index.html">archelinux</a><span>Independent Arch-based distribution</span><a href="./wiki/about.html">About the project</a></footer>
 </body></html>

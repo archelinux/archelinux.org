@@ -1,0 +1,8 @@
+{% if section != 'Packages' %}
+<section class="box"><h2>Package search</h2><form class="search" action="{{ root }}packages/index.html"><input type="search" name="q" aria-label="Package name or description" placeholder="Name or description"><button>Search</button></form></section>
+{% endif %}
+{% if section=='Home' %}
+<section class="box"><div class="labelrow"><h2>In the repository</h2><a href="packages/index.html">All {{ packages|length }} →</a></div><ul class="ledger">{% for p in packages if p.name in ['arche-base','arche-swayfx','arche-tui-stack','arche-zsh','basedpyright','swayfx'] %}<li><a href="packages/{{ p.name }}.html">{{ p.name }}</a><small>{{ p.version }}</small></li>{% endfor %}</ul></section>
+{% endif %}
+<section class="box directory"><h2>Documentation</h2>{% for group,slugs in groups.items() %}<h3>{{ group }}</h3><ul>{% for slug in slugs %}{% if section=='Wiki' or loop.index <= 3 %}<li><a href="{{ root }}wiki/{{ slug }}.html" {% if path=='wiki/'+slug+'.html' %}aria-current="page"{% endif %}>{{ articles[slug].title }}</a></li>{% endif %}{% endfor %}</ul>{% endfor %}
+<a href="{{ root }}wiki/index.html">Browse the wiki →</a></section>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Build the ISO · archelinux</title>
+<meta name="description" content="Build the ISO for the archelinux distribution.">
+<link rel="icon" href="../assets/arche-logo.svg"><link rel="stylesheet" href="../style.css">
+<link rel="canonical" href="https://archelinux.org/wiki/build.html">
+</head><body>
+<a class="skip" href="#main">Skip to content</a>
+<header><div class="mast"><a class="brand" aria-label="archelinux home" href="../index.html"><img src="../assets/arche-logo.svg" alt="">arche<span>linux</span></a>
+<nav aria-label="Primary">
+<a href="../index.html" >Home</a>
+<a href="../packages/index.html" >Packages</a>
+<a href="../wiki/index.html" aria-current="location">Wiki</a>
+<a href="../news/index.html" >News</a>
+<a href="../download/index.html" >Download</a></nav></div></header>
+<main id="main">
+<div class="crumb"><a href="../index.html">Home</a> / <a href="index.html">Wiki</a> / Build the ISO</div>
+<div class="layout"><div class="column"><article class="prose"><h1>Build the ISO</h1><p>Use a disposable privileged <strong>Arch Linux</strong> container or Arch build host with several tens of GiB free. The scripts install build dependencies and require network access to Arch mirrors and the upstream SwayFX and Basedpyright releases.</p>
+<pre><code class="language-sh">pacman -Syu --needed archiso grub git python python-yaml shellcheck xfsprogs
+bash tests/check.sh
+bash scripts/build-repo.sh
+mkarchiso -v -w /tmp/archiso-tmp -o /tmp/archiso-out .
+PYTHONPATH=&quot;$PWD/airootfs/usr/share/arche/installer&quot; python -P tests/guided-installer.py
+</code></pre>
+<p>Run these from the repository root. <code>build-repo.sh</code> builds and lints the repository's PKGBUILDs as an unprivileged user. SwayFX uses the upstream tagged source archive. Basedpyright uses its upstream npm release and Arch provides Bun. The builder verifies source checksums and indexes the resulting binary packages in <code>pkgs/local-repo/arche.db.tar.zst</code>. The empty optional CUDA metapackage validates its dependency transaction with <code>pacman -Sp --needed</code> and packages metadata with <code>makepkg --nodeps</code>, avoiding GPU-driver installation and DKMS execution on the builder. The default packages use full dependency installation. Root invocations create a temporary builder with passwordless sudo for pacman only; normal users use their existing sudo access. The builder and its sudoers rule are removed at exit, and the build host pacman configuration is restored. The build rewrites the <code>[arche]</code> stanza in the profile's <code>pacman.conf</code> to point at the generated local repository and generates the live image's corresponding configuration. Run it again after moving the checkout. Use fresh archiso work/output and package staging directories for each build; a nonempty package staging directory is rejected to prevent publishing stale artifacts.</p>
+<p>The local repository contains unsigned packages built with the ISO and has a scoped <code>SigLevel = Optional TrustAll</code>; official Arch repositories continue to require signatures. The installer copies this repository into the target so its package sources remain accessible after reboot. Configure a signed release repository for future Arche package updates.</p>
+</article></div>
+<aside>
+
+<section class="box"><h2>Package search</h2><form class="search" action="../packages/index.html"><input type="search" name="q" aria-label="Package name or description" placeholder="Name or description"><button>Search</button></form></section>
+
+
+<section class="box directory"><h2>Documentation</h2><h3>Getting started</h3><ul><li><a href="../wiki/about.html" >About archelinux</a></li><li><a href="../wiki/verify.html" >Verify the ISO</a></li><li><a href="../wiki/installation.html" >Installation guide</a></li><li><a href="../wiki/shortcuts.html" >Your first few shortcuts</a></li><li><a href="../wiki/hardware.html" >Check your hardware after the first login</a></li></ul><h3>Your workspace</h3><ul><li><a href="../wiki/desktop.html" >SwayFX and Litho Dark</a></li><li><a href="../wiki/shell.html" >The Zsh workspace</a></li><li><a href="../wiki/configuration.html" >Packages and configuration</a></li><li><a href="../wiki/recovery.html" >Recovery and maintenance</a></li><li><a href="../wiki/maintenance.html" >Recovery and local inference</a></li></ul><h3>Building archelinux</h3><ul><li><a href="../wiki/system.html" >System architecture</a></li><li><a href="../wiki/installer-internals.html" >Guided installer internals</a></li><li><a href="../wiki/build.html" aria-current="page">Build the ISO</a></li><li><a href="../wiki/publication.html" >CI and package signing</a></li><li><a href="../wiki/acceptance.html" >Release acceptance checks</a></li><li><a href="../wiki/qemu.html" >Disposable UEFI installation acceptance</a></li></ul>
+<a href="../wiki/index.html">Browse the wiki →</a></section>
+</aside></div></main>
+<footer><a class="footbrand" href="../index.html">archelinux</a><span>Independent Arch-based distribution</span><a href="../wiki/about.html">About the project</a></footer>
+</body></html>

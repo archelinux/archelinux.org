@@ -1,0 +1,1 @@
+{% extends "base.html" %}{% block main %}<h1>Release archive</h1><p class="lead">Release notes, installation images and signatures.</p><ul class="history">{% for r in releases %}<li><time>{{ r.date }}</time><a href="{{ r.tag }}.html">{{ r.title }}</a></li>{% endfor %}</ul>{% endblock %}

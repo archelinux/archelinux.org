@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block main %}<h1>Package directory</h1><p class="lead">Browse the archelinux packages in the {{ latest.tag }} release.</p>
+<form class="search" id="filter"><input name="q" type="search" placeholder="Name or description" aria-label="Filter packages"><button>Search</button></form><p id="count" role="status">{{ packages|length }} packages</p>
+<div class="scroll"><table><thead><tr><th>Package</th><th>Version</th><th>Description</th></tr></thead><tbody>{% for p in packages %}<tr><td><a href="{{ p.name }}.html">{{ p.name }}</a></td><td>{{ p.version }}</td><td>{{ p.description }}</td></tr>{% endfor %}</tbody></table></div>
+<script src="{{ root }}assets/packages.js" defer></script>{% endblock %}

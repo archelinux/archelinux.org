@@ -1,0 +1,1 @@
+{% extends "base.html" %}{% block main %}<article class="prose"><time>{{ release.date }}</time><h1>{{ title }}</h1>{{ body|safe }}<h2>Release files</h2><ul>{% for a in release.assets %}<li><a href="{{ a.url }}" download>{{ a.name }}</a></li>{% endfor %}</ul></article>{% endblock %}

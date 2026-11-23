@@ -1,0 +1,317 @@
+[
+  {
+    "tag": "v2.0.0",
+    "title": "archelinux 2.0.0",
+    "date": "2026-11-23",
+    "assets": [
+      {
+        "name": "archelinux-2026.11.23-x86_64.iso",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0/archelinux-2026.11.23-x86_64.iso",
+        "size": 1304428544
+      },
+      {
+        "name": "archelinux-2026.11.23-x86_64.iso.sha256",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0/archelinux-2026.11.23-x86_64.iso.sha256",
+        "size": 99
+      },
+      {
+        "name": "archelinux-2026.11.23-x86_64.iso.sha256.sig",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0/archelinux-2026.11.23-x86_64.iso.sha256.sig",
+        "size": 119
+      },
+      {
+        "name": "archelinux-2026.11.23-x86_64.iso.sig",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0/archelinux-2026.11.23-x86_64.iso.sig",
+        "size": 119
+      },
+      {
+        "name": "archelinux-release-public.asc",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0/archelinux-release-public.asc",
+        "size": 396
+      }
+    ],
+    "summary": "The signed 2.0.0 image is available for x86_64. The guided installer offers SwayFX, optional LUKS encryption, and a console-only setup."
+  },
+  {
+    "tag": "v2.0.0-rc2",
+    "title": "archelinux 2.0.0-rc2",
+    "date": "2026-11-23",
+    "assets": [
+      {
+        "name": "archelinux-2026.11.23-x86_64.iso",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc2/archelinux-2026.11.23-x86_64.iso",
+        "size": 1304428544
+      },
+      {
+        "name": "archelinux-2026.11.23-x86_64.iso.sha256",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc2/archelinux-2026.11.23-x86_64.iso.sha256",
+        "size": 99
+      },
+      {
+        "name": "archelinux-2026.11.23-x86_64.iso.sha256.sig",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc2/archelinux-2026.11.23-x86_64.iso.sha256.sig",
+        "size": 119
+      },
+      {
+        "name": "archelinux-2026.11.23-x86_64.iso.sig",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc2/archelinux-2026.11.23-x86_64.iso.sig",
+        "size": 119
+      },
+      {
+        "name": "archelinux-release-public.asc",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc2/archelinux-release-public.asc",
+        "size": 396
+      }
+    ],
+    "summary": "The second release candidate includes the guided installer, optional software bundles and the archevim colorscheme."
+  },
+  {
+    "tag": "v2.0.0-rc1",
+    "title": "archelinux 2.0.0-rc1",
+    "date": "2026-11-11",
+    "assets": [
+      {
+        "name": "arche-agentic-core-2.0.0-1-any.pkg.tar.zst",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/arche-agentic-core-2.0.0-1-any.pkg.tar.zst",
+        "size": 7634
+      },
+      {
+        "name": "arche-agentic-core-2.0.0-1-any.pkg.tar.zst.sig",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/arche-agentic-core-2.0.0-1-any.pkg.tar.zst.sig",
+        "size": 119
+      },
+      {
+        "name": "arche-base-2.0.0-1-any.pkg.tar.zst",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/arche-base-2.0.0-1-any.pkg.tar.zst",
+        "size": 8569
+      },
+      {
+        "name": "arche-base-2.0.0-1-any.pkg.tar.zst.sig",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/arche-base-2.0.0-1-any.pkg.tar.zst.sig",
+        "size": 119
+      },
+      {
+        "name": "arche-cuda-2.0.0-1-any.pkg.tar.zst",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/arche-cuda-2.0.0-1-any.pkg.tar.zst",
+        "size": 6736
+      },
+      {
+        "name": "arche-cuda-2.0.0-1-any.pkg.tar.zst.sig",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/arche-cuda-2.0.0-1-any.pkg.tar.zst.sig",
+        "size": 119
+      },
+      {
+        "name": "arche-tui-stack-2.0.0-9-any.pkg.tar.zst",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/arche-tui-stack-2.0.0-9-any.pkg.tar.zst",
+        "size": 38724
+      },
+      {
+        "name": "arche-tui-stack-2.0.0-9-any.pkg.tar.zst.sig",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/arche-tui-stack-2.0.0-9-any.pkg.tar.zst.sig",
+        "size": 119
+      },
+      {
+        "name": "arche.db",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/arche.db",
+        "size": 2553
+      },
+      {
+        "name": "arche.db.sig",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/arche.db.sig",
+        "size": 119
+      },
+      {
+        "name": "arche.db.tar.gz",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/arche.db.tar.gz",
+        "size": 2553
+      },
+      {
+        "name": "arche.db.tar.gz.sig",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/arche.db.tar.gz.sig",
+        "size": 119
+      },
+      {
+        "name": "arche.files",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/arche.files",
+        "size": 42587
+      },
+      {
+        "name": "arche.files.sig",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/arche.files.sig",
+        "size": 119
+      },
+      {
+        "name": "arche.files.tar.gz",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/arche.files.tar.gz",
+        "size": 42587
+      },
+      {
+        "name": "arche.files.tar.gz.sig",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/arche.files.tar.gz.sig",
+        "size": 119
+      },
+      {
+        "name": "archelinux-2026.11.10-x86_64.iso.part01",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/archelinux-2026.11.10-x86_64.iso.part01",
+        "size": 1610612736
+      },
+      {
+        "name": "archelinux-2026.11.10-x86_64.iso.part02",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/archelinux-2026.11.10-x86_64.iso.part02",
+        "size": 928710656
+      },
+      {
+        "name": "archelinux-2026.11.10-x86_64.iso.sig",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/archelinux-2026.11.10-x86_64.iso.sig",
+        "size": 119
+      },
+      {
+        "name": "archelinux-release.asc",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/archelinux-release.asc",
+        "size": 396
+      },
+      {
+        "name": "basedpyright-bin-1.40.2-1-any.pkg.tar.zst",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/basedpyright-bin-1.40.2-1-any.pkg.tar.zst",
+        "size": 6465271
+      },
+      {
+        "name": "basedpyright-bin-1.40.2-1-any.pkg.tar.zst.sig",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/basedpyright-bin-1.40.2-1-any.pkg.tar.zst.sig",
+        "size": 119
+      },
+      {
+        "name": "bun-bin-1.4.4-1-x86_64.pkg.tar.zst",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/bun-bin-1.4.4-1-x86_64.pkg.tar.zst",
+        "size": 50550634
+      },
+      {
+        "name": "bun-bin-1.4.4-1-x86_64.pkg.tar.zst.sig",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/bun-bin-1.4.4-1-x86_64.pkg.tar.zst.sig",
+        "size": 119
+      },
+      {
+        "name": "e2e-fuzzel-neovim.png",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/e2e-fuzzel-neovim.png",
+        "size": 80871
+      },
+      {
+        "name": "e2e-live-desktop.png",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/e2e-live-desktop.png",
+        "size": 19416
+      },
+      {
+        "name": "e2e-storage-terminal.png",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/e2e-storage-terminal.png",
+        "size": 60628
+      },
+      {
+        "name": "install-test.log",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/install-test.log",
+        "size": 549133
+      },
+      {
+        "name": "SHA256SUMS",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/SHA256SUMS",
+        "size": 2784
+      },
+      {
+        "name": "SHA256SUMS.sig",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2.0.0-rc1/SHA256SUMS.sig",
+        "size": 119
+      }
+    ],
+    "summary": "The first 2.0.0 candidate introduces the terminal workspace and records the results of installed-system tests with the Zen and LTS kernels."
+  },
+  {
+    "tag": "rolling-20260725",
+    "title": "archelinux rolling 20260725",
+    "date": "2026-07-25",
+    "assets": [
+      {
+        "name": "archelinux-2026.07.25-x86_64.iso",
+        "url": "https://github.com/archelinux/archelinux/releases/download/rolling-20260725/archelinux-2026.07.25-x86_64.iso",
+        "size": 1048608768
+      },
+      {
+        "name": "archelinux-2026.07.25-x86_64.iso.sha256",
+        "url": "https://github.com/archelinux/archelinux/releases/download/rolling-20260725/archelinux-2026.07.25-x86_64.iso.sha256",
+        "size": 99
+      },
+      {
+        "name": "archelinux-2026.07.25-x86_64.iso.sha256.sig",
+        "url": "https://github.com/archelinux/archelinux/releases/download/rolling-20260725/archelinux-2026.07.25-x86_64.iso.sha256.sig",
+        "size": 566
+      },
+      {
+        "name": "archelinux-2026.07.25-x86_64.iso.sig",
+        "url": "https://github.com/archelinux/archelinux/releases/download/rolling-20260725/archelinux-2026.07.25-x86_64.iso.sig",
+        "size": 566
+      },
+      {
+        "name": "archelinux-release-public.asc",
+        "url": "https://github.com/archelinux/archelinux/releases/download/rolling-20260725/archelinux-release-public.asc",
+        "size": 1672
+      }
+    ]
+  },
+  {
+    "tag": "rolling-20250812",
+    "title": "archelinux rolling 20250812",
+    "date": "2025-08-12",
+    "assets": [
+      {
+        "name": "archelinux-2025.08.12-x86_64.iso",
+        "url": "https://github.com/archelinux/archelinux/releases/download/rolling-20250812/archelinux-2025.08.12-x86_64.iso",
+        "size": 1055948800
+      },
+      {
+        "name": "archelinux-2025.08.12-x86_64.iso.sha256",
+        "url": "https://github.com/archelinux/archelinux/releases/download/rolling-20250812/archelinux-2025.08.12-x86_64.iso.sha256",
+        "size": 99
+      },
+      {
+        "name": "archelinux-2025.08.12-x86_64.iso.sha256.sig",
+        "url": "https://github.com/archelinux/archelinux/releases/download/rolling-20250812/archelinux-2025.08.12-x86_64.iso.sha256.sig",
+        "size": 566
+      },
+      {
+        "name": "archelinux-2025.08.12-x86_64.iso.sig",
+        "url": "https://github.com/archelinux/archelinux/releases/download/rolling-20250812/archelinux-2025.08.12-x86_64.iso.sig",
+        "size": 566
+      },
+      {
+        "name": "archelinux-release-public.asc",
+        "url": "https://github.com/archelinux/archelinux/releases/download/rolling-20250812/archelinux-release-public.asc",
+        "size": 1672
+      }
+    ]
+  },
+  {
+    "tag": "v2025.07.26",
+    "title": "archelinux 2025.07.26",
+    "date": "2025-07-26",
+    "assets": [
+      {
+        "name": "arche-linux-public-key.asc",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2025.07.26/arche-linux-public-key.asc",
+        "size": 4020
+      },
+      {
+        "name": "archelinux-2025.07.26-x86_64.iso",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2025.07.26/archelinux-2025.07.26-x86_64.iso",
+        "size": 581251072
+      },
+      {
+        "name": "sha256sums.txt",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2025.07.26/sha256sums.txt",
+        "size": 99
+      },
+      {
+        "name": "sha256sums.txt.sig",
+        "url": "https://github.com/archelinux/archelinux/releases/download/v2025.07.26/sha256sums.txt.sig",
+        "size": 119
+      }
+    ]
+  }
+]

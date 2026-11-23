@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>archelinux 2.0.0 · archelinux</title>
+<meta name="description" content="archelinux 2.0.0 for the archelinux distribution.">
+<link rel="icon" href="../assets/arche-logo.svg"><link rel="stylesheet" href="../style.css">
+<link rel="canonical" href="https://archelinux.org/news/v2.0.0.html">
+</head><body>
+<a class="skip" href="#main">Skip to content</a>
+<header><div class="mast"><a class="brand" aria-label="archelinux home" href="../index.html"><img src="../assets/arche-logo.svg" alt="">arche<span>linux</span></a>
+<nav aria-label="Primary">
+<a href="../index.html" >Home</a>
+<a href="../packages/index.html" >Packages</a>
+<a href="../wiki/index.html" >Wiki</a>
+<a href="../news/index.html" aria-current="location">News</a>
+<a href="../download/index.html" >Download</a></nav></div></header>
+<main id="main">
+<div class="crumb"><a href="../index.html">Home</a> / <a href="index.html">News</a> / archelinux 2.0.0</div>
+<div class="layout"><div class="column"><article class="prose"><time>2026-11-23</time><h1>archelinux 2.0.0</h1><p>The USB boots to the installer. Connect to the internet so it can fetch the software you select. Back up files on the destination disk before starting.</p>
+<p><strong>What you get.</strong> New accounts use Zsh with the Oh My Zsh <code>bureau</code> prompt, autosuggestions, syntax highlighting and searchable history. The recommended installation opens an i3-style Sway desktop with Foot, LazyVim for Neovim, tmux, bat, ripgrep, fd, fzf and zoxide. The installer shows the selected tools. You can change them or clear the list for a console system. Language servers, local model runtimes and CUDA are optional.</p>
+<p><strong>What happens to the disk.</strong> Arche uses XFS for the root filesystem. Choose your disk and enable LUKS in Disk configuration if you want encryption. Review which disks and partitions will be erased or formatted before confirming. Package rollback restores individual versions available in the local cache. Keep a separate backup for your files and system recovery.</p>
+<p><strong>Your first login.</strong> On Sway, press Super+Enter for Foot and Super+D for the launcher. Use Ctrl+H/J/K/L to move between Neovim splits and tmux panes. Edit your prompt in <code>~/.zshrc</code> and your desktop shortcuts in <code>~/.config/sway/config</code>. Packages distribute templates under <code>/usr/share/arche</code>; your account owns the copies in your home directory.</p>
+<p>Physical GPU, external-display, Wi-Fi and suspend behavior depends on the machine. Alternate consoles are available on TTY2 through TTY6.</p>
+<p>On first launch, Neovim downloads the LazyVim plugins. Keep the internet connection active until setup finishes. Change the default <code>archevim</code> colorscheme in <code>~/.config/nvim/lua/plugins/colors.lua</code>.</p>
+<p><strong>Optional bundles.</strong> The installer offers archelinux packages bundled on the USB. Arch Linux dependencies download from Arch mirrors. Select <code>arche-base</code>, <code>arche-tui-stack</code>, <code>arche-agentic-core</code>, or <code>arche-cuda</code> in <strong>Arche software</strong>, or install them later with pacman. Selecting the CUDA bundle also downloads CUDA, cuDNN and the NVIDIA drivers.</p>
+<p>Twin Blades wallpaper sourced from the <a href="https://github.com/dharmx/walls/blob/e8d8a42e4fbecb2cf9619995edbc7ce19610bbd8/anime/aeb9uhrbr41a1.webp">dharmx/walls collection</a>.</p>
+<h2>Verify the download</h2>
+<p>Download the ISO, checksum, both signatures and release public key into a fresh directory. If the download is split, place all numbered parts together. Verify the signing-key fingerprint using a trusted source. Set <code>iso</code> to the ISO filename from the checksum file and run:</p>
+<pre><code class="language-sh">iso=$(awk 'NR == 1 { print $2 }' ./*.iso.sha256)
+if [ ! -f &quot;$iso&quot; ]; then cat &quot;$iso&quot;.part[0-9][0-9] &gt; &quot;$iso&quot;; fi
+gpg --show-keys --fingerprint archelinux-release-public.asc
+gpg --import archelinux-release-public.asc
+gpg --verify &quot;$iso.sha256.sig&quot; &quot;$iso.sha256&quot;
+sha256sum -c &quot;$iso.sha256&quot;
+gpg --verify &quot;$iso.sig&quot; &quot;$iso&quot;
+</code></pre>
+<p>Write the verified ISO to USB. Follow the <a href="../wiki/installation.html">installation guide</a> for the walkthrough.</p>
+<p><a href="../wiki/acceptance.html">Release acceptance checks</a></p>
+<h2>Release files</h2><ul><li><a href="https://github.com/archelinux/archelinux/releases/download/v2.0.0/archelinux-2026.11.23-x86_64.iso" download>archelinux-2026.11.23-x86_64.iso</a></li><li><a href="https://github.com/archelinux/archelinux/releases/download/v2.0.0/archelinux-2026.11.23-x86_64.iso.sha256" download>archelinux-2026.11.23-x86_64.iso.sha256</a></li><li><a href="https://github.com/archelinux/archelinux/releases/download/v2.0.0/archelinux-2026.11.23-x86_64.iso.sha256.sig" download>archelinux-2026.11.23-x86_64.iso.sha256.sig</a></li><li><a href="https://github.com/archelinux/archelinux/releases/download/v2.0.0/archelinux-2026.11.23-x86_64.iso.sig" download>archelinux-2026.11.23-x86_64.iso.sig</a></li><li><a href="https://github.com/archelinux/archelinux/releases/download/v2.0.0/archelinux-release-public.asc" download>archelinux-release-public.asc</a></li></ul></article></div>
+<aside>
+
+<section class="box"><h2>Package search</h2><form class="search" action="../packages/index.html"><input type="search" name="q" aria-label="Package name or description" placeholder="Name or description"><button>Search</button></form></section>
+
+
+<section class="box directory"><h2>Documentation</h2><h3>Getting started</h3><ul><li><a href="../wiki/about.html" >About archelinux</a></li><li><a href="../wiki/verify.html" >Verify the ISO</a></li><li><a href="../wiki/installation.html" >Installation guide</a></li></ul><h3>Your workspace</h3><ul><li><a href="../wiki/desktop.html" >SwayFX and Litho Dark</a></li><li><a href="../wiki/shell.html" >The Zsh workspace</a></li><li><a href="../wiki/configuration.html" >Packages and configuration</a></li></ul><h3>Building archelinux</h3><ul><li><a href="../wiki/system.html" >System architecture</a></li><li><a href="../wiki/installer-internals.html" >Guided installer internals</a></li><li><a href="../wiki/build.html" >Build the ISO</a></li></ul>
+<a href="../wiki/index.html">Browse the wiki →</a></section>
+</aside></div></main>
+<footer><a class="footbrand" href="../index.html">archelinux</a><span>Independent Arch-based distribution</span><a href="../wiki/about.html">About the project</a></footer>
+</body></html>
