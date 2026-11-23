@@ -6,17 +6,19 @@ from pathlib import Path
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from markdown_it import MarkdownIt
 
+from release_metadata import installation_files, stable_iso, verification_files
+
 ROOT = Path(__file__).resolve().parents[1]
 CONTENT = ROOT / "content"
 env = Environment(loader=FileSystemLoader(ROOT / "templates"),
                   autoescape=select_autoescape(["html"]))
-env.tests["match_iso"] = lambda name: name.endswith(".iso")
 md = MarkdownIt("commonmark", {"html": False}).enable("table")
-packages = json.loads((CONTENT / "packages.json").read_text())
+catalog = json.loads((CONTENT / "packages.json").read_text())
+packages = catalog["packages"]
 releases = json.loads((CONTENT / "releases.json").read_text())
-latest = releases[0]
+latest = stable_iso(releases)
 groups = {
-    "Getting started": ["about", "verify", "installation", "shortcuts", "hardware"],
+    "Getting started": ["installation", "first-session", "verify", "about", "shortcuts", "hardware"],
     "Your workspace": ["desktop", "shell", "configuration", "recovery", "maintenance"],
     "Building archelinux": ["system", "installer-internals", "build", "publication", "acceptance", "qemu"],
 }
@@ -31,7 +33,8 @@ def render(path, template, title, section, **context):
     prefix = os.path.relpath(ROOT, page.parent) + "/"
     html = env.get_template(template + ".html").render(
         root=prefix, path=path, section=section, title=title, groups=groups,
-        articles=articles, packages=packages, releases=releases, latest=latest, **context)
+        articles=articles, packages=packages, package_source=catalog["source"],
+        releases=releases, latest=latest, **context)
     page.write_text(html + "\n")
 
 render("index.html", "home", "Home", "Home")
@@ -45,10 +48,21 @@ for package in packages:
 render("news/index.html", "news", "Release archive", "News")
 for release in releases:
     tag = release["tag"]
-    body = (CONTENT / "news" / (tag + ".md")).read_text()
+    editorial = CONTENT / "news" / (tag + ".md")
+    body = editorial.read_text() if editorial.exists() else release["notes"]
     render(f"news/{tag}.html", "release", release["title"], "News", release=release,
            body=md.render(body))
-render("download/index.html", "download", "Download archelinux", "Download")
 render("community/index.html", "community", "Community forum", "Forum")
 render("issues/index.html", "issues", "Report an issue", "Support")
 render("docs/index.html", "docs", "Documentation", "Wiki")
+media = installation_files(latest["assets"])
+render("download/index.html", "download", "Download archelinux", "Download", media=media,
+       media_size=sum(a["size"] for a in media), verification=verification_files(latest["assets"], media))
+
+# Both directories consist entirely of generated catalog pages.
+for directory, slugs in (("packages", [p["name"] for p in packages]),
+                         ("news", [r["tag"] for r in releases])):
+    expected = {"index", *slugs}
+    for old_page in (ROOT / directory).glob("*.html"):
+        if old_page.stem not in expected:
+            old_page.unlink()

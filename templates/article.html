@@ -1,1 +1,13 @@
-{% extends "base.html" %}{% block main %}<article class="prose"><h1>{{ title }}</h1>{{ body|safe }}</article>{% endblock %}
+{% extends "base.html" %}
+{% block main %}
+<article class="prose">
+<h1>{{ title }}</h1>
+{% if path == 'wiki/first-session.html' %}
+<figure class="walkthrough">
+  <video controls preload="none" aria-describedby="clip-caption" src="../assets/first-session.webm"></video>
+  <figcaption id="clip-caption">Ctrl+H and Ctrl+L move between Neovim splits and tmux panes. The silent recording shows each key on screen.</figcaption>
+</figure>
+{% endif %}
+{{ body|safe }}
+</article>
+{% endblock %}

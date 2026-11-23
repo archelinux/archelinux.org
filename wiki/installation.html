@@ -18,7 +18,11 @@
 <a href="../download/index.html" >Download</a></nav></div></header>
 <main id="main">
 <div class="crumb"><a href="../index.html">Home</a> / <a href="index.html">Wiki</a> / Installation guide</div>
-<div class="layout"><div class="column"><article class="prose"><h1>Installation guide</h1><p>The recommended system is a keyboard-driven Sway desktop with Zsh, Oh My Zsh, Neovim and tmux. The USB boots to a console and needs internet access to install. Arche uses XFS for root. You can enable LUKS and choose your software. If you depend on booting filesystem snapshots, factor that into your choice: Arche provides individual cached-package rollback.</p>
+<div class="layout"><div class="column">
+<article class="prose">
+<h1>Installation guide</h1>
+
+<p>The recommended system is a keyboard-driven Sway desktop with Zsh, Oh My Zsh, Neovim and tmux. The USB boots to a console and needs internet access to install. Arche uses XFS for root. You can enable LUKS and choose your software. If you depend on booting filesystem snapshots, factor that into your choice: Arche provides individual cached-package rollback.</p>
 <h2>Install from USB</h2>
 <p>archelinux 2.0.0 starts its guided archinstall 4.5 installer on TTY1.</p>
 <ol>
@@ -34,13 +38,15 @@
 </code></pre>
 <p>See the <a href="verify.html">verification commands</a> and <a href="publication.html">signed package-repository setup</a>. Download the <a href="../assets/archelinux-release-public.asc">public key</a>.</p>
 <p>On first launch, Neovim downloads the LazyVim plugins. Keep the internet connection active until setup finishes. Change the default <code>archevim</code> colorscheme in <code>~/.config/nvim/lua/plugins/colors.lua</code>.</p>
-</article></div>
+
+</article>
+</div>
 <aside>
 
 <section class="box"><h2>Package search</h2><form class="search" action="../packages/index.html"><input type="search" name="q" aria-label="Package name or description" placeholder="Name or description"><button>Search</button></form></section>
 
 
-<section class="box directory"><h2>Documentation</h2><h3>Getting started</h3><ul><li><a href="../wiki/about.html" >About archelinux</a></li><li><a href="../wiki/verify.html" >Verify the ISO</a></li><li><a href="../wiki/installation.html" aria-current="page">Installation guide</a></li><li><a href="../wiki/shortcuts.html" >Your first few shortcuts</a></li><li><a href="../wiki/hardware.html" >Hardware compatibility</a></li></ul><h3>Your workspace</h3><ul><li><a href="../wiki/desktop.html" >SwayFX and Litho Dark</a></li><li><a href="../wiki/shell.html" >The Zsh workspace</a></li><li><a href="../wiki/configuration.html" >Packages and configuration</a></li><li><a href="../wiki/recovery.html" >Recovery and maintenance</a></li><li><a href="../wiki/maintenance.html" >Recovery and local inference</a></li></ul><h3>Building archelinux</h3><ul><li><a href="../wiki/system.html" >System architecture</a></li><li><a href="../wiki/installer-internals.html" >Guided installer internals</a></li><li><a href="../wiki/build.html" >Build the ISO</a></li><li><a href="../wiki/publication.html" >CI and package signing</a></li><li><a href="../wiki/acceptance.html" >Release acceptance checks</a></li><li><a href="../wiki/qemu.html" >Disposable UEFI installation acceptance</a></li></ul>
+<section class="box directory"><h2>Documentation</h2><h3>Getting started</h3><ul><li><a href="../wiki/installation.html" aria-current="page">Installation guide</a></li><li><a href="../wiki/first-session.html" >Your first ten minutes in archelinux</a></li><li><a href="../wiki/verify.html" >Verify the ISO</a></li><li><a href="../wiki/about.html" >About archelinux</a></li><li><a href="../wiki/shortcuts.html" >Your first few shortcuts</a></li><li><a href="../wiki/hardware.html" >Hardware compatibility</a></li></ul><h3>Your workspace</h3><ul><li><a href="../wiki/desktop.html" >SwayFX and Litho Dark</a></li><li><a href="../wiki/shell.html" >The Zsh workspace</a></li><li><a href="../wiki/configuration.html" >Packages and configuration</a></li><li><a href="../wiki/recovery.html" >Recovery and maintenance</a></li><li><a href="../wiki/maintenance.html" >Recovery and local inference</a></li></ul><h3>Building archelinux</h3><ul><li><a href="../wiki/system.html" >System architecture</a></li><li><a href="../wiki/installer-internals.html" >Guided installer internals</a></li><li><a href="../wiki/build.html" >Build the ISO</a></li><li><a href="../wiki/publication.html" >CI and package signing</a></li><li><a href="../wiki/acceptance.html" >Release acceptance checks</a></li><li><a href="../wiki/qemu.html" >Disposable UEFI installation acceptance</a></li></ul>
 <a href="../wiki/index.html">Browse the wiki →</a></section>
 </aside></div></main>
 <footer><a class="footbrand" href="../index.html">archelinux</a><span>Independent Arch-based distribution</span><a href="../issues/index.html">Report an issue</a><a href="../wiki/about.html">About the project</a></footer>
