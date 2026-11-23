@@ -1,0 +1,19 @@
+:root{color-scheme:dark;--ink:#eeedf4;--muted:#b4b0c1;--accent:#d7bcfa;--edge:#393441;--mono:ui-monospace,monospace}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at 80% 40%,#25202e,transparent 60%),#121115;color:var(--ink);font:16px/1.6 "Inter",system-ui,sans-serif}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}a:focus-visible{outline:2px solid white;outline-offset:4px}
+.skip{position:absolute;left:1rem;top:-6rem;z-index:2;background:#201b27;padding:.6rem}.skip:focus{top:1rem}
+header{background:#141318e8;border-bottom:1px solid var(--edge);border-top:3px solid var(--accent);backdrop-filter:blur(16px)}
+.bar,main,footer{width:min(1160px,92%);margin:auto}.bar,nav,.brand,.actions,.heading,footer,.packages a{display:flex;align-items:center}
+.bar{justify-content:space-between;min-height:72px}.brand{color:white;font-size:26px;font-weight:700;letter-spacing:-1.6px}.brand img{width:31px;margin-right:10px}.brand b{font-weight:350}
+nav{gap:26px}nav a{color:var(--muted);font-weight:550;font-size:14px}nav [aria-current]{color:var(--accent)}
+.hero{margin:30px 0;background:linear-gradient(90deg,#110f17 2%,#15121be8 35%,#19152020 72%),url('assets/archelinux-desktop.jpg') center 52%/cover;border:1px solid #484050;border-radius:10px;overflow:hidden}
+.hero-copy{padding:44px clamp(22px,4vw,56px) 48px}
+.eyebrow,time,small{font:12px var(--mono);letter-spacing:.07em}.eyebrow{display:flex;align-items:center;gap:9px;text-transform:uppercase;color:#e4d6f3}.eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1{font-size:clamp(3.8rem,8vw,6.5rem);letter-spacing:-.085em;line-height:1;margin:18px 0}h1 span{font-weight:300;color:var(--accent)}.intro{max-width:395px;color:#e0dae7;font-size:19px;line-height:1.45}.actions{gap:12px;flex-wrap:wrap;margin-top:25px}.actions a{padding:9px 17px;border-radius:6px;font-weight:650;font-size:14px}.primary{background:var(--accent);color:#201727}.secondary{background:#211c29cc;border:1px solid #665970;color:#f4eefa;backdrop-filter:blur(12px)}
+.columns{display:grid;grid-template-columns:minmax(0,2.25fr) minmax(240px,1fr);gap:26px}
+.columns section{margin-bottom:24px;background:#201e25c9;border:1px solid var(--edge);border-radius:9px}.heading{justify-content:space-between;border-bottom:1px solid var(--edge);padding:13px 20px}.heading a,article>a,li{font-size:14px}h2,h3,p{margin:0}h2{font-size:19px;letter-spacing:-.04em}article,.gallery{padding:20px}time,small{color:var(--muted)}h3{font-size:24px;letter-spacing:-.04em;margin:6px 0}h3 a{color:var(--ink)}article p{color:var(--muted);margin-bottom:14px}
+ul{padding:0 20px;margin:0;list-style:none}li+li{border-top:1px solid var(--edge)}li a{display:block;padding:11px 0}.packages a{justify-content:space-between;font-family:var(--mono)}small{letter-spacing:0}.gallery{display:grid;grid-template-columns:1fr 1fr;gap:16px}.gallery img{width:100%;display:block;border-radius:5px}.gallery span{display:block;font-size:14px;padding-top:8px}
+footer{justify-content:space-between;gap:10px;border-top:1px solid var(--edge);padding:18px 0 30px;color:var(--muted);font-size:13px}
+@media(max-width:720px){.columns{grid-template-columns:1fr;gap:0}.bar{flex-wrap:wrap;gap:8px;padding:12px 0}nav{gap:14px}.hero{background-position:62% center}.hero-copy{background:#100e165e}.gallery{gap:10px}footer{flex-wrap:wrap}}
+@media(max-width:440px){.bar{align-items:flex-start;flex-direction:column}.hero-copy{padding:28px 18px}.intro{font-size:17px}.actions{gap:8px}.actions a{padding:9px 12px}}
