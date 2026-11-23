@@ -1,5 +1,40 @@
 [
   {
+    "tag": "rolling-20261123",
+    "title": "archelinux 2026.11.23",
+    "date": "2026-11-23",
+    "published_at": "2026-11-23T21:05:10Z",
+    "channel": "stable",
+    "assets": [
+      {
+        "name": "archelinux-2026.11.23-x86_64.iso",
+        "url": "https://github.com/archelinux/archelinux/releases/download/rolling-20261123/archelinux-2026.11.23-x86_64.iso",
+        "size": 1304428544
+      },
+      {
+        "name": "archelinux-2026.11.23-x86_64.iso.sha256",
+        "url": "https://github.com/archelinux/archelinux/releases/download/rolling-20261123/archelinux-2026.11.23-x86_64.iso.sha256",
+        "size": 99
+      },
+      {
+        "name": "archelinux-2026.11.23-x86_64.iso.sha256.sig",
+        "url": "https://github.com/archelinux/archelinux/releases/download/rolling-20261123/archelinux-2026.11.23-x86_64.iso.sha256.sig",
+        "size": 119
+      },
+      {
+        "name": "archelinux-2026.11.23-x86_64.iso.sig",
+        "url": "https://github.com/archelinux/archelinux/releases/download/rolling-20261123/archelinux-2026.11.23-x86_64.iso.sig",
+        "size": 119
+      },
+      {
+        "name": "archelinux-release-public.asc",
+        "url": "https://github.com/archelinux/archelinux/releases/download/rolling-20261123/archelinux-release-public.asc",
+        "size": 396
+      }
+    ],
+    "notes": "New installations enable the signed archelinux stable channel during setup. After your first login, run `sudo pacman -Syu` to upgrade Arch and archelinux packages together. If the channel was unreachable during installation, run `sudo arche-enable-rolling` once connectivity is available, then run the full upgrade.\n\nAlready running archelinux? Keep your installation. If you installed from the original 2.0.0 ISO and still use the bundled repository, follow the [one-time channel setup](https://archelinux.github.io/archelinux.org/wiki/rolling-updates.html).\n\n### Verify the ISO\n\nDownload the ISO, checksum, both detached signatures and release public key into one directory. Compare the key's fingerprint with your trusted copy of the archelinux release fingerprint, `E446 C26A 0B7B A1A6 6A3D CC9F 7EC5 6400 3573 C80B`.\n\n```sh\niso=archelinux-2026.11.23-x86_64.iso\ngpg --show-keys --fingerprint archelinux-release-public.asc\ngpg --import archelinux-release-public.asc\ngpg --verify \"$iso.sha256.sig\" \"$iso.sha256\" &&\n  sha256sum -c \"$iso.sha256\" &&\n  gpg --verify \"$iso.sig\" \"$iso\"\n```\n\nAfter verification, write the image to USB. The [installation guide](https://archelinux.github.io/archelinux.org/wiki/installation.html) covers disk selection, encryption and the SwayFX workspace.\n\nThis image passed a guided UEFI installation to a fresh XFS disk. The installer verified and activated the public rolling channel, and the installed system booted into SwayFX. [Build and boot test](https://github.com/archelinux/archelinux/actions/runs/45209151614)\n"
+  },
+  {
     "tag": "v2.0.0",
     "title": "archelinux 2026.11.23 (original installer)",
     "date": "2026-11-23",

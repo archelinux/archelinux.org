@@ -2,12 +2,19 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://archelinux.github.io/archelinux.org/news/</id>
   <title>archelinux releases</title>
-  <updated>2026-11-23T11:06:40Z</updated>
+  <updated>2026-11-23T21:05:10Z</updated>
   <author>
     <name>archelinux</name>
   </author>
   <link rel="self" href="https://archelinux.github.io/archelinux.org/news/feed.xml" />
   <link href="https://archelinux.github.io/archelinux.org/news/" />
+  <entry>
+    <id>https://archelinux.github.io/archelinux.org/news/rolling-20261123.html</id>
+    <title>archelinux 2026.11.23</title>
+    <updated>2026-11-23T21:05:10Z</updated>
+    <summary>archelinux 2026.11.23</summary>
+    <link href="https://archelinux.github.io/archelinux.org/news/rolling-20261123.html" />
+  </entry>
   <entry>
     <id>https://archelinux.github.io/archelinux.org/news/v2.0.0.html</id>
     <title>archelinux 2026.11.23 (original installer)</title>
