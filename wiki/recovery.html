@@ -32,6 +32,9 @@ may require coordinated downgrades.</p>
 <h2>Tested recovery</h2>
 <p>On 23 November 2026, a locally built 2.0.0 system running XFS and Linux 6.18.64-1-lts in QEMU/KVM was recovered from TTY2. The installed pacman keyring verified both ripgrep archives. <code>arche-rollback ripgrep</code> selected 15.1.0-4 from the cache, and the downgraded binary ran. Reinstalling the cached 15.2.0-1 restored the original version.</p>
 <p>After a cold boot, SwayFX and Waybar started. The hashes of the user's edited Sway configuration and Zsh startup file still matched, including a custom keybinding. See the <a href="hardware.html">hardware compatibility table</a> for the configurations tested.</p>
+<h2>Rolling upgrade rehearsal</h2>
+<p>On 23 November 2026, we installed the signed public 2.0.0 ISO on a fresh UEFI/XFS virtual disk. The guest verified a locally staged, signed archelinux package repository and completed a full system upgrade. From the local package cache it rolled <code>arche-maintenance</code> back from 2.0.0-3 to 2.0.0-2, then upgraded to 2.0.0-3 again. SwayFX and Waybar started after a cold boot. The original Twin Blades checksum matched, the edited Sway shortcut survived, and the offline First Session guide was present.</p>
+<p>Check the <a href="rolling-updates.html">rolling update guide</a> for public channel availability.</p>
 
 </article>
 </div>
