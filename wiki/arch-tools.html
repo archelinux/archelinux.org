@@ -33,28 +33,28 @@
 </thead>
 <tbody>
 <tr>
-<td><code>arche-waybar-github</code></td>
+<td><a href="https://aur.archlinux.org/packages/arche-waybar-github"><code>arche-waybar-github</code></a></td>
 <td>Counts unread pull requests and issues. Hover to see repository names and titles.</td>
 </tr>
 <tr>
-<td><code>arche-waybar-status</code></td>
+<td><a href="https://aur.archlinux.org/packages/arche-waybar-status"><code>arche-waybar-status</code></a></td>
 <td>Produces Waybar JSON for low disk space, active VPNs or GPU readings.</td>
 </tr>
 <tr>
-<td><code>arche-rollback</code></td>
+<td><a href="https://aur.archlinux.org/packages/arche-rollback"><code>arche-rollback</code></a></td>
 <td>Reinstalls the newest older version of a package available in your configured pacman cache.</td>
 </tr>
 <tr>
-<td><code>neovim-archevim</code></td>
+<td><a href="https://aur.archlinux.org/packages/neovim-archevim"><code>neovim-archevim</code></a></td>
 <td>The distro’s Neovim colorscheme and matching lualine theme. Enable it with <code>:colorscheme archevim</code>.</td>
 </tr>
 </tbody>
 </table>
 <h2>Install a package on plain Arch</h2>
-<p>Install the build tools, clone the packaging repository and review the recipe you want. Build as your regular user. For example:</p>
+<p>Choose a package from the AUR listings above. To install the GitHub indicator, clone its AUR repository, review the recipe and build as your regular user:</p>
 <pre><code>sudo pacman -S --needed base-devel git
-git clone https://github.com/archelinux/arch-tools.git
-cd arch-tools/aur/arche-waybar-github
+git clone https://aur.archlinux.org/arche-waybar-github.git
+cd arche-waybar-github
 less PKGBUILD
 makepkg -si
 </code></pre>

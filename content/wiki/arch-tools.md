@@ -4,18 +4,18 @@ These utilities and the archevim colorscheme can be installed on a plain Arch Li
 
 | Package | What it does |
 | --- | --- |
-| `arche-waybar-github` | Counts unread pull requests and issues. Hover to see repository names and titles. |
-| `arche-waybar-status` | Produces Waybar JSON for low disk space, active VPNs or GPU readings. |
-| `arche-rollback` | Reinstalls the newest older version of a package available in your configured pacman cache. |
-| `neovim-archevim` | The distro’s Neovim colorscheme and matching lualine theme. Enable it with `:colorscheme archevim`. |
+| [`arche-waybar-github`](https://aur.archlinux.org/packages/arche-waybar-github) | Counts unread pull requests and issues. Hover to see repository names and titles. |
+| [`arche-waybar-status`](https://aur.archlinux.org/packages/arche-waybar-status) | Produces Waybar JSON for low disk space, active VPNs or GPU readings. |
+| [`arche-rollback`](https://aur.archlinux.org/packages/arche-rollback) | Reinstalls the newest older version of a package available in your configured pacman cache. |
+| [`neovim-archevim`](https://aur.archlinux.org/packages/neovim-archevim) | The distro’s Neovim colorscheme and matching lualine theme. Enable it with `:colorscheme archevim`. |
 
 ## Install a package on plain Arch
 
-Install the build tools, clone the packaging repository and review the recipe you want. Build as your regular user. For example:
+Choose a package from the AUR listings above. To install the GitHub indicator, clone its AUR repository, review the recipe and build as your regular user:
 
     sudo pacman -S --needed base-devel git
-    git clone https://github.com/archelinux/arch-tools.git
-    cd arch-tools/aur/arche-waybar-github
+    git clone https://aur.archlinux.org/arche-waybar-github.git
+    cd arche-waybar-github
     less PKGBUILD
     makepkg -si
 
