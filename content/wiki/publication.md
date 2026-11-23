@@ -1,19 +1,13 @@
 # CI and package signing
 
-`build-iso.yml` runs Docker explicitly on Ubuntu with `--privileged` and `/dev:/dev`, checks loop-device availability, and runs package build/lint, mkarchiso and runtime smoke tests. ISOs are written into the workspace `out/` directory for artifact upload. `release.yml` calls the build workflow, waits for the QEMU installation and desktop boot to pass, then signs the ISO from that run. `release-pkgs.yml` builds packages without signing secrets, then signs them in a separate `package-release` environment and publishes an immutable GitHub Release tag.
+## Installation images
 
-Configure these environment secrets before running package publication:
+The [ISO build](https://github.com/archelinux/archelinux/actions/workflows/build-iso.yml) builds the packages, assembles the image and exercises installation and desktop startup in a virtual machine. The release workflow signs the verified ISO and checksum from the same run. The [download page](../download/index.html) links the image and its verification files.
 
-- `ARCHE_SIGNING_KEY`: ASCII-armored persistent private key.
-- `ARCHE_SIGNING_FINGERPRINT`: signing key fingerprint.
-- `ARCHE_SIGNING_PASSPHRASE`: key passphrase (empty for an unencrypted CI key).
+## Rolling packages
 
-Verify the published public key fingerprint through a trusted channel, import and locally sign it with `pacman-key`, then replace the local `[arche]` entry with:
+The [package workflow](https://github.com/archelinux/archelinux/actions/workflows/release-pkgs.yml) builds without signing credentials, then stages a signed snapshot. A VM installs the verified public 2.0.0 ISO, upgrades the installed desktop from the candidate, exercises a cached rollback, reapplies the upgrade and cold-boots the result. Promotion publishes the tested commit to the [rolling channel](https://github.com/archelinux/archelinux/tree/rolling-channel/stable). Existing installations keep the same server address across promotions.
 
-```ini
-[arche]
-SigLevel = Required DatabaseRequired
-Server = https://github.com/archelinux/archelinux/releases/download/pkgs-RUN_ID-RUN_ATTEMPT
-```
+For the first promotion, the project signed and tested the candidate locally. See the [rehearsal results](recovery.html). The published repository includes package archives, repository indexes, the bootstrap helper and detached signatures. The website verifies the release key and signed database before refreshing the [package directory](../packages/index.html). The [secondary mirror](mirrors.html) also verifies the individual package signatures.
 
-Each immutable tag includes signed package archives, signed `arche.db` / `arche.files`, and the public key. Point clients at the new tag to adopt a later repository release. Both release workflows use a persistent release key. The required GitHub signing secrets must be configured before using CI for signing.
+If you’re setting up an installed machine, follow the [rolling update guide](rolling-updates.html). For the release operator procedure, see the [maintainer documentation](https://github.com/archelinux/archelinux/blob/main/docs/rolling-updates.md).
