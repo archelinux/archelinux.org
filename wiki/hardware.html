@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Check your hardware after the first login · archelinux</title>
-<meta name="description" content="Check your hardware after the first login for the archelinux distribution.">
+<title>Hardware compatibility · archelinux</title>
+<meta name="description" content="Hardware compatibility for the archelinux distribution.">
 <link rel="icon" href="../assets/arche-logo.svg"><link rel="stylesheet" href="../style.css">
 <link rel="canonical" href="https://archelinux.org/wiki/hardware.html">
 </head><body>
@@ -14,23 +14,52 @@
 <a href="../packages/index.html" >Packages</a>
 <a href="../wiki/index.html" aria-current="location">Wiki</a>
 <a href="../news/index.html" >News</a>
+<a href="../community/index.html" >Forum</a>
 <a href="../download/index.html" >Download</a></nav></div></header>
 <main id="main">
-<div class="crumb"><a href="../index.html">Home</a> / <a href="index.html">Wiki</a> / Check your hardware after the first login</div>
-<div class="layout"><div class="column"><article class="prose"><h1>Check your hardware after the first login</h1><ul>
+<div class="crumb"><a href="../index.html">Home</a> / <a href="index.html">Wiki</a> / Hardware compatibility</div>
+<div class="layout"><div class="column"><article class="prose"><h1>Hardware compatibility</h1><p>These results apply to the named release and configuration. A VM check verifies the virtual devices the guest saw. Physical systems need separate reports.</p>
+<table>
+<thead>
+<tr>
+<th>Release and test date</th>
+<th>System</th>
+<th>Kernel and graphics</th>
+<th>Observed result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2.0.0 release candidate build promoted to stable, 23 Nov 2026</td>
+<td>QEMU/KVM x86_64, OVMF UEFI, virtio disk and virtual graphics</td>
+<td>linux-lts, SwayFX, one virtual output</td>
+<td>Passed guided XFS installation, installed-system boot, Sway IPC and Waybar startup. <a href="https://github.com/archelinux/archelinux/actions/runs/45154069630">Build and boot record</a></td>
+</tr>
+<tr>
+<td>2.0.0</td>
+<td>Physical laptops, desktops and docks</td>
+<td>Intel, AMD and NVIDIA</td>
+<td>Awaiting model-specific reports for graphics, screen sharing, suspend, Wi-Fi, audio and external monitors.</td>
+</tr>
+</tbody>
+</table>
+<h2>Test a physical machine</h2>
+<ul>
 <li>On a laptop, suspend and resume once. Check that the lock screen appears and that Wi-Fi, audio and brightness controls still work after unlocking.</li>
 <li>If you use a dock, plug it in, unplug it and reconnect it. Run <code>swaymsg -t get_outputs</code> to see which displays Sway detects, then move a window between them and check the scale.</li>
 <li>Start a screen share in the browser or meeting app you actually use. Choose an output and confirm a second participant can see it.</li>
 <li>On a hybrid-GPU laptop, repeat the display and screen-sharing checks with the external monitor attached. If Sway fails to start, switch to TTY2 with Ctrl+Alt+F2 and log in to inspect the journal with <code>journalctl -b</code>.</li>
 </ul>
+<h2>Share the result</h2>
+<p><a href="../issues/index.html">Submit a hardware report</a> with your model, GPU, kernel, release and date. Mark each feature working, limited, failed, or untested. Include a workaround when available. Reproduced results can then be linked here with their issue number.</p>
 </article></div>
 <aside>
 
 <section class="box"><h2>Package search</h2><form class="search" action="../packages/index.html"><input type="search" name="q" aria-label="Package name or description" placeholder="Name or description"><button>Search</button></form></section>
 
 
-<section class="box directory"><h2>Documentation</h2><h3>Getting started</h3><ul><li><a href="../wiki/about.html" >About archelinux</a></li><li><a href="../wiki/verify.html" >Verify the ISO</a></li><li><a href="../wiki/installation.html" >Installation guide</a></li><li><a href="../wiki/shortcuts.html" >Your first few shortcuts</a></li><li><a href="../wiki/hardware.html" aria-current="page">Check your hardware after the first login</a></li></ul><h3>Your workspace</h3><ul><li><a href="../wiki/desktop.html" >SwayFX and Litho Dark</a></li><li><a href="../wiki/shell.html" >The Zsh workspace</a></li><li><a href="../wiki/configuration.html" >Packages and configuration</a></li><li><a href="../wiki/recovery.html" >Recovery and maintenance</a></li><li><a href="../wiki/maintenance.html" >Recovery and local inference</a></li></ul><h3>Building archelinux</h3><ul><li><a href="../wiki/system.html" >System architecture</a></li><li><a href="../wiki/installer-internals.html" >Guided installer internals</a></li><li><a href="../wiki/build.html" >Build the ISO</a></li><li><a href="../wiki/publication.html" >CI and package signing</a></li><li><a href="../wiki/acceptance.html" >Release acceptance checks</a></li><li><a href="../wiki/qemu.html" >Disposable UEFI installation acceptance</a></li></ul>
+<section class="box directory"><h2>Documentation</h2><h3>Getting started</h3><ul><li><a href="../wiki/about.html" >About archelinux</a></li><li><a href="../wiki/verify.html" >Verify the ISO</a></li><li><a href="../wiki/installation.html" >Installation guide</a></li><li><a href="../wiki/shortcuts.html" >Your first few shortcuts</a></li><li><a href="../wiki/hardware.html" aria-current="page">Hardware compatibility</a></li></ul><h3>Your workspace</h3><ul><li><a href="../wiki/desktop.html" >SwayFX and Litho Dark</a></li><li><a href="../wiki/shell.html" >The Zsh workspace</a></li><li><a href="../wiki/configuration.html" >Packages and configuration</a></li><li><a href="../wiki/recovery.html" >Recovery and maintenance</a></li><li><a href="../wiki/maintenance.html" >Recovery and local inference</a></li></ul><h3>Building archelinux</h3><ul><li><a href="../wiki/system.html" >System architecture</a></li><li><a href="../wiki/installer-internals.html" >Guided installer internals</a></li><li><a href="../wiki/build.html" >Build the ISO</a></li><li><a href="../wiki/publication.html" >CI and package signing</a></li><li><a href="../wiki/acceptance.html" >Release acceptance checks</a></li><li><a href="../wiki/qemu.html" >Disposable UEFI installation acceptance</a></li></ul>
 <a href="../wiki/index.html">Browse the wiki →</a></section>
 </aside></div></main>
-<footer><a class="footbrand" href="../index.html">archelinux</a><span>Independent Arch-based distribution</span><a href="../wiki/about.html">About the project</a></footer>
+<footer><a class="footbrand" href="../index.html">archelinux</a><span>Independent Arch-based distribution</span><a href="../issues/index.html">Report an issue</a><a href="../wiki/about.html">About the project</a></footer>
 </body></html>

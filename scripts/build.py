@@ -49,3 +49,6 @@ for release in releases:
     render(f"news/{tag}.html", "release", release["title"], "News", release=release,
            body=md.render(body))
 render("download/index.html", "download", "Download archelinux", "Download")
+render("community/index.html", "community", "Community forum", "Forum")
+render("issues/index.html", "issues", "Report an issue", "Support")
+render("docs/index.html", "docs", "Documentation", "Wiki")

@@ -9,7 +9,7 @@
 </head><body>
 <a class="skip" href="#main">Skip to content</a>
 <header><div class="mast"><a class="brand" aria-label="archelinux home" href="{{ root }}index.html"><img src="{{ root }}assets/arche-logo.svg" alt="">arche<span>linux</span></a>
-<nav aria-label="Primary">{% for name,url in [('Home','index.html'),('Packages','packages/index.html'),('Wiki','wiki/index.html'),('News','news/index.html'),('Download','download/index.html')] %}
+<nav aria-label="Primary">{% for name,url in [('Home','index.html'),('Packages','packages/index.html'),('Wiki','wiki/index.html'),('News','news/index.html'),('Forum','community/index.html'),('Download','download/index.html')] %}
 <a href="{{ root }}{{ url }}" {% if name==section %}aria-current="{{ 'page' if url==path else 'location' }}"{% endif %}>{{ name }}</a>{% endfor %}</nav></div></header>
 <main id="main">
 {% if section!='Home' %}<div class="crumb"><a href="{{ root }}index.html">Home</a> / {% if path.endswith('index.html') %}{{ section }}{% else %}<a href="index.html">{{ section }}</a> / {{ title }}{% endif %}</div>{% endif %}
@@ -17,5 +17,5 @@
 <aside>{% block side %}
 {% include 'sidebar.html' %}
 {% endblock %}</aside></div></main>
-<footer><a class="footbrand" href="{{ root }}index.html">archelinux</a><span>Independent Arch-based distribution</span><a href="{{ root }}wiki/about.html">About the project</a></footer>
+<footer><a class="footbrand" href="{{ root }}index.html">archelinux</a><span>Independent Arch-based distribution</span><a href="{{ root }}issues/index.html">Report an issue</a><a href="{{ root }}wiki/about.html">About the project</a></footer>
 </body></html>
