@@ -10,37 +10,37 @@
   <link href="https://archelinux.github.io/archelinux.org/news/" />
   <entry>
     <id>https://archelinux.github.io/archelinux.org/news/v2.0.0.html</id>
-    <title>archelinux 2.0.0</title>
+    <title>archelinux 2026.11.23 (original installer)</title>
     <updated>2026-11-23T11:06:40Z</updated>
     <summary>The signed 2.0.0 image is available for x86_64. The guided installer offers SwayFX, optional LUKS encryption, and a console-only setup.</summary>
     <link href="https://archelinux.github.io/archelinux.org/news/v2.0.0.html" />
   </entry>
   <entry>
     <id>https://archelinux.github.io/archelinux.org/news/v2.0.0-rc2.html</id>
-    <title>archelinux 2.0.0-rc2</title>
+    <title>archelinux 2026.11.23 RC2</title>
     <updated>2026-11-23T04:04:02Z</updated>
     <summary>The second release candidate includes the guided installer, optional software bundles and the archevim colorscheme.</summary>
     <link href="https://archelinux.github.io/archelinux.org/news/v2.0.0-rc2.html" />
   </entry>
   <entry>
     <id>https://archelinux.github.io/archelinux.org/news/v2.0.0-rc1.html</id>
-    <title>archelinux 2.0.0-rc1</title>
+    <title>archelinux 2026.11.10 RC1</title>
     <updated>2026-11-11T00:46:50Z</updated>
     <summary>The first 2.0.0 candidate introduces the terminal workspace and records the results of installed-system tests with the Zen and LTS kernels.</summary>
     <link href="https://archelinux.github.io/archelinux.org/news/v2.0.0-rc1.html" />
   </entry>
   <entry>
     <id>https://archelinux.github.io/archelinux.org/news/rolling-20260725.html</id>
-    <title>archelinux rolling 20260725</title>
+    <title>archelinux 2026.07.25</title>
     <updated>2026-07-25T23:17:50Z</updated>
-    <summary>archelinux rolling 20260725</summary>
+    <summary>archelinux 2026.07.25</summary>
     <link href="https://archelinux.github.io/archelinux.org/news/rolling-20260725.html" />
   </entry>
   <entry>
     <id>https://archelinux.github.io/archelinux.org/news/rolling-20250812.html</id>
-    <title>archelinux rolling 20250812</title>
+    <title>archelinux 2025.08.12</title>
     <updated>2025-08-12T21:54:06Z</updated>
-    <summary>archelinux rolling 20250812</summary>
+    <summary>archelinux 2025.08.12</summary>
     <link href="https://archelinux.github.io/archelinux.org/news/rolling-20250812.html" />
   </entry>
   <entry>
