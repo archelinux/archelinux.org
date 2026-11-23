@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Your first ten minutes in archelinux · archelinux</title>
+<meta name="description" content="Your first ten minutes in archelinux for the archelinux distribution.">
+<link rel="icon" href="../assets/arche-logo.svg"><link rel="stylesheet" href="../style.css">
+<link rel="canonical" href="https://archelinux.org/wiki/first-session.html">
+</head><body>
+<a class="skip" href="#main">Skip to content</a>
+<header><div class="mast"><a class="brand" aria-label="archelinux home" href="../index.html"><img src="../assets/arche-logo.svg" alt="">arche<span>linux</span></a>
+<nav aria-label="Primary">
+<a href="../index.html" >Home</a>
+<a href="../packages/index.html" >Packages</a>
+<a href="../wiki/index.html" aria-current="location">Wiki</a>
+<a href="../news/index.html" >News</a>
+<a href="../download/index.html" >Download</a></nav></div></header>
+<main id="main">
+<div class="crumb"><a href="../index.html">Home</a> / <a href="index.html">Wiki</a> / Your first ten minutes in archelinux</div>
+<div class="layout"><div class="column"><article class="prose"><h1>Your first ten minutes in archelinux</h1><p>This walkthrough uses the recommended SwayFX, Foot, tmux and Neovim workspace.
+Super is the key with the Windows or Command symbol. Return means Enter.
+You can read the guide and use the terminal offline. The first normal Neovim
+launch needs internet access to install LazyVim and its plugins.</p>
+<h2>Open the guide and a terminal</h2>
+<p>With arche-workspace-defaults 2.0.0-41 or newer, press <strong>Super+D</strong>, type
+<strong>First Session</strong>, and press <strong>Return</strong>. Fuzzel opens this guide in Foot.
+Use <strong>Space</strong> to page down, <strong>b</strong> to go back, <strong>/</strong> to search, and <strong>q</strong> to
+close the guide. From a shell or a recovery console, open the same file with:</p>
+<pre><code>less /usr/share/doc/arche-workspace-defaults/first-session.md
+</code></pre>
+<p>Press <strong>Super+Return</strong> to open a second terminal. Use <strong>Super+H</strong> and
+<strong>Super+L</strong> to move between tiles to the left and right. The thin highlight
+marks the focused window. Keep the guide open in one tile while you work in
+the other.</p>
+<h2>Build a two-pane work session</h2>
+<p>In the new terminal, run:</p>
+<pre><code>tmux new-session -s practice
+</code></pre>
+<p>Press <strong>Ctrl+B</strong>, release both keys, then press <strong>%</strong>. The new pane opens on
+the right. Press <strong>Ctrl+H</strong> to focus the left pane. On the first connected
+launch, allow Neovim to finish downloading its plugins. Start an empty editor:</p>
+<pre><code>nvim
+</code></pre>
+<p>Press <strong>i</strong>, type a short line, then press <strong>Esc</strong>. Type <strong>:vsplit</strong> and press
+<strong>Return</strong>. You now have two views of the same buffer. In normal mode,
+<strong>Ctrl+L</strong> moves right through the editor, then into the shell pane at the
+outer edge. <strong>Ctrl+H</strong> takes you back. For a vertical stack the corresponding
+keys are <strong>Ctrl+J</strong> (down) and <strong>Ctrl+K</strong> (up).</p>
+<p>If the plugins have never been downloaded and you are offline, start
+<strong>nvim --clean</strong> instead. You can practice typing and <strong>:vsplit</strong> immediately.
+Use <strong>Ctrl+W</strong> followed by <strong>h</strong> or <strong>l</strong> between editor splits and <strong>Ctrl+B</strong>
+followed by an arrow key between tmux panes in this mode.</p>
+<p>To leave the unsaved practice buffer, press <strong>Esc</strong>, type <strong>:qa!</strong> and press
+<strong>Return</strong>. To keep the tmux session in the background, press <strong>Ctrl+B</strong>, then
+<strong>d</strong>. Return to it later with <strong>tmux attach -t practice</strong>. If a session named
+practice already exists, attach to it instead of starting another.</p>
+<h2>Give yourself a shortcut</h2>
+<p>Your copy of the Sway configuration lives at <strong>~/.config/sway/config</strong>.
+Choose an unused chord. For example, the shipped configuration leaves
+<strong>Super+F10</strong> free. To open Foot with it, add this one line to your copy:</p>
+<pre><code>bindsym $mod+F10 exec foot
+</code></pre>
+<p>Save the file, press <strong>Super+Shift+C</strong> to reload Sway, then press
+<strong>Super+F10</strong> to try it. To undo the change, remove that line and reload.
+The packaged template lives under <strong>/usr/share/arche/skel</strong>. Package updates
+can replace the template; your own configuration belongs in your home
+directory.</p>
+<h2>Find your way back</h2>
+<table>
+<thead>
+<tr>
+<th>Where you are</th>
+<th>Keys</th>
+<th>What happens</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sway</td>
+<td>Super+D</td>
+<td>Find an application by name in Fuzzel</td>
+</tr>
+<tr>
+<td>Sway</td>
+<td>Super+Return</td>
+<td>Open Foot</td>
+</tr>
+<tr>
+<td>Sway</td>
+<td>Super+H/J/K/L</td>
+<td>Focus a tile left/down/up/right</td>
+</tr>
+<tr>
+<td>tmux or configured Neovim in normal mode</td>
+<td>Ctrl+H/J/K/L</td>
+<td>Focus an adjacent pane or split</td>
+</tr>
+<tr>
+<td>Sway</td>
+<td>Super+Shift+C</td>
+<td>Apply a saved configuration edit</td>
+</tr>
+<tr>
+<td>Desktop</td>
+<td>Ctrl+Alt+F2</td>
+<td>Switch to a text login on TTY2</td>
+</tr>
+</tbody>
+</table>
+<p>If the desktop stops responding, press <strong>Ctrl+Alt+F2</strong> and log in with your
+usual username and password. You can read this guide there, edit the Sway
+configuration, or inspect the current boot with <strong>journalctl -b</strong>. Press
+<strong>Alt+F1</strong> from the text console to return to the existing session on TTY1.</p>
+</article></div>
+<aside>
+
+<section class="box"><h2>Package search</h2><form class="search" action="../packages/index.html"><input type="search" name="q" aria-label="Package name or description" placeholder="Name or description"><button>Search</button></form></section>
+
+
+<section class="box directory"><h2>Documentation</h2><h3>Getting started</h3><ul><li><a href="../wiki/about.html" >About archelinux</a></li><li><a href="../wiki/verify.html" >Verify the ISO</a></li><li><a href="../wiki/installation.html" >Installation guide</a></li><li><a href="../wiki/shortcuts.html" >Your first few shortcuts</a></li><li><a href="../wiki/hardware.html" >Check your hardware after the first login</a></li></ul><h3>Your workspace</h3><ul><li><a href="../wiki/desktop.html" >SwayFX and Litho Dark</a></li><li><a href="../wiki/shell.html" >The Zsh workspace</a></li><li><a href="../wiki/configuration.html" >Packages and configuration</a></li><li><a href="../wiki/recovery.html" >Recovery and maintenance</a></li><li><a href="../wiki/maintenance.html" >Recovery and local inference</a></li></ul><h3>Building archelinux</h3><ul><li><a href="../wiki/system.html" >System architecture</a></li><li><a href="../wiki/installer-internals.html" >Guided installer internals</a></li><li><a href="../wiki/build.html" >Build the ISO</a></li><li><a href="../wiki/publication.html" >CI and package signing</a></li><li><a href="../wiki/acceptance.html" >Release acceptance checks</a></li><li><a href="../wiki/qemu.html" >Disposable UEFI installation acceptance</a></li></ul>
+<a href="../wiki/index.html">Browse the wiki →</a></section>
+</aside></div></main>
+<footer><a class="footbrand" href="../index.html">archelinux</a><span>Independent Arch-based distribution</span><a href="../wiki/about.html">About the project</a></footer>
+</body></html>

@@ -1,3 +1,24 @@
-{% extends "base.html" %}{% block main %}<article class="prose"><h1>Download archelinux</h1><p class="lead">Signed installation media for x86_64 systems.</p>
-{% set iso = latest.assets|selectattr('name','match_iso')|first %}<div class="downloadbox"><h2>archelinux {{ latest.tag[1:] }}</h2><p>{{ latest.date }} · x86_64 · {{ '%.2f'|format(iso.size/1073741824) }} GiB</p><a class="button" href="{{ iso.url }}" download>Download ISO ↓</a></div>
-<h2>Verify your download</h2><p>Save these files alongside the ISO, then follow the <a href="../wiki/verify.html">signature and checksum guide</a> before writing the image to USB.</p><ul>{% for a in latest.assets if a.name!=iso.name %}<li><a href="{{ a.url }}" download>{{ a.name }}</a></li>{% endfor %}</ul><h2>Install</h2><p>The installer needs an internet connection. Read the <a href="../wiki/installation.html">installation guide</a> for the disk layout, encryption options and software selection.</p><a href="../news/index.html">Previous releases →</a></article>{% endblock %}
+{% extends "base.html" %}
+{% block main %}
+<article class="prose">
+  <h1>Download archelinux</h1>
+  <p class="lead">Signed installation media for x86_64 systems.</p>
+  <div class="downloadbox">
+    <h2>{{ latest.title }}</h2>
+    <p>{{ latest.date }} · x86_64 · {{ '%.2f'|format(media_size/1073741824) }} GiB</p>
+{% if media|length == 1 and media[0].name.endswith('.iso') %}
+    <a class="button" href="{{ media[0].url }}" download>Download ISO ↓</a>
+{% else %}
+    <p>Download every part into the same directory, then join them before verification.</p>
+    <ul>{% for part in media %}<li><a href="{{ part.url }}" download>{{ part.name }}</a></li>{% endfor %}</ul>
+{% endif %}
+  </div>
+  <h2>Verify your download</h2>
+  <p>Save the verification files alongside the image. Follow the <a href="../news/{{ latest.tag }}.html">instructions for this release</a> before writing the image to USB.</p>
+  <ul>{% for a in verification %}<li><a href="{{ a.url }}" download>{{ a.name }}</a></li>{% endfor %}</ul>
+  <p><a href="../wiki/verify.html">ISO verification guide →</a></p>
+  <h2>Install</h2>
+  <p>The installer needs an internet connection. Read the <a href="../wiki/installation.html">installation guide</a> for the disk layout, encryption options and software selection.</p>
+  <a href="../news/index.html">Previous releases →</a>
+</article>
+{% endblock %}
