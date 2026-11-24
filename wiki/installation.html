@@ -25,7 +25,7 @@
 
 <p>The recommended system is a keyboard-driven Sway desktop with Zsh, Oh My Zsh, Neovim and tmux. The USB boots to a console and needs internet access to install. Arche uses XFS for root. You can enable LUKS and choose your software. If you depend on booting filesystem snapshots, factor that into your choice: Arche provides individual cached-package rollback.</p>
 <h2>Install from USB</h2>
-<p>The ISO starts the guided archinstall installer on TTY1. The rolling installer enables the signed stable channel at the end of setup. After your first login, run <code>sudo pacman -Syu</code> to update the installed system.</p>
+<p>The ISO starts the guided archinstall installer on TTY1. The USB boots Linux LTS and includes Wi-Fi firmware. Once you choose your tools, the installer verifies the signed stable channel before modifying the disk, then downloads the selected packages. After your first login, run <code>sudo pacman -Syu</code> to update the installed system.</p>
 <ol>
 <li><a href="../download/index.html">Download the signed ISO</a> and verify it using the <a href="verify.html">verification guide</a>, then write it to installation media.</li>
 <li>Boot the console and connect to the network. Use NetworkManager or <code>nmcli</code> if needed.</li>

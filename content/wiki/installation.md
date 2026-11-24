@@ -5,7 +5,7 @@ The recommended system is a keyboard-driven Sway desktop with Zsh, Oh My Zsh, Ne
 
 ## Install from USB
 
-The ISO starts the guided archinstall installer on TTY1. The rolling installer enables the signed stable channel at the end of setup. After your first login, run `sudo pacman -Syu` to update the installed system.
+The ISO starts the guided archinstall installer on TTY1. The USB boots Linux LTS and includes Wi-Fi firmware. Once you choose your tools, the installer verifies the signed stable channel before modifying the disk, then downloads the selected packages. After your first login, run `sudo pacman -Syu` to update the installed system.
 
 1. [Download the signed ISO](../download/index.html) and verify it using the [verification guide](verify.html), then write it to installation media.
 2. Boot the console and connect to the network. Use NetworkManager or `nmcli` if needed.

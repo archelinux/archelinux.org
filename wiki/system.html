@@ -28,7 +28,7 @@
 <ul>
 <li><strong>Storage:</strong> XFS with reflink and CRC enabled, 512-byte inodes, 16 allocation groups. Root mounts with <code>rw,noatime,nodiratime,logbufs=8,logbsize=256k,allocsize=64M</code> and fstab dump/fsck fields <code>0 0</code>.</li>
 <li><strong>Kernels:</strong> Arch's <code>linux-zen</code> and matching headers, plus <code>linux-lts</code> and headers. Zen is the permitted performance-kernel fallback; no CachyOS repository is required. LTS provides a recovery boot choice, not a security-hardening guarantee.</li>
-<li><strong>Boot:</strong> systemd-boot on UEFI (provided by <code>systemd</code>), GRUB on BIOS; Zen default, explicit LTS entry, two-second timeout. Both kernels also boot the live image.</li>
+<li><strong>Boot:</strong> systemd-boot on UEFI (provided by <code>systemd</code>), GRUB on BIOS; Zen default, explicit LTS entry, two-second timeout. The live USB boots LTS. Both kernels are available on the default installed system.</li>
 <li><strong>Memory:</strong> RAM-sized zstd ZRAM at priority 100; the requested VM, dirty-page and inotify tuning lives in <code>airootfs/etc/sysctl.d/99-arche-perf.conf</code>.</li>
 <li><strong>Recovery:</strong> weekly <code>paccache.timer</code> and a transaction hook retain three cached versions. <code>arche-rollback PACKAGE</code> selects the newest cached version older than the installed version using pacman's metadata and version ordering. It rejects prefix matches and missing history. This is package recovery, not a filesystem backup; related libraries may need coordinated downgrades. Only versions actually downloaded remain available.</li>
 </ul>

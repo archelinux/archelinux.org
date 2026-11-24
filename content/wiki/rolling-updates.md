@@ -32,7 +32,9 @@ Use the public release key you verified when you installed. If you need a new co
 
 The helper verifies the signed database against the pinned key, locally signs that key in pacman's keyring, and replaces the `[arche]` section in place. It leaves the Arch mirror configuration alone. The setup refuses an active pacman database lock. It can be run again after pacman finishes. Now run the full upgrade above. Check `pacman-conf --repo arche Server` and `pacman -Si arche/arche-maintenance` to see the selected server and package version.
 
-Starting with the November 23, 2026 rolling installer (`rolling-20261123`), the ISO ships the helper and key in `arche-maintenance`. The guided and unattended installers install from the bundled repository first and switch the target at the end. If the channel is unavailable during installation, the installer keeps the bundled repository and prints a retry command. Run `sudo arche-enable-rolling` when the server is reachable. If signature verification fails, the installer keeps the bundled repository and displays a warning. Check project announcements before retrying.
+The current LTS USB (`rolling-20261123.2`) verifies stable before changing the target disk. Connect to the internet so the installer can fetch your selected packages. The installed system already has stable enabled.
+
+If you used the earlier `rolling-20261123` image, it tried to enable stable at the end of setup. If that image kept its bundled repository because the channel was unreachable, run `sudo arche-enable-rolling` after connecting, followed by `sudo pacman -Syu`.
 
 ## Recovery
 

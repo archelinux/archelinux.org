@@ -1,5 +1,40 @@
 [
   {
+    "tag": "rolling-20261123.2",
+    "title": "archelinux 2026.11.23 (LTS installer, revision 2)",
+    "date": "2026-11-24",
+    "published_at": "2026-11-24T13:21:48Z",
+    "channel": "stable",
+    "assets": [
+      {
+        "name": "archelinux-2026.11.23-x86_64.iso",
+        "url": "https://github.com/archelinux/archelinux/releases/download/rolling-20261123.2/archelinux-2026.11.23-x86_64.iso",
+        "size": 1056997376
+      },
+      {
+        "name": "archelinux-2026.11.23-x86_64.iso.sha256",
+        "url": "https://github.com/archelinux/archelinux/releases/download/rolling-20261123.2/archelinux-2026.11.23-x86_64.iso.sha256",
+        "size": 99
+      },
+      {
+        "name": "archelinux-2026.11.23-x86_64.iso.sha256.sig",
+        "url": "https://github.com/archelinux/archelinux/releases/download/rolling-20261123.2/archelinux-2026.11.23-x86_64.iso.sha256.sig",
+        "size": 119
+      },
+      {
+        "name": "archelinux-2026.11.23-x86_64.iso.sig",
+        "url": "https://github.com/archelinux/archelinux/releases/download/rolling-20261123.2/archelinux-2026.11.23-x86_64.iso.sig",
+        "size": 119
+      },
+      {
+        "name": "archelinux-release-public.asc",
+        "url": "https://github.com/archelinux/archelinux/releases/download/rolling-20261123.2/archelinux-release-public.asc",
+        "size": 396
+      }
+    ],
+    "notes": "This 1,008 MiB installer boots Linux LTS and includes Wi-Fi firmware. Connect to the internet and select the tools you want. Before modifying the target disk, the installer verifies the signed archelinux channel. It downloads your selected desktop and tools from stable and Arch mirrors. A default installation includes Zen and LTS.\n\nThis is the second rolling snapshot dated November 23. It is 236 MiB smaller than the earlier rolling image. Existing installations can continue with `sudo pacman -Syu`. [Rolling updates](https://archelinux.github.io/archelinux.org/wiki/rolling-updates.html)\n\n### Verify before writing to USB\n\nSave this release’s ISO, checksum, both signatures and public key together in a new directory. Several snapshots share the date in the filename. Compare the public key’s fingerprint with your trusted copy of `E446 C26A 0B7B A1A6 6A3D CC9F 7EC5 6400 3573 C80B`.\n\n```sh\niso=archelinux-2026.11.23-x86_64.iso\ngpg --show-keys --fingerprint archelinux-release-public.asc\ngpg --import archelinux-release-public.asc\ngpg --verify \"$iso.sha256.sig\" \"$iso.sha256\" &&\n  sha256sum -c \"$iso.sha256\" &&\n  gpg --verify \"$iso.sig\" \"$iso\"\n```\n\nA fresh VM booted the LTS USB, installed the selected SwayFX workspace, and booted from the installed disk. The test checked the stable repository and both installed kernels. [Installation guide](https://archelinux.github.io/archelinux.org/wiki/installation.html) · [Build and VM results](https://github.com/archelinux/archelinux/actions/runs/45266235587)\n"
+  },
+  {
     "tag": "rolling-20261123",
     "title": "archelinux 2026.11.23",
     "date": "2026-11-23",
