@@ -50,28 +50,24 @@ h1 { font-size: clamp(29px, 3.1vw, 44px); letter-spacing: -.055em; line-height: 
 h2 { font-size: 23px; letter-spacing: -.038em; line-height: 1.25; }
 h3 { font-size: 19px; line-height: 1.35; letter-spacing: -.025em; }
 .welcome {
-  overflow: hidden;
   border: 1px solid var(--border);
   border-radius: 10px;
-  position: relative;
-  isolation: isolate;
-  background: linear-gradient(90deg, #060708cf, #11121499 37%, transparent 78%),
-    url("assets/archelinux-desktop.jpg") center 52% / cover;
+  background: var(--glass);
 }
-/* Frost the wallpaper beneath the text; keep the illustration sharp on the right. */
-.welcome::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  backdrop-filter: blur(14px) saturate(.65);
-  mask-image: linear-gradient(90deg, black 12%, #000e 40%, transparent 78%);
+.welcome-copy { padding: clamp(20px, 3.3vw, 40px) clamp(16px, 3.5vw, 42px) 22px; }
+.desktop-preview { margin: 0 12px 12px; }
+.desktop-preview > a { display: block; border-radius: 6px; }
+.desktop-preview img { display: block; width: 100%; height: auto; border-radius: inherit; }
+.desktop-preview figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 14px;
+  margin: 9px 4px 0;
+  color: var(--muted);
+  font-size: 13px;
 }
-.welcome-copy { padding: clamp(24px, 3.3vw, 46px) clamp(20px, 3.5vw, 48px); }
-.platform { display: flex; align-items: center; gap: 9px; color: #d8dadd; font: 12px/1.5 sans-serif; letter-spacing: .07em; text-transform: uppercase; }
-.platform::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--focus-mauve); }
-.welcome h1 { font-size: clamp(3.5rem, 7vw, 6rem); line-height: 1; letter-spacing: -.085em; margin: 15px 0; }
+.welcome h1 { font-size: clamp(3.5rem, 7vw, 6rem); line-height: 1; letter-spacing: -.085em; margin: 0 0 15px; }
 .welcome h1 span { color: var(--link); font-weight: 300; }
 .intro { max-width: 34ch; margin-bottom: 20px; font-size: clamp(16px, 1.4vw, 19px); color: #e2e3e5; }
 .lead { margin: 12px 0 15px; color: #ced0d2; }
@@ -108,9 +104,7 @@ time, small, .crumb { font: 12px/1.6 sans-serif; color: var(--muted); }
 .directory h3 { margin-top: 13px; font-size: 15px; }
 .directory ul { margin: 5px 0 13px; }
 .directory li { line-height: 1.65; font-size: 14px; }
-.gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding-top: 10px; }
-.gallery img, .prose img { max-width: 100%; height: auto; display: block; }
-.gallery span { display: block; font-size: 14px; margin-top: 5px; }
+.prose img { max-width: 100%; height: auto; display: block; }
 footer { gap: 16px; flex-wrap: wrap; border-top: 1px solid var(--border); color: var(--muted); font-size: 13px; padding: 18px 0 24px; }
 .footbrand { font-weight: 720; font-size: 17px; color: #e8e9ea; letter-spacing: -.05em; }
 footer a:last-child { margin-left: auto; }
@@ -139,24 +133,18 @@ dt { font-weight: 600; }
 .deps { columns: 2; }
 .downloadbox { border-left-color: var(--focus-mauve); padding: 18px; }
 .downloadbox h2 { margin: 0; border: none; }
-@media (max-width: 520px) {
-  .welcome { background-position: 60% center; }
-  .welcome-copy { background: #0008; }
-}
 @media (max-width: 720px) {
   .layout { grid-template-columns: 1fr; }
   .mast { flex-wrap: wrap; gap: 6px 20px; padding: 12px 0 6px; }
   nav { flex-wrap: wrap; gap: 0 18px; }
   .entry { display: block; }
   .entry h3 { margin-top: 3px; }
-  .gallery { gap: 10px; }
   .topiclist { columns: 1; }
   footer a:last-child { margin-left: 0; }
 }
 
 @media (prefers-reduced-transparency: reduce) {
-  header, .box, .downloadbox { background: var(--panel); backdrop-filter: none; }
-  .welcome::before { background: var(--panel); backdrop-filter: none; }
+  header, .box, .downloadbox, .welcome { background: var(--panel); backdrop-filter: none; }
 }
 
 .walkthrough { margin: 18px 0; }

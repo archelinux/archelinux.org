@@ -2,24 +2,27 @@
 {% block main %}
 <article class="prose">
   <h1>Download archelinux</h1>
-  <p class="lead">Signed installation media for x86_64 systems.</p>
+  <p class="lead">Signed installation media for x86_64 systems. The installer needs internet access to download packages.</p>
   <div class="downloadbox">
     <h2>{{ latest.title }}</h2>
     <p>{{ latest.date }} · x86_64 · {{ '%.2f'|format(media_size/1073741824) }} GiB</p>
 {% if media|length == 1 and media[0].name.endswith('.iso') %}
-    <a class="button" href="{{ media[0].url }}" download>Download ISO ↓</a>
+    <a class="button" href="{{ media[0].url }}" download>Download ISO</a>
 {% else %}
-    <p>Download every part into the same directory, then join them before verification.</p>
+    <p>Download every part into the same directory. The verification guide shows how to join them.</p>
     <ul>{% for part in media %}<li><a href="{{ part.url }}" download>{{ part.name }}</a></li>{% endfor %}</ul>
 {% endif %}
+    <h3 id="install-steps">Installation steps</h3>
+    <ol aria-labelledby="install-steps">
+      <li><a href="../wiki/verify.html">Verify the ISO</a></li>
+      <li><a href="../wiki/install-media.html">Write it to USB or try it in a VM</a></li>
+      <li><a href="../wiki/installation.html">Install archelinux</a></li>
+    </ol>
   </div>
-  <h2>Verify your download</h2>
-  <p>Save the verification files alongside the image. Follow the <a href="../news/{{ latest.tag }}.html">instructions for this release</a> before writing the image to USB.</p>
+  <p>Already using archelinux? <a href="../wiki/rolling-updates.html">Update your system</a>.</p>
+  <h2>Verification files</h2>
+  <p>Save these files alongside the image.</p>
   <ul>{% for a in verification %}<li><a href="{{ a.url }}" download>{{ a.name }}</a></li>{% endfor %}</ul>
-  <p><a href="../wiki/verify.html">ISO verification guide →</a></p>
-  <h2>Install</h2>
-  <p>The installer needs an internet connection. Read the <a href="../wiki/installation.html">installation guide</a> for the disk layout, encryption options and software selection.</p>
-  <p>Already running archelinux? Check the <a href="../wiki/rolling-updates.html">rolling update guide</a> for the status of signed package updates.</p>
-  <a href="../news/index.html">Previous releases →</a>
+  <p><a href="../news/{{ latest.tag }}.html">Release notes</a> · <a href="../news/index.html">Previous releases</a></p>
 </article>
 {% endblock %}
