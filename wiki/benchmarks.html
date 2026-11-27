@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Desktop performance baseline · archelinux</title>
+<meta name="description" content="Desktop performance baseline for the archelinux distribution.">
+<link rel="icon" href="../assets/arche-logo.svg"><link rel="stylesheet" href="../style.css">
+<link rel="alternate" type="application/atom+xml" title="archelinux releases" href="../news/feed.xml">
+<link rel="canonical" href="https://archelinux.github.io/archelinux.org/wiki/benchmarks.html">
+</head><body>
+<a class="skip" href="#main">Skip to content</a>
+<header><div class="mast"><a class="brand" aria-label="archelinux home" href="../index.html"><img src="../assets/arche-logo.svg" alt="">arche<span>linux</span></a>
+<nav aria-label="Primary">
+<a href="../index.html" >Home</a>
+<a href="../packages/index.html" >Packages</a>
+<a href="../wiki/index.html" aria-current="location">Wiki</a>
+<a href="../news/index.html" >News</a>
+<a href="../community/index.html" >Forum</a>
+<a href="../download/index.html" >Download</a></nav></div></header>
+<main id="main">
+<div class="crumb"><a href="../index.html">Home</a> / <a href="index.html">Wiki</a> / Desktop performance baseline</div>
+<div class="layout"><div class="column">
+<article class="prose">
+<h1>Desktop performance baseline</h1>
+
+<p>This page records how the recommended SwayFX desktop starts and idles on a small, reproducible system. See the <a href="hardware.html">hardware compatibility matrix</a> for physical-device checks.</p>
+<h2>Test environment</h2>
+<ul>
+<li><a href="https://github.com/archelinux/archelinux/releases/tag/rolling-20261126">Signed archelinux 2026.11.26 installer</a>, with the recommended SwayFX workspace (<code>arche-swayfx</code> 1.0.0-8 and SwayFX 0.6.1-3), XFS root and both default kernels installed.</li>
+<li>QEMU 10.2.1 with KVM on an Intel Core i5-12400F host, with two vCPUs, 4 GiB assigned RAM, a local 24 GiB virtual disk, OVMF UEFI, virtio graphics and networking, and one 1280×800 output at 74.994 Hz.</li>
+<li>After verifying the initial install, the same guest was booted three times for measurement. The VM process exited between trials. The host disk cache was left warm.</li>
+<li>The disposable guest automatically signed in so human input delay would not affect the result. Each trial ended at an idle desktop with the default bar and background.</li>
+</ul>
+<h2>Results</h2>
+<p>Measured on 27 November 2026 with Linux <code>7.3.6-zen1-1-zen</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Boot</th>
+<th style="text-align:right">Ready from QEMU launch</th>
+<th style="text-align:right">Guest RAM in use</th>
+<th style="text-align:right">Idle CPU busy</th>
+<th style="text-align:right">SwayFX PSS</th>
+<th style="text-align:right">Waybar PSS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td style="text-align:right">17.76 s</td>
+<td style="text-align:right">516.4 MiB</td>
+<td style="text-align:right">1.37%</td>
+<td style="text-align:right">145.7 MiB</td>
+<td style="text-align:right">39.6 MiB</td>
+</tr>
+<tr>
+<td>2</td>
+<td style="text-align:right">16.95 s</td>
+<td style="text-align:right">517.7 MiB</td>
+<td style="text-align:right">1.35%</td>
+<td style="text-align:right">143.5 MiB</td>
+<td style="text-align:right">39.2 MiB</td>
+</tr>
+<tr>
+<td>3</td>
+<td style="text-align:right">17.24 s</td>
+<td style="text-align:right">516.3 MiB</td>
+<td style="text-align:right">1.37%</td>
+<td style="text-align:right">137.4 MiB</td>
+<td style="text-align:right">39.6 MiB</td>
+</tr>
+<tr>
+<td>Median</td>
+<td style="text-align:right">17.24 s</td>
+<td style="text-align:right">516.4 MiB</td>
+<td style="text-align:right">1.37%</td>
+<td style="text-align:right">143.5 MiB</td>
+<td style="text-align:right">39.6 MiB</td>
+</tr>
+</tbody>
+</table>
+<h2>How to reproduce</h2>
+<ol>
+<li>Verify the ISO signature and install the recommended workspace in a fresh guest with the settings above. Use the <a href="https://github.com/archelinux/archelinux/blob/2b4318fedaf18abc0bce624df0db2fa03450f7b2/tests/qemu/guided.py">guided QEMU test</a> for the desktop readiness probe.</li>
+<li>Start a wall-clock timer just before launching QEMU. Stop it when the guest reports the desktop ready. The probe checks that the Sway IPC socket and Waybar are running, an output is available, and the configured network services can resolve a hostname. This includes firmware and bootloader time.</li>
+<li>Leave the desktop untouched for 30 seconds, then sample the aggregate <code>cpu</code> line in <code>/proc/stat</code> twice, 30 seconds apart. Compute busy time as the difference in total ticks minus the difference in idle and I/O-wait ticks. Divide by the difference in total ticks.</li>
+<li>At the end of that interval, subtract <code>MemAvailable</code> from <code>MemTotal</code> in <code>/proc/meminfo</code> and divide by 1,024 for MiB. For per-process proportional memory, read <code>Pss</code> from each process's <code>/proc/PID/smaps_rollup</code>.</li>
+</ol>
+<p>The aggregate tick count uses the first eight fields after <code>cpu</code>. The guest fields are already included in earlier fields. The CPU percentage is across both vCPUs.</p>
+<p>Real machines will differ in boot firmware, graphics drivers and background activity. The virtual graphics setup provides no physical GPU utilization result. A comparison with another distribution should use an installed desktop with the same resources, readiness criteria and sampling interval.</p>
+
+</article>
+</div>
+<aside>
+
+<section class="box"><h2>Package search</h2><form class="search" action="../packages/index.html"><input type="search" name="q" aria-label="Package name or description" placeholder="Name or description"><button>Search</button></form></section>
+
+
+<section class="box directory"><h2>Documentation</h2><h3>Getting started</h3><ul><li><a href="../wiki/installation.html" >Installation guide</a></li><li><a href="../wiki/first-session.html" >Your first ten minutes in archelinux</a></li><li><a href="../wiki/verify.html" >Verify the ISO</a></li><li><a href="../wiki/about.html" >About archelinux</a></li><li><a href="../wiki/shortcuts.html" >Your first few shortcuts</a></li><li><a href="../wiki/hardware.html" >Hardware compatibility</a></li><li><a href="../wiki/benchmarks.html" aria-current="page">Desktop performance baseline</a></li></ul><h3>Your workspace</h3><ul><li><a href="../wiki/desktop.html" >SwayFX and Litho Dark</a></li><li><a href="../wiki/shell.html" >The Zsh workspace</a></li><li><a href="../wiki/arch-tools.html" >Standalone tools on Arch Linux</a></li><li><a href="../wiki/configuration.html" >Packages and configuration</a></li><li><a href="../wiki/rolling-updates.html" >Rolling updates</a></li><li><a href="../wiki/recovery.html" >Recovery and maintenance</a></li><li><a href="../wiki/maintenance.html" >Recovery and local inference</a></li></ul><h3>Building archelinux</h3><ul><li><a href="../wiki/system.html" >System architecture</a></li><li><a href="../wiki/installer-internals.html" >Guided installer internals</a></li><li><a href="../wiki/build.html" >Build the ISO</a></li><li><a href="../wiki/publication.html" >CI and package signing</a></li><li><a href="../wiki/mirrors.html" >Package repository mirrors</a></li><li><a href="../wiki/security.html" >Security reports and advisories</a></li><li><a href="../wiki/acceptance.html" >Release acceptance checks</a></li><li><a href="../wiki/qemu.html" >Disposable UEFI installation acceptance</a></li></ul>
+<a href="../wiki/index.html">Browse the wiki →</a></section>
+</aside></div></main>
+<footer><a class="footbrand" href="../index.html">archelinux</a><span>Independent Arch-based distribution</span><a href="../issues/index.html">Report an issue</a><a href="../wiki/about.html">About the project</a></footer>
+</body></html>

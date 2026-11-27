@@ -19,7 +19,7 @@ packages = catalog["packages"]
 releases = json.loads((CONTENT / "releases.json").read_text())
 latest = stable_iso(releases)
 groups = {
-    "Getting started": ["installation", "first-session", "verify", "about", "shortcuts", "hardware"],
+    "Getting started": ["installation", "first-session", "verify", "about", "shortcuts", "hardware", "benchmarks"],
     "Your workspace": ["desktop", "shell", "arch-tools", "configuration", "rolling-updates", "recovery", "maintenance"],
     "Building archelinux": ["system", "installer-internals", "build", "publication", "mirrors", "security", "acceptance", "qemu"],
 }

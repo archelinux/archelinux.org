@@ -23,14 +23,42 @@
 <article class="prose">
 <h1>Recovery and maintenance</h1>
 
-<p>Choose the LTS entry from the boot menu if you need an alternative to Zen.
-TTY2–6 provide console access independently of the desktop.</p>
+<p>If the desktop stops starting after an update, use a text console to check the update and restore the affected package. Personal settings in your home directory remain editable from the console.</p>
+<h2>Recover from the installed system</h2>
+<ol>
+<li>
+<p>Switch to <strong>Ctrl+Alt+F2</strong> and sign in. TTY2 through TTY6 work independently of Sway. If the current kernel cannot boot and the LTS entry is installed, select <strong>Archelinux (linux-lts)</strong> from the boot menu and retry.</p>
+</li>
+<li>
+<p>Check the package transaction and the current boot's warnings:</p>
+<pre><code>tail -n 60 /var/log/pacman.log
+journalctl -b -p warning
+</code></pre>
+</li>
+<li>
+<p>If a compositor update caused the failure and the previous package is cached, run:</p>
+<pre><code>sudo arche-rollback swayfx
+pacman -Q swayfx
+</code></pre>
+<p>Then reboot and check that SwayFX and Waybar start. For a different failed package, substitute its exact package name.</p>
+</li>
+</ol>
+<h2>Recover from the installer USB</h2>
+<p>Boot the signed installer USB and use <strong>Ctrl+Alt+F2</strong> to reach a root console. Use <code>lsblk -f</code> to identify the installed root filesystem. If it is encrypted, unlock its LUKS partition with <code>cryptsetup open</code> and use the resulting mapper device as the root filesystem.</p>
+<p>Mount the installed root at <code>/mnt</code>, substituting its actual device in the example:</p>
+<pre><code>mount /dev/ROOT_DEVICE /mnt
+arch-chroot -r /mnt pacman -Q swayfx
+arch-chroot -r /mnt arche-rollback swayfx
+umount /mnt
+</code></pre>
+<p>This compositor repair uses the installed system's package cache and keyring. To repair a kernel or boot files, mount the installed boot partition according to the target's <code>/etc/fstab</code> before making those changes. Remove the USB and boot the installed system to confirm the repair.</p>
 <p>For a package with an older version still in the local cache:</p>
 <pre><code>sudo arche-rollback PACKAGE
 </code></pre>
-<p>Package rollback does not replace backups. Changes involving related libraries
-may require coordinated downgrades.</p>
+<p>Keep a separate backup of personal files. If related libraries changed together, check their version requirements before downgrading any of them.</p>
 <h2>Tested recovery</h2>
+<p>On 27 November 2026, a fresh QEMU/KVM install from the signed 2026.11.26 ISO successfully booted SwayFX and Waybar with XFS and both default kernels installed. On a disposable copy, a local test package replaced SwayFX with a failing executable. The desktop did not start. We selected Linux 6.18.65-1-lts and confirmed that TTY2 worked. <code>arche-rollback swayfx</code> restored the signed 0.6.1-3 package from cache and the desktop returned after a cold boot. The edited Sway, Waybar and Zsh files matched their original SHA-256 hashes.</p>
+<p>On a second disposable copy with the same fault, the signed installer booted from an emulated USB drive. We mounted the installed XFS root and ran the rollback inside it with <code>arch-chroot -r</code>, using the installed package cache and keyring. After removing the installer and cold booting the repaired disk, SwayFX and Waybar started and all three edited files still matched. These drills used an unencrypted XFS root.</p>
 <p>On 23 November 2026, a locally built 2.0.0 system running XFS and Linux 6.18.64-1-lts in QEMU/KVM was recovered from TTY2. The installed pacman keyring verified both ripgrep archives. <code>arche-rollback ripgrep</code> selected 15.1.0-4 from the cache, and the downgraded binary ran. Reinstalling the cached 15.2.0-1 restored the original version.</p>
 <p>After a cold boot, SwayFX and Waybar started. The hashes of the user's edited Sway configuration and Zsh startup file still matched, including a custom keybinding. See the <a href="hardware.html">hardware compatibility table</a> for the configurations tested.</p>
 <h2>Rolling upgrade rehearsal</h2>
@@ -44,7 +72,7 @@ may require coordinated downgrades.</p>
 <section class="box"><h2>Package search</h2><form class="search" action="../packages/index.html"><input type="search" name="q" aria-label="Package name or description" placeholder="Name or description"><button>Search</button></form></section>
 
 
-<section class="box directory"><h2>Documentation</h2><h3>Getting started</h3><ul><li><a href="../wiki/installation.html" >Installation guide</a></li><li><a href="../wiki/first-session.html" >Your first ten minutes in archelinux</a></li><li><a href="../wiki/verify.html" >Verify the ISO</a></li><li><a href="../wiki/about.html" >About archelinux</a></li><li><a href="../wiki/shortcuts.html" >Your first few shortcuts</a></li><li><a href="../wiki/hardware.html" >Hardware compatibility</a></li></ul><h3>Your workspace</h3><ul><li><a href="../wiki/desktop.html" >SwayFX and Litho Dark</a></li><li><a href="../wiki/shell.html" >The Zsh workspace</a></li><li><a href="../wiki/arch-tools.html" >Standalone tools on Arch Linux</a></li><li><a href="../wiki/configuration.html" >Packages and configuration</a></li><li><a href="../wiki/rolling-updates.html" >Rolling updates</a></li><li><a href="../wiki/recovery.html" aria-current="page">Recovery and maintenance</a></li><li><a href="../wiki/maintenance.html" >Recovery and local inference</a></li></ul><h3>Building archelinux</h3><ul><li><a href="../wiki/system.html" >System architecture</a></li><li><a href="../wiki/installer-internals.html" >Guided installer internals</a></li><li><a href="../wiki/build.html" >Build the ISO</a></li><li><a href="../wiki/publication.html" >CI and package signing</a></li><li><a href="../wiki/mirrors.html" >Package repository mirrors</a></li><li><a href="../wiki/security.html" >Security reports and advisories</a></li><li><a href="../wiki/acceptance.html" >Release acceptance checks</a></li><li><a href="../wiki/qemu.html" >Disposable UEFI installation acceptance</a></li></ul>
+<section class="box directory"><h2>Documentation</h2><h3>Getting started</h3><ul><li><a href="../wiki/installation.html" >Installation guide</a></li><li><a href="../wiki/first-session.html" >Your first ten minutes in archelinux</a></li><li><a href="../wiki/verify.html" >Verify the ISO</a></li><li><a href="../wiki/about.html" >About archelinux</a></li><li><a href="../wiki/shortcuts.html" >Your first few shortcuts</a></li><li><a href="../wiki/hardware.html" >Hardware compatibility</a></li><li><a href="../wiki/benchmarks.html" >Desktop performance baseline</a></li></ul><h3>Your workspace</h3><ul><li><a href="../wiki/desktop.html" >SwayFX and Litho Dark</a></li><li><a href="../wiki/shell.html" >The Zsh workspace</a></li><li><a href="../wiki/arch-tools.html" >Standalone tools on Arch Linux</a></li><li><a href="../wiki/configuration.html" >Packages and configuration</a></li><li><a href="../wiki/rolling-updates.html" >Rolling updates</a></li><li><a href="../wiki/recovery.html" aria-current="page">Recovery and maintenance</a></li><li><a href="../wiki/maintenance.html" >Recovery and local inference</a></li></ul><h3>Building archelinux</h3><ul><li><a href="../wiki/system.html" >System architecture</a></li><li><a href="../wiki/installer-internals.html" >Guided installer internals</a></li><li><a href="../wiki/build.html" >Build the ISO</a></li><li><a href="../wiki/publication.html" >CI and package signing</a></li><li><a href="../wiki/mirrors.html" >Package repository mirrors</a></li><li><a href="../wiki/security.html" >Security reports and advisories</a></li><li><a href="../wiki/acceptance.html" >Release acceptance checks</a></li><li><a href="../wiki/qemu.html" >Disposable UEFI installation acceptance</a></li></ul>
 <a href="../wiki/index.html">Browse the wiki →</a></section>
 </aside></div></main>
 <footer><a class="footbrand" href="../index.html">archelinux</a><span>Independent Arch-based distribution</span><a href="../issues/index.html">Report an issue</a><a href="../wiki/about.html">About the project</a></footer>
