@@ -6,7 +6,7 @@ Sway manages windows. Foot is the terminal, Fuzzel launches apps, and Waybar sho
 
 ## Inspect monitors and adjust scale
 
-Run `swaymsg -t get_outputs` inside the desktop to see output names, positions and modes. To try a different scale, use the output name shown on your machine. This example uses an internal panel called `eDP-1`:
+Run `swaymsg -t get_outputs` inside the desktop to see output names, positions and modes. To try a different scale, use the output name shown on your machine. This example uses an internal panel called `eDP-1`.
 
 ```sh
 swaymsg output eDP-1 scale 1.25
@@ -26,7 +26,7 @@ Reload Sway, then use the layout shortcut in the [keyboard reference](shortcuts.
 
 ## Copy a selected region to the clipboard
 
-Open a terminal and run:
+Run the capture command in a terminal.
 
 ```sh
 grim -g "$(slurp)" - | wl-copy --type image/png

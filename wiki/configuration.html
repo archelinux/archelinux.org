@@ -58,7 +58,7 @@
 </tr>
 <tr>
 <td>tmux</td>
-<td><code>~/.tmux.conf</code>; distro defaults are in <code>/etc/tmux.conf</code></td>
+<td><code>~/.tmux.conf</code> (distro defaults in <code>/etc/tmux.conf</code>)</td>
 </tr>
 <tr>
 <td>Yazi</td>
@@ -67,15 +67,15 @@
 </tbody>
 </table>
 <h2>Edit and check Sway</h2>
-<p>Save a working copy before editing:</p>
+<p>Save a working copy before you edit.</p>
 <pre><code class="language-sh">cp -a ~/.config/sway/config ~/.config/sway/config.before-edit
 </code></pre>
-<p>Edit the configuration file, then run:</p>
+<p>After editing, validate the file with Sway.</p>
 <pre><code class="language-sh">sway --validate --config ~/.config/sway/config
 </code></pre>
 <p>If validation succeeds, run <code>swaymsg reload</code> inside your desktop or use the <a href="shortcuts.html">reload shortcut</a>. If validation fails, follow the reported line and check the files your config includes. If the desktop is unusable, use <a href="troubleshooting.html">Troubleshoot by symptom</a> to reach a text console.</p>
 <h2>Compare your settings with the package template</h2>
-<p>Use a diff before copying any update into your home directory. For example:</p>
+<p>Compare your settings with the packaged file before copying any changes.</p>
 <pre><code class="language-sh">diff -u ~/.config/sway/config /usr/share/arche/skel/.config/sway/config
 </code></pre>
 <p>Move just the changes you want into your current file. For the installer's software choices and official repositories, see <a href="software.html">Choose software</a>.</p>

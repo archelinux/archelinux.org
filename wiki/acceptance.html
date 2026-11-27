@@ -24,7 +24,7 @@
 <h1>Release acceptance checks</h1>
 
 <p><code>tests/check.sh</code> checks shell syntax, source checksums, rollback edge cases, and formats a disposable sparse file to inspect XFS geometry. <code>arche-smoke-test</code> checks image binaries, LSP registration and parser loading and measures warm interactive shell startup over 20 samples. The median budget is 15 ms for Bash and 100 ms for Zsh with Oh My Zsh, its theme and the default plugins.</p>
-<p>On a disposable installed guest, use these commands when checking release behavior:</p>
+<p>Run these checks in a disposable installed guest.</p>
 <pre><code class="language-sh">findmnt -no FSTYPE,OPTIONS /
 xfs_info /
 cat /etc/fstab

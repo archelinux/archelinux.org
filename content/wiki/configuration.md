@@ -10,18 +10,18 @@ Edit the files in your home directory to personalize your session. Package updat
 | Foot | `~/.config/foot/foot.ini` |
 | Zsh and Oh My Zsh | `~/.zshrc` |
 | Neovim and LazyVim | `~/.config/nvim/` |
-| tmux | `~/.tmux.conf`; distro defaults are in `/etc/tmux.conf` |
+| tmux | `~/.tmux.conf` (distro defaults in `/etc/tmux.conf`) |
 | Yazi | `~/.config/yazi/` |
 
 ## Edit and check Sway
 
-Save a working copy before editing:
+Save a working copy before you edit.
 
 ```sh
 cp -a ~/.config/sway/config ~/.config/sway/config.before-edit
 ```
 
-Edit the configuration file, then run:
+After editing, validate the file with Sway.
 
 ```sh
 sway --validate --config ~/.config/sway/config
@@ -31,7 +31,7 @@ If validation succeeds, run `swaymsg reload` inside your desktop or use the [rel
 
 ## Compare your settings with the package template
 
-Use a diff before copying any update into your home directory. For example:
+Compare your settings with the packaged file before copying any changes.
 
 ```sh
 diff -u ~/.config/sway/config /usr/share/arche/skel/.config/sway/config

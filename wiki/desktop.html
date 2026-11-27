@@ -26,7 +26,7 @@
 <p><img src="../assets/archelinux-desktop.jpg" alt="SwayFX desktop with Waybar and Twin Blades wallpaper" /></p>
 <p>Sway manages windows. Foot is the terminal, Fuzzel launches apps, and Waybar shows workspace and system status. Learn the defaults in <a href="shortcuts.html">Keyboard shortcuts</a> or practice them in <a href="first-session.html">Your first session</a>.</p>
 <h2>Inspect monitors and adjust scale</h2>
-<p>Run <code>swaymsg -t get_outputs</code> inside the desktop to see output names, positions and modes. To try a different scale, use the output name shown on your machine. This example uses an internal panel called <code>eDP-1</code>:</p>
+<p>Run <code>swaymsg -t get_outputs</code> inside the desktop to see output names, positions and modes. To try a different scale, use the output name shown on your machine. This example uses an internal panel called <code>eDP-1</code>.</p>
 <pre><code class="language-sh">swaymsg output eDP-1 scale 1.25
 </code></pre>
 <p>If it looks right, put <code>output eDP-1 scale 1.25</code> in your user Sway configuration. Use the <a href="configuration.html">configuration guide</a> to validate and reload the change. Consult <code>man 5 sway-output</code> for placement, rotation and resolution. The <a href="hardware.html">hardware matrix</a> records physical display tests.</p>
@@ -36,7 +36,7 @@
 </code></pre>
 <p>Reload Sway, then use the layout shortcut in the <a href="shortcuts.html">keyboard reference</a> or click the layout indicator in Waybar. Run <code>swaymsg -t get_inputs</code> to inspect the active layout.</p>
 <h2>Copy a selected region to the clipboard</h2>
-<p>Open a terminal and run:</p>
+<p>Run the capture command in a terminal.</p>
 <pre><code class="language-sh">grim -g &quot;$(slurp)&quot; - | wl-copy --type image/png
 </code></pre>
 <p>Drag over the region you want, release, then paste into an app that accepts clipboard images. Use Escape to cancel the selection. Screen sharing is a separate feature handled by the Wayland portal. Open a browser or meeting app that supports it and select the output in its sharing prompt.</p>

@@ -11,7 +11,7 @@ lsblk -o NAME,TRAN,RM,SIZE,FSTYPE,MOUNTPOINTS
 udisksctl mount -b /dev/USB_PARTITION
 ```
 
-UDisks prints the mount path. Close files on the drive and exit any shell whose working directory is on it, then unmount it in Yazi or with:
+UDisks prints the mount path. Close files on the drive and exit any shell whose working directory is on it, then unmount it in Yazi or run `udisksctl unmount`.
 
 ```sh
 udisksctl unmount -b /dev/USB_PARTITION
@@ -21,7 +21,7 @@ Wait for unmount to succeed before removing the drive. If it is busy, check whic
 
 ## Copy files from an Android phone
 
-Unlock the phone, connect a data-capable USB cable, then select **File Transfer** in Android's USB settings. The default installation includes the Android USB tools and MTP helpers. Use the interactive shell or list the phone to find a file ID:
+Unlock the phone, connect a data-capable USB cable, then select **File Transfer** in Android's USB settings. The default installation includes the Android USB tools and MTP helpers. Use the interactive shell or list the phone to find a file ID.
 
 ```sh
 arche-mtp shell

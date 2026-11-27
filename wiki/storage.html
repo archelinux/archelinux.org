@@ -29,12 +29,12 @@
 <pre><code class="language-sh">lsblk -o NAME,TRAN,RM,SIZE,FSTYPE,MOUNTPOINTS
 udisksctl mount -b /dev/USB_PARTITION
 </code></pre>
-<p>UDisks prints the mount path. Close files on the drive and exit any shell whose working directory is on it, then unmount it in Yazi or with:</p>
+<p>UDisks prints the mount path. Close files on the drive and exit any shell whose working directory is on it, then unmount it in Yazi or run <code>udisksctl unmount</code>.</p>
 <pre><code class="language-sh">udisksctl unmount -b /dev/USB_PARTITION
 </code></pre>
 <p>Wait for unmount to succeed before removing the drive. If it is busy, check which application is using it and close the file there. Install <code>udisks2</code> separately if you use a custom profile and <code>udisksctl</code> is missing.</p>
 <h2>Copy files from an Android phone</h2>
-<p>Unlock the phone, connect a data-capable USB cable, then select <strong>File Transfer</strong> in Android's USB settings. The default installation includes the Android USB tools and MTP helpers. Use the interactive shell or list the phone to find a file ID:</p>
+<p>Unlock the phone, connect a data-capable USB cable, then select <strong>File Transfer</strong> in Android's USB settings. The default installation includes the Android USB tools and MTP helpers. Use the interactive shell or list the phone to find a file ID.</p>
 <pre><code class="language-sh">arche-mtp shell
 arche-mtp ls
 </code></pre>

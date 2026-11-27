@@ -23,7 +23,7 @@
 <article class="prose">
 <h1>Rolling updates</h1>
 
-<p>Arch mirrors provide upstream packages. Signed stable supplies the archelinux packages. For a routine update, review <a href="https://archlinux.org/news/">Arch Linux news</a> for any manual steps, then update the system as a single transaction:</p>
+<p>Arch mirrors provide upstream packages. Signed stable supplies the archelinux packages. For a routine update, review <a href="https://archlinux.org/news/">Arch Linux news</a> for any manual steps, then update the system as a single transaction.</p>
 <pre><code class="language-sh">sudo pacman -Syu
 </code></pre>
 <p>The stable server is <code>https://raw.githubusercontent.com/archelinux/archelinux/rolling-channel/stable</code>. ISO release numbers identify installation media. Packages have their own versions. Review the transaction before confirming. If a kernel was updated, reboot when convenient so the running kernel matches the installed version. An update refreshes installed packages. To install an optional tool during the same transaction, add its package name, for example <code>sudo pacman -Syu worktrunk</code>. Use <code>pacman -Q worktrunk</code> to confirm it is installed.</p>

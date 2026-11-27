@@ -4,7 +4,7 @@ Use a separate drive or backup destination so a disk failure or reinstall leaves
 
 ## Save a copy before an update or reinstall
 
-Mount your separate destination using the [removable drive guide](storage.html). Check that the path is mounted and has enough space:
+Mount your separate destination using the [removable drive guide](storage.html). Check the mount point and available space.
 
 ```sh
 findmnt --mountpoint /path/to/backup
@@ -22,7 +22,7 @@ Protect the destination if it contains private keys, credentials or browser data
 
 ## Check that you can restore
 
-Pick a small file from the archive listing and extract it into a temporary directory. Use its exact listed name in place of `./Documents/example.txt`:
+Pick a small file from the archive listing and extract it into a temporary directory. Use its exact listed name in place of `./Documents/example.txt`.
 
 ```sh
 restore_dir=$(mktemp -d)

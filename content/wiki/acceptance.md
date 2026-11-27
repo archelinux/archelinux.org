@@ -2,7 +2,7 @@
 
 `tests/check.sh` checks shell syntax, source checksums, rollback edge cases, and formats a disposable sparse file to inspect XFS geometry. `arche-smoke-test` checks image binaries, LSP registration and parser loading and measures warm interactive shell startup over 20 samples. The median budget is 15 ms for Bash and 100 ms for Zsh with Oh My Zsh, its theme and the default plugins.
 
-On a disposable installed guest, use these commands when checking release behavior:
+Run these checks in a disposable installed guest.
 
 ```sh
 findmnt -no FSTYPE,OPTIONS /

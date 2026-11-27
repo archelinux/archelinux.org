@@ -31,7 +31,7 @@
 <li>Open <strong>Arche software</strong>. Space toggles a selection. Keep the recommended SwayFX workspace for a keyboard-driven desktop, or clear the selections for a console install. Use <a href="software.html">Choose software</a> to decide what else to select.</li>
 </ol>
 <h2>Choose the disk and review</h2>
-<p>Use <strong>Disk configuration</strong> to select the target. If you have similar drives, switch to a text console and compare their sizes and models with:</p>
+<p>Use <strong>Disk configuration</strong> to select the target. If you have similar drives, switch to a text console and run <code>lsblk</code> and compare their sizes and models.</p>
 <pre><code class="language-sh">lsblk -d -o NAME,SIZE,MODEL,TRAN
 </code></pre>
 <p>A guided layout uses XFS for root. On UEFI the boot files use a separate EFI system partition. Select LUKS in disk configuration if you want encryption, keep the passphrase somewhere safe, and read the final review for the partitions the installer will encrypt.</p>

@@ -25,7 +25,7 @@
 
 <p>Use a separate drive or backup destination so a disk failure or reinstall leaves a copy you can reach. Include project files, documents and photos, along with the <a href="configuration.html">configuration files</a> you want to keep. Repositories may have untracked work, so a remote Git push only covers what was committed and pushed.</p>
 <h2>Save a copy before an update or reinstall</h2>
-<p>Mount your separate destination using the <a href="storage.html">removable drive guide</a>. Check that the path is mounted and has enough space:</p>
+<p>Mount your separate destination using the <a href="storage.html">removable drive guide</a>. Check the mount point and available space.</p>
 <pre><code class="language-sh">findmnt --mountpoint /path/to/backup
 df -h /path/to/backup
 </code></pre>
@@ -35,7 +35,7 @@ tar -tzf /path/to/backup/home-YYYY-MM-DD.tar.gz | less
 </code></pre>
 <p>Protect the destination if it contains private keys, credentials or browser data. Keep another copy of files you cannot replace.</p>
 <h2>Check that you can restore</h2>
-<p>Pick a small file from the archive listing and extract it into a temporary directory. Use its exact listed name in place of <code>./Documents/example.txt</code>:</p>
+<p>Pick a small file from the archive listing and extract it into a temporary directory. Use its exact listed name in place of <code>./Documents/example.txt</code>.</p>
 <pre><code class="language-sh">restore_dir=$(mktemp -d)
 tar -xzf /path/to/backup/home-YYYY-MM-DD.tar.gz -C &quot;$restore_dir&quot; ./Documents/example.txt
 cmp &quot;$HOME/Documents/example.txt&quot; &quot;$restore_dir/Documents/example.txt&quot;

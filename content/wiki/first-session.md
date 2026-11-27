@@ -51,7 +51,7 @@ practice already exists, attach to it instead of starting another.
 
 Your copy of the Sway configuration lives at **~/.config/sway/config**.
 Choose an unused chord. For example, the shipped configuration leaves
-**Alt+F10** free. To open Foot with it, add this one line to your copy:
+**Alt+F10** free. Add this binding to open Foot with it.
 
     bindsym $mod+F10 exec foot
 

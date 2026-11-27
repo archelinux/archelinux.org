@@ -10,7 +10,7 @@ Use this walkthrough to go from the boot menu to your first login. You need an x
 
 ## Choose the disk and review
 
-Use **Disk configuration** to select the target. If you have similar drives, switch to a text console and compare their sizes and models with:
+Use **Disk configuration** to select the target. If you have similar drives, switch to a text console and run `lsblk` and compare their sizes and models.
 
 ```sh
 lsblk -d -o NAME,SIZE,MODEL,TRAN

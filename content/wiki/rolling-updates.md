@@ -1,6 +1,6 @@
 # Rolling updates
 
-Arch mirrors provide upstream packages. Signed stable supplies the archelinux packages. For a routine update, review [Arch Linux news](https://archlinux.org/news/) for any manual steps, then update the system as a single transaction:
+Arch mirrors provide upstream packages. Signed stable supplies the archelinux packages. For a routine update, review [Arch Linux news](https://archlinux.org/news/) for any manual steps, then update the system as a single transaction.
 
 ```sh
 sudo pacman -Syu

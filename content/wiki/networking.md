@@ -15,7 +15,7 @@ station wlan0 show
 exit
 ```
 
-Enter the passphrase when prompted. The station should show a connected state. Verify the network from the shell:
+Enter the passphrase when prompted. The station should show a connected state. Verify your network address and DNS from the shell.
 
 ```sh
 ip -br address

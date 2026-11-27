@@ -13,7 +13,7 @@ Choose and pull a model that fits your hardware, then use `ollama run MODEL` wit
 
 ## llama.cpp
 
-Save a model on disk and put `LLAMA_MODEL=/absolute/path/to/model.gguf` in `~/.config/arche/llama-server.env`. Then start the service:
+Save a model on disk and put `LLAMA_MODEL=/absolute/path/to/model.gguf` in `~/.config/arche/llama-server.env`. Start the service after saving the configuration.
 
 ```sh
 systemctl --user enable --now llama-server.service

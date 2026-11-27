@@ -25,14 +25,14 @@
 
 <p>The recommended desktop uses PipeWire and WirePlumber. Click the Waybar speaker to open Wiremix, or run <code>wiremix</code> from Foot. The mixer lets you check which outputs and streams are active. The volume and mute keys act on the default device.</p>
 <h2>Choose a default device</h2>
-<p>Run <code>wpctl status</code>, find the numeric ID under <strong>Sinks</strong> or <strong>Sources</strong>, then replace <code>TARGET_ID</code> in the example:</p>
+<p>Run <code>wpctl status</code>, find the numeric ID under <strong>Sinks</strong> or <strong>Sources</strong>, then use it in place of <code>TARGET_ID</code>.</p>
 <pre><code class="language-sh">wpctl set-default TARGET_ID
 wpctl get-volume @DEFAULT_AUDIO_SINK@
 </code></pre>
 <p>Start new playback and confirm the expected device is active. If an already-running application stays on its previous output, restart the stream and check its routing in Wiremix.</p>
 <h2>Connect a Bluetooth headset</h2>
 <p>BlueZ is selected with the recommended workspace. On another profile you can select it during installation or add <code>bluez</code> and <code>bluez-utils</code> using the <a href="software.html">package guide</a>. On an installed system, confirm the service is running with <code>systemctl status bluetooth</code>.</p>
-<p>Put your headset in pairing mode. Click the Bluetooth indicator or run <code>bluetoothctl</code>. Replace <code>DEVICE_ADDRESS</code> with the address beside your headset in the scan:</p>
+<p>Put your headset in pairing mode. Click the Bluetooth indicator or run <code>bluetoothctl</code>. Replace <code>DEVICE_ADDRESS</code> with the address beside your headset in the scan.</p>
 <pre><code class="language-text">power on
 scan on
 devices
@@ -41,7 +41,7 @@ connect DEVICE_ADDRESS
 scan off
 exit
 </code></pre>
-<p>Confirm the device in Wiremix, or choose its sink using the instructions above. If there is no controller, check <code>rfkill list</code> and <code>journalctl -b -u bluetooth</code>. If the controller is present and pairing works, but the headset never appears as an output, check the desktop audio services:</p>
+<p>Confirm the device in Wiremix, or choose its sink using the instructions above. If there is no controller, check <code>rfkill list</code> and <code>journalctl -b -u bluetooth</code>. If the controller is present and pairing works, but the headset never appears as an output, check which desktop audio services are running.</p>
 <pre><code class="language-sh">systemctl --user status pipewire pipewire-pulse wireplumber
 wpctl status
 </code></pre>

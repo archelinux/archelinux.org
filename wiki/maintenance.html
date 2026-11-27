@@ -30,7 +30,7 @@ ollama list
 </code></pre>
 <p>Choose and pull a model that fits your hardware, then use <code>ollama run MODEL</code> with the model name. The service binds to loopback.</p>
 <h2>llama.cpp</h2>
-<p>Save a model on disk and put <code>LLAMA_MODEL=/absolute/path/to/model.gguf</code> in <code>~/.config/arche/llama-server.env</code>. Then start the service:</p>
+<p>Save a model on disk and put <code>LLAMA_MODEL=/absolute/path/to/model.gguf</code> in <code>~/.config/arche/llama-server.env</code>. Start the service after saving the configuration.</p>
 <pre><code class="language-sh">systemctl --user enable --now llama-server.service
 systemctl --user status llama-server.service
 </code></pre>
