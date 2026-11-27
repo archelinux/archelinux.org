@@ -19,9 +19,12 @@ packages = catalog["packages"]
 releases = json.loads((CONTENT / "releases.json").read_text())
 latest = stable_iso(releases)
 groups = {
-    "Getting started": ["installation", "first-session", "verify", "about", "shortcuts", "hardware", "benchmarks"],
-    "Your workspace": ["desktop", "shell", "arch-tools", "configuration", "rolling-updates", "recovery", "maintenance"],
-    "Building archelinux": ["system", "installer-internals", "build", "publication", "mirrors", "security", "acceptance", "qemu"],
+    "Install and get started": ["install-media", "verify", "installation", "software", "first-session", "about"],
+    "Use and customize": ["shortcuts", "desktop", "configuration", "networking", "audio", "storage", "shell",
+                          "editor-workspace", "agent-workflows", "maintenance"],
+    "Maintain and recover": ["rolling-updates", "backups", "troubleshooting", "recovery", "hardware", "benchmarks"],
+    "Build and contribute": ["system", "installer-internals", "build", "publication", "mirrors", "security",
+                             "acceptance", "qemu", "arch-tools"],
 }
 articles = {}
 for path in sorted((CONTENT / "wiki").glob("*.md")):

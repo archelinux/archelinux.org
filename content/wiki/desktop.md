@@ -1,26 +1,45 @@
-# SwayFX and Litho Dark
+# Use and customize the Sway desktop
 
 ![SwayFX desktop with Waybar and Twin Blades wallpaper](../assets/archelinux-desktop.jpg)
 
-The selected desktop adapts [okubax/dotfiles](https://github.com/okubax/dotfiles)'s
-Litho Dark palette and inset Waybar panel with a centered clock. Provenance and the upstream
-license are installed in `/usr/share/doc/arche-tui-stack/`. Tiled and floating windows have a one-pixel outline. The recommended SwayFX compositor adds backdrop blur and gives Waybar and windows a nine-pixel corner radius. The workspace highlight sits eight pixels inside the panel and has a three-pixel radius. Applications that draw their own
-internal chrome remain responsible for that chrome.
+Sway manages windows. Foot is the terminal, Fuzzel launches apps, and Waybar shows workspace and system status. Learn the defaults in [Keyboard shortcuts](shortcuts.html) or practice them in [Your first session](first-session.html).
 
-Super+Return opens Foot; Super+d opens Fuzzel; Super+Shift+q closes a window;
-Super+h/j/k/l moves focus; Super+r enters resize mode; Super+Shift+c reloads
-configuration; Super+Shift+e exits Sway. No upstream dotfile installer or personal
-cloud/service configuration is run. Media keys use WirePlumber and playerctl.
+## Inspect monitors and adjust scale
 
-Login hooks exist for Zsh, Bash and Fish. They require a local non-root TTY1
-session, no existing display, and no SSH connection. NVIDIA/nouveau detection
-sets `WLR_NO_HARDWARE_CURSORS=1` and passes `--unsupported-gpu`; this is a fallback,
-not a guarantee for every driver. No hook is added to the live root installer.
-`useradd -m -U -k /usr/share/arche/skel` copies all templates directly into the
-new user's home and assigns their ownership. Package templates never claim
-Bash-owned `/etc/skel` files.
+Run `swaymsg -t get_outputs` inside the desktop to see output names, positions and modes. To try a different scale, use the output name shown on your machine. This example uses an internal panel called `eDP-1`:
 
-Sway fills the output with Twin Blades from `/usr/share/arche/twin-blades.jpg`. The artwork comes from the [dharmx/walls collection](https://github.com/dharmx/walls/blob/e8d8a42e4fbecb2cf9619995edbc7ce19610bbd8/anime/aeb9uhrbr41a1.webp). The [collection’s credits](https://github.com/dharmx/walls/blob/e8d8a42e4fbecb2cf9619995edbc7ce19610bbd8/.github/README.md#sources) attribute the images to their respective artists. We could not verify an artist credit or a redistribution license for this image.
+```sh
+swaymsg output eDP-1 scale 1.25
+```
 
-For automated UEFI installation acceptance on a disposable qcow2 disk, see
-[QEMU installation tests](qemu.html).
+If it looks right, put `output eDP-1 scale 1.25` in your user Sway configuration. Use the [configuration guide](configuration.html) to validate and reload the change. Consult `man 5 sway-output` for placement, rotation and resolution. The [hardware matrix](hardware.html) records physical display tests.
+
+## Add a second keyboard layout
+
+Create or edit `~/.config/sway/keyboard.conf`, which the shipped Sway config includes. This example keeps US English first and adds German. Substitute the second XKB layout code you want.
+
+```text
+input type:keyboard xkb_layout us,de
+```
+
+Reload Sway, then use the layout shortcut in the [keyboard reference](shortcuts.html) or click the layout indicator in Waybar. Run `swaymsg -t get_inputs` to inspect the active layout.
+
+## Copy a selected region to the clipboard
+
+Open a terminal and run:
+
+```sh
+grim -g "$(slurp)" - | wl-copy --type image/png
+```
+
+Drag over the region you want, release, then paste into an app that accepts clipboard images. Use Escape to cancel the selection. Screen sharing is a separate feature handled by the Wayland portal. Open a browser or meeting app that supports it and select the output in its sharing prompt.
+
+## Lock, idle and suspend
+
+For a manual lock, use the [lock shortcut](shortcuts.html). The shipped session locks after 15 minutes of inactivity, then powers off the outputs five seconds later. Wake the display with input. Before sleep, the session runs the lock command.
+
+On supported hardware you can suspend from the terminal with `systemctl suspend`. Save your work first. On resume, check that the lock is active and that networking, audio and brightness still work. See the [hardware matrix](hardware.html) for what has been exercised on physical machines.
+
+## Theme and wallpaper
+
+SwayFX uses the Litho Dark palette and adds blur and rounded corners. It draws on [okubax/dotfiles](https://github.com/okubax/dotfiles). The package includes provenance and licensing under `/usr/share/doc/arche-tui-stack/`. The Twin Blades wallpaper comes from the [dharmx/walls collection](https://github.com/dharmx/walls/blob/e8d8a42e4fbecb2cf9619995edbc7ce19610bbd8/anime/aeb9uhrbr41a1.webp). To personalize it, update the background path in your user configuration.

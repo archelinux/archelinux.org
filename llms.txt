@@ -9,14 +9,23 @@ Optional developer tooling includes `arche-agentic-core`. It supplies developmen
 ## Install and get started
 
 - [Download](https://archelinux.github.io/archelinux.org/download/): Current stable installation ISO and verification files.
+- [Prepare a bootable USB or VM](https://archelinux.github.io/archelinux.org/wiki/install-media.html): Write a verified image or try it in a virtual machine.
 - [Installation guide](https://archelinux.github.io/archelinux.org/wiki/installation.html): Network setup, disk choices, and software selection.
 - [Verify the ISO](https://archelinux.github.io/archelinux.org/wiki/verify.html): Release key, signatures, and checksums.
 - [First session](https://archelinux.github.io/archelinux.org/wiki/first-session.html): Desktop, terminal, and editor basics.
 - [Hardware notes](https://archelinux.github.io/archelinux.org/wiki/hardware.html): Graphics and hardware considerations.
 
+## Use and customize
+
+- [Networking](https://archelinux.github.io/archelinux.org/wiki/networking.html): Connect with iwd and diagnose address or DNS failures.
+- [Configuration files](https://archelinux.github.io/archelinux.org/wiki/configuration.html): Find user settings and validate Sway changes.
+- [Agent workflows](https://archelinux.github.io/archelinux.org/wiki/agent-workflows.html): Use worktrees, sessions, reviews and project tests.
+- [Removable drives and Android](https://archelinux.github.io/archelinux.org/wiki/storage.html): Mount drives and transfer phone files.
+
 ## Updates, packages, and recovery
 
 - [Rolling updates](https://archelinux.github.io/archelinux.org/wiki/rolling-updates.html): Keep an installed system current.
+- [Troubleshoot by symptom](https://archelinux.github.io/archelinux.org/wiki/troubleshooting.html): Find the guide that matches the failure.
 - [Recovery](https://archelinux.github.io/archelinux.org/wiki/recovery.html): Alternate console and boot options, and cached package rollback.
 - [Package directory](https://archelinux.github.io/archelinux.org/packages/): Current archelinux package catalog.
 - [Release news](https://archelinux.github.io/archelinux.org/news/): Release announcements and changes.

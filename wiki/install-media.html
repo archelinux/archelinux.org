@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Prepare a bootable USB or VM · archelinux</title>
+<meta name="description" content="Prepare a bootable USB or VM for the archelinux distribution.">
+<link rel="icon" href="../assets/arche-logo.svg"><link rel="stylesheet" href="../style.css">
+<link rel="alternate" type="application/atom+xml" title="archelinux releases" href="../news/feed.xml">
+<link rel="canonical" href="https://archelinux.github.io/archelinux.org/wiki/install-media.html">
+</head><body>
+<a class="skip" href="#main">Skip to content</a>
+<header><div class="mast"><a class="brand" aria-label="archelinux home" href="../index.html"><img src="../assets/arche-logo.svg" alt="">arche<span>linux</span></a>
+<nav aria-label="Primary">
+<a href="../index.html" >Home</a>
+<a href="../packages/index.html" >Packages</a>
+<a href="../wiki/index.html" aria-current="location">Wiki</a>
+<a href="../news/index.html" >News</a>
+<a href="../community/index.html" >Forum</a>
+<a href="../download/index.html" >Download</a></nav></div></header>
+<main id="main">
+<div class="crumb"><a href="../index.html">Home</a> / <a href="index.html">Wiki</a> / Prepare a bootable USB or VM</div>
+<div class="layout"><div class="column">
+<article class="prose">
+<h1>Prepare a bootable USB or VM</h1>
+
+<p>The installation ISO boots Linux LTS and downloads packages during installation. You can try the same ISO in a virtual machine before using it on a physical disk.</p>
+<h2>Download and verify</h2>
+<p>Download the installation ISO and verification files from the <a href="../download/index.html">download page</a>. Follow <a href="verify.html">Verify the ISO</a> before writing the image. If the download comes in parts, reassemble them during verification.</p>
+<h2>Write a USB</h2>
+<p>Writing the image replaces the contents of the selected USB drive. Back it up and disconnect other removable drives if practical.</p>
+<ul>
+<li><strong>Windows.</strong> In <a href="https://rufus.ie/">Rufus</a>, select the USB device and the verified ISO. When offered a choice of write modes, use DD image mode.</li>
+<li><strong>Linux.</strong> Use a disk image writer or identify the USB before and after plugging it in with <code>lsblk -d -o NAME,SIZE,MODEL,TRAN</code>. Unmount any of its mounted partitions. Substitute the verified image path and the whole USB device in the example below. Confirm the model and size again before pressing Enter.</li>
+</ul>
+<pre><code class="language-sh">sudo dd if=/path/to/archelinux.iso of=/dev/USB_DEVICE bs=4M status=progress conv=fsync
+</code></pre>
+<p>For example, the whole device would be <code>/dev/sdb</code> if Linux listed the USB as <code>sdb</code>. Wait for the write to finish before unplugging it. Follow the <a href="installation.html">installation walkthrough</a> when you boot it.</p>
+<h2>Try it in a VM</h2>
+<p>Create a new x86_64 guest with UEFI, two vCPUs, 4 GiB RAM, a fresh virtual disk of at least 24 GiB, and a virtual network adapter using NAT. Attach the verified ISO as optical media and boot it. The <a href="installation.html">installation walkthrough</a> applies to the guest too. After completing it, detach the ISO and boot the guest disk. These settings match the <a href="benchmarks.html">tested VM baseline</a>.</p>
+
+</article>
+</div>
+<aside>
+
+<section class="box"><h2>Package search</h2><form class="search" action="../packages/index.html"><input type="search" name="q" aria-label="Package name or description" placeholder="Name or description"><button>Search</button></form></section>
+
+
+<section class="box directory"><h2>Documentation</h2><h3>Install and get started</h3><ul><li><a href="../wiki/install-media.html" aria-current="page">Prepare a bootable USB or VM</a></li><li><a href="../wiki/verify.html" >Verify the ISO</a></li><li><a href="../wiki/installation.html" >Install archelinux</a></li><li><a href="../wiki/software.html" >Choose software</a></li><li><a href="../wiki/first-session.html" >Your first ten minutes in archelinux</a></li><li><a href="../wiki/about.html" >About archelinux</a></li></ul><h3>Use and customize</h3><ul><li><a href="../wiki/shortcuts.html" >Keyboard shortcuts</a></li><li><a href="../wiki/desktop.html" >Use and customize the Sway desktop</a></li><li><a href="../wiki/configuration.html" >Configuration files</a></li><li><a href="../wiki/networking.html" >Connect to the network</a></li><li><a href="../wiki/audio.html" >Audio and Bluetooth</a></li><li><a href="../wiki/storage.html" >Removable drives and Android phones</a></li><li><a href="../wiki/shell.html" >The Zsh workspace</a></li><li><a href="../wiki/editor-workspace.html" >Neovim, tmux and Yazi</a></li><li><a href="../wiki/agent-workflows.html" >Work with coding agents</a></li><li><a href="../wiki/maintenance.html" >Run local inference</a></li></ul><h3>Maintain and recover</h3><ul><li><a href="../wiki/rolling-updates.html" >Rolling updates</a></li><li><a href="../wiki/backups.html" >Back up files and settings</a></li><li><a href="../wiki/troubleshooting.html" >Troubleshoot by symptom</a></li><li><a href="../wiki/recovery.html" >Recovery and maintenance</a></li><li><a href="../wiki/hardware.html" >Hardware compatibility</a></li><li><a href="../wiki/benchmarks.html" >Desktop performance baseline</a></li></ul><h3>Build and contribute</h3><ul><li><a href="../wiki/system.html" >System architecture</a></li><li><a href="../wiki/installer-internals.html" >Guided installer internals</a></li><li><a href="../wiki/build.html" >Build the ISO</a></li><li><a href="../wiki/publication.html" >CI and package signing</a></li><li><a href="../wiki/mirrors.html" >Package repository mirrors</a></li><li><a href="../wiki/security.html" >Security reports and advisories</a></li><li><a href="../wiki/acceptance.html" >Release acceptance checks</a></li><li><a href="../wiki/qemu.html" >Disposable UEFI installation acceptance</a></li><li><a href="../wiki/arch-tools.html" >Standalone tools on Arch Linux</a></li></ul>
+<a href="../wiki/index.html">Browse the wiki →</a></section>
+</aside></div></main>
+<footer><a class="footbrand" href="../index.html">archelinux</a><span>Independent Arch-based distribution</span><a href="../issues/index.html">Report an issue</a><a href="../wiki/about.html">About the project</a></footer>
+</body></html>

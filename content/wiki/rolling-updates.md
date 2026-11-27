@@ -1,12 +1,14 @@
 # Rolling updates
 
-Arch mirrors provide the upstream system. The archelinux stable channel provides the distro packages. After the channel is active, update both with a full upgrade:
+Arch mirrors provide upstream packages. Signed stable supplies the archelinux packages. For a routine update, review [Arch Linux news](https://archlinux.org/news/) for any manual steps, then update the system as a single transaction:
 
 ```sh
 sudo pacman -Syu
 ```
 
-The stable server is `https://raw.githubusercontent.com/archelinux/archelinux/rolling-channel/stable`. ISO release numbers identify installation media. Packages have their own versions. User-owned dotfiles remain yours when packaged templates change.
+The stable server is `https://raw.githubusercontent.com/archelinux/archelinux/rolling-channel/stable`. ISO release numbers identify installation media. Packages have their own versions. Review the transaction before confirming. If a kernel was updated, reboot when convenient so the running kernel matches the installed version. An update refreshes installed packages. To install an optional tool during the same transaction, add its package name, for example `sudo pacman -Syu worktrunk`. Use `pacman -Q worktrunk` to confirm it is installed.
+
+Keep the rest of the system current when adding packages. Refreshing the databases alone with `pacman -Sy` and installing individual updates later can mix incompatible versions. Keep a [backup](backups.html) of your files and settings.
 
 ## Enabling stable on an existing 2.0.0 installation
 
@@ -32,10 +34,12 @@ Use the public release key you verified when you installed. If you need a new co
 
 The helper verifies the signed database against the pinned key, locally signs that key in pacman's keyring, and replaces the `[arche]` section in place. It leaves the Arch mirror configuration alone. The setup refuses an active pacman database lock. It can be run again after pacman finishes. Now run the full upgrade above. Check `pacman-conf --repo arche Server` and `pacman -Si arche/arche-maintenance` to see the selected server and package version.
 
-The current LTS USB (`rolling-20261123.2`) verifies stable before changing the target disk. Connect to the internet so the installer can fetch your selected packages. The installed system already has stable enabled.
+Current netinstall images already configure stable. See [Install archelinux](installation.html) for the USB walkthrough.
 
 If you used the earlier `rolling-20261123` image, it tried to enable stable at the end of setup. If that image kept its bundled repository because the channel was unreachable, run `sudo arche-enable-rolling` after connecting, followed by `sudo pacman -Syu`.
 
-## Recovery
+## Diagnose update errors
 
-If an update fails signature verification, stop and retry a full upgrade after checking the system clock and network. The database and detached signature are separate HTTP requests. A client crossing a promotion can temporarily receive different revisions from a cache. Verification fails closed until both files match. Keep signature checks enabled. If a new package breaks a previously working setup, the alternate LTS boot entry, TTY2 and `sudo arche-rollback PACKAGE` are available according to the [recovery guide](recovery.html). Cached rollback needs the earlier archive and related packages may need coordinated downgrades.
+Check failed mirrors and package signatures before retrying. Use [network diagnostics](networking.html) if the hostname or connection fails. If pacman reports a lock, wait for any active package manager to finish. For a suspected stale lock after an interrupted update, inspect running processes and [pacman troubleshooting](https://wiki.archlinux.org/title/Pacman#Troubleshooting).
+
+If an update fails signature verification, stop and retry a full upgrade after checking the system clock and network. The database and detached signature are separate HTTP requests. A client crossing a promotion can temporarily receive different revisions from a cache. Verification fails closed until both files match. Keep signature checks enabled. If a new package breaks a previously working setup, follow [Recover from a broken update](recovery.html).

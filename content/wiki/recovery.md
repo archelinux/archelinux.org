@@ -30,11 +30,7 @@ Mount the installed root at `/mnt`, substituting its actual device in the exampl
 
 This compositor repair uses the installed system's package cache and keyring. To repair a kernel or boot files, mount the installed boot partition according to the target's `/etc/fstab` before making those changes. Remove the USB and boot the installed system to confirm the repair.
 
-For a package with an older version still in the local cache:
-
-    sudo arche-rollback PACKAGE
-
-Keep a separate backup of personal files. If related libraries changed together, check their version requirements before downgrading any of them.
+Keep [backups](backups.html) of personal files. If related libraries changed together, check their version requirements before downgrading any of them.
 
 ## Tested recovery
 

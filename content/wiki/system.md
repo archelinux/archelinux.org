@@ -1,12 +1,13 @@
 # System architecture
 
-An Arch-based system for Neovim, tmux, and local agent workflows. TTY1 starts Sway on normal user login, with a titlebar-free Litho Dark desktop with a one-pixel focus outline and a subtle Arche logo over dark violet gradients. TTY2–6 remain console recovery sessions. The new installer provisions Zsh with Oh My Zsh. Local model services are opt-in.
+archelinux builds on Arch user space and packages its installer, shell and workspace defaults separately. For the current [guided installer internals](installer-internals.html), see how the live image assembles the target. For user-facing settings, see [Configuration files](configuration.html).
 
+## Kernel and userspace choices
 
-The following layout and mount settings describe the earlier unattended installer. See [guided installer internals](installer-internals.html) for the current USB installer.
+- The default installation includes Arch's Zen and LTS kernels. The live USB runs LTS. If a machine fails on the usual kernel, select another installed kernel using the [recovery guide](recovery.html).
+- The optional base bundle configures zstd ZRAM at priority 100. Its `arche-maintenance` dependency provides cache retention and the rollback helper.
+- A local normal-user login on TTY1 can start a Sway session when the workspace and hooks are installed. Other consoles are available for text login. The launcher distinguishes SSH, root and local sessions.
 
-- **Storage:** XFS with reflink and CRC enabled, 512-byte inodes, 16 allocation groups. Root mounts with `rw,noatime,nodiratime,logbufs=8,logbsize=256k,allocsize=64M` and fstab dump/fsck fields `0 0`.
-- **Kernels:** Arch's `linux-zen` and matching headers, plus `linux-lts` and headers. Zen is the permitted performance-kernel fallback; no CachyOS repository is required. LTS provides a recovery boot choice, not a security-hardening guarantee.
-- **Boot:** systemd-boot on UEFI (provided by `systemd`), GRUB on BIOS; Zen default, explicit LTS entry, two-second timeout. The live USB boots LTS. Both kernels are available on the default installed system.
-- **Memory:** RAM-sized zstd ZRAM at priority 100; the requested VM, dirty-page and inotify tuning lives in `airootfs/etc/sysctl.d/99-arche-perf.conf`.
-- **Recovery:** weekly `paccache.timer` and a transaction hook retain three cached versions. `arche-rollback PACKAGE` selects the newest cached version older than the installed version using pacman's metadata and version ordering. It rejects prefix matches and missing history. This is package recovery, not a filesystem backup; related libraries may need coordinated downgrades. Only versions actually downloaded remain available.
+## Historical unattended storage
+
+The earlier fixed-layout installer selected XFS with reflink and CRC enabled, 512-byte inodes and 16 allocation groups. Its root mount options included `rw,noatime,nodiratime,logbufs=8,logbsize=256k,allocsize=64M` and fstab dump/fsck fields `0 0`. Those settings describe the historical layout. Inspect the current system with `findmnt -no FSTYPE,OPTIONS /`.

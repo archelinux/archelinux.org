@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Removable drives and Android phones · archelinux</title>
+<meta name="description" content="Removable drives and Android phones for the archelinux distribution.">
+<link rel="icon" href="../assets/arche-logo.svg"><link rel="stylesheet" href="../style.css">
+<link rel="alternate" type="application/atom+xml" title="archelinux releases" href="../news/feed.xml">
+<link rel="canonical" href="https://archelinux.github.io/archelinux.org/wiki/storage.html">
+</head><body>
+<a class="skip" href="#main">Skip to content</a>
+<header><div class="mast"><a class="brand" aria-label="archelinux home" href="../index.html"><img src="../assets/arche-logo.svg" alt="">arche<span>linux</span></a>
+<nav aria-label="Primary">
+<a href="../index.html" >Home</a>
+<a href="../packages/index.html" >Packages</a>
+<a href="../wiki/index.html" aria-current="location">Wiki</a>
+<a href="../news/index.html" >News</a>
+<a href="../community/index.html" >Forum</a>
+<a href="../download/index.html" >Download</a></nav></div></header>
+<main id="main">
+<div class="crumb"><a href="../index.html">Home</a> / <a href="index.html">Wiki</a> / Removable drives and Android phones</div>
+<div class="layout"><div class="column">
+<article class="prose">
+<h1>Removable drives and Android phones</h1>
+
+<p>USB drives and phone file transfer use different tools. A phone in File Transfer mode can exchange files without exposing its storage as a disk.</p>
+<h2>Mount and eject a USB drive</h2>
+<p>With Yazi installed and its shipped keymap in place, open <code>yazi</code> and press <strong>Shift+M</strong>. Select the removable device in the mount menu. From a desktop shell, you can also inspect the device and use UDisks directly. Substitute the partition name from <code>lsblk</code>.</p>
+<pre><code class="language-sh">lsblk -o NAME,TRAN,RM,SIZE,FSTYPE,MOUNTPOINTS
+udisksctl mount -b /dev/USB_PARTITION
+</code></pre>
+<p>UDisks prints the mount path. Close files on the drive and exit any shell whose working directory is on it, then unmount it in Yazi or with:</p>
+<pre><code class="language-sh">udisksctl unmount -b /dev/USB_PARTITION
+</code></pre>
+<p>Wait for unmount to succeed before removing the drive. If it is busy, check which application is using it and close the file there. Install <code>udisks2</code> separately if you use a custom profile and <code>udisksctl</code> is missing.</p>
+<h2>Copy files from an Android phone</h2>
+<p>Unlock the phone, connect a data-capable USB cable, then select <strong>File Transfer</strong> in Android's USB settings. The default installation includes the Android USB tools and MTP helpers. Use the interactive shell or list the phone to find a file ID:</p>
+<pre><code class="language-sh">arche-mtp shell
+arche-mtp ls
+</code></pre>
+<p>In the shell, enter <code>help</code> to see the available commands and <code>exit</code> to return to your terminal. From the terminal, substitute the IDs in the following examples. Omit <code>FOLDER_ID</code> to upload to the root of the phone storage.</p>
+<pre><code class="language-sh">arche-mtp ls FOLDER_ID
+arche-mtp get FILE_ID ./photo-from-phone.jpg
+arche-mtp put ./example.txt FOLDER_ID
+</code></pre>
+<p>Keep the phone unlocked until the transfer finishes. If it switches to charging or the device disappears, reconnect, reselect File Transfer, and try a cable or port known to carry data. USB debugging is a separate Android feature and ordinary file transfer uses MTP.</p>
+
+</article>
+</div>
+<aside>
+
+<section class="box"><h2>Package search</h2><form class="search" action="../packages/index.html"><input type="search" name="q" aria-label="Package name or description" placeholder="Name or description"><button>Search</button></form></section>
+
+
+<section class="box directory"><h2>Documentation</h2><h3>Install and get started</h3><ul><li><a href="../wiki/install-media.html" >Prepare a bootable USB or VM</a></li><li><a href="../wiki/verify.html" >Verify the ISO</a></li><li><a href="../wiki/installation.html" >Install archelinux</a></li><li><a href="../wiki/software.html" >Choose software</a></li><li><a href="../wiki/first-session.html" >Your first ten minutes in archelinux</a></li><li><a href="../wiki/about.html" >About archelinux</a></li></ul><h3>Use and customize</h3><ul><li><a href="../wiki/shortcuts.html" >Keyboard shortcuts</a></li><li><a href="../wiki/desktop.html" >Use and customize the Sway desktop</a></li><li><a href="../wiki/configuration.html" >Configuration files</a></li><li><a href="../wiki/networking.html" >Connect to the network</a></li><li><a href="../wiki/audio.html" >Audio and Bluetooth</a></li><li><a href="../wiki/storage.html" aria-current="page">Removable drives and Android phones</a></li><li><a href="../wiki/shell.html" >The Zsh workspace</a></li><li><a href="../wiki/editor-workspace.html" >Neovim, tmux and Yazi</a></li><li><a href="../wiki/agent-workflows.html" >Work with coding agents</a></li><li><a href="../wiki/maintenance.html" >Run local inference</a></li></ul><h3>Maintain and recover</h3><ul><li><a href="../wiki/rolling-updates.html" >Rolling updates</a></li><li><a href="../wiki/backups.html" >Back up files and settings</a></li><li><a href="../wiki/troubleshooting.html" >Troubleshoot by symptom</a></li><li><a href="../wiki/recovery.html" >Recovery and maintenance</a></li><li><a href="../wiki/hardware.html" >Hardware compatibility</a></li><li><a href="../wiki/benchmarks.html" >Desktop performance baseline</a></li></ul><h3>Build and contribute</h3><ul><li><a href="../wiki/system.html" >System architecture</a></li><li><a href="../wiki/installer-internals.html" >Guided installer internals</a></li><li><a href="../wiki/build.html" >Build the ISO</a></li><li><a href="../wiki/publication.html" >CI and package signing</a></li><li><a href="../wiki/mirrors.html" >Package repository mirrors</a></li><li><a href="../wiki/security.html" >Security reports and advisories</a></li><li><a href="../wiki/acceptance.html" >Release acceptance checks</a></li><li><a href="../wiki/qemu.html" >Disposable UEFI installation acceptance</a></li><li><a href="../wiki/arch-tools.html" >Standalone tools on Arch Linux</a></li></ul>
+<a href="../wiki/index.html">Browse the wiki →</a></section>
+</aside></div></main>
+<footer><a class="footbrand" href="../index.html">archelinux</a><span>Independent Arch-based distribution</span><a href="../issues/index.html">Report an issue</a><a href="../wiki/about.html">About the project</a></footer>
+</body></html>

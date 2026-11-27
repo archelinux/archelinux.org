@@ -1,5 +1,5 @@
 {% extends "base.html" %}{% block main %}
-<h1>Documentation</h1><p class="lead">Install archelinux, configure your workspace, or build the distribution from source.</p>
+<h1>Documentation</h1><p class="lead">Start with the installation walkthrough, find a guide for a daily task, or troubleshoot a problem.</p>
 <form class="search" id="wiki-search" hidden><input type="search" name="q" aria-label="Search guides" placeholder="Search guides by topic or command"><button>Search</button></form>
 <p role="status" id="wiki-count"></p>
 {% for group,slugs in groups.items() %}<section class="wiki-group"><h2 class="line">{{ group }}</h2><ul class="topiclist">{% for slug in slugs %}

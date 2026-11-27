@@ -29,18 +29,18 @@
 </figure>
 
 <p>This walkthrough uses the recommended SwayFX, Foot, tmux and Neovim workspace.
-Super is the key with the Windows or Command symbol. Return means Enter.
+See the <a href="shortcuts.html">keyboard reference</a> for the current modifier keys.
 You can read the guide and use the terminal offline. The first normal Neovim
 launch needs internet access to install LazyVim and its plugins.</p>
 <h2>Open the guide and a terminal</h2>
-<p>With arche-workspace-defaults 2.0.0-41 or newer, press <strong>Super+D</strong>, type
+<p>With arche-workspace-defaults 2.0.0-41 or newer, press <strong>Alt+D</strong>, type
 <strong>First Session</strong>, and press <strong>Return</strong>. Fuzzel opens this guide in Foot.
 Use <strong>Space</strong> to page down, <strong>b</strong> to go back, <strong>/</strong> to search, and <strong>q</strong> to
 close the guide. From a shell or a recovery console, open the same file with:</p>
 <pre><code>less /usr/share/doc/arche-workspace-defaults/first-session.md
 </code></pre>
-<p>Press <strong>Super+Return</strong> to open a second terminal. Use <strong>Super+H</strong> and
-<strong>Super+L</strong> to move between tiles to the left and right. The thin highlight
+<p>Press <strong>Alt+Return</strong> to open a second terminal. Use <strong>Alt+H</strong> and
+<strong>Alt+L</strong> to move between tiles to the left and right. The thin highlight
 marks the focused window. Keep the guide open in one tile while you work in
 the other.</p>
 <h2>Build a two-pane work session</h2>
@@ -68,60 +68,13 @@ practice already exists, attach to it instead of starting another.</p>
 <h2>Give yourself a shortcut</h2>
 <p>Your copy of the Sway configuration lives at <strong>~/.config/sway/config</strong>.
 Choose an unused chord. For example, the shipped configuration leaves
-<strong>Super+F10</strong> free. To open Foot with it, add this one line to your copy:</p>
+<strong>Alt+F10</strong> free. To open Foot with it, add this one line to your copy:</p>
 <pre><code>bindsym $mod+F10 exec foot
 </code></pre>
-<p>Save the file, press <strong>Super+Shift+C</strong> to reload Sway, then press
-<strong>Super+F10</strong> to try it. To undo the change, remove that line and reload.
-The packaged template lives under <strong>/usr/share/arche/skel</strong>. Package updates
-can replace the template; your own configuration belongs in your home
-directory.</p>
-<h2>Find your way back</h2>
-<table>
-<thead>
-<tr>
-<th>Where you are</th>
-<th>Keys</th>
-<th>What happens</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Sway</td>
-<td>Super+D</td>
-<td>Find an application by name in Fuzzel</td>
-</tr>
-<tr>
-<td>Sway</td>
-<td>Super+Return</td>
-<td>Open Foot</td>
-</tr>
-<tr>
-<td>Sway</td>
-<td>Super+H/J/K/L</td>
-<td>Focus a tile left/down/up/right</td>
-</tr>
-<tr>
-<td>tmux or configured Neovim in normal mode</td>
-<td>Ctrl+H/J/K/L</td>
-<td>Focus an adjacent pane or split</td>
-</tr>
-<tr>
-<td>Sway</td>
-<td>Super+Shift+C</td>
-<td>Apply a saved configuration edit</td>
-</tr>
-<tr>
-<td>Desktop</td>
-<td>Ctrl+Alt+F2</td>
-<td>Switch to a text login on TTY2</td>
-</tr>
-</tbody>
-</table>
-<p>If the desktop stops responding, press <strong>Ctrl+Alt+F2</strong> and log in with your
-usual username and password. You can read this guide there, edit the Sway
-configuration, or inspect the current boot with <strong>journalctl -b</strong>. Press
-<strong>Alt+F1</strong> from the text console to return to the existing session on TTY1.</p>
+<p>Save the file, press <strong>Alt+Shift+C</strong> to reload Sway, then press
+<strong>Alt+F10</strong> to try it. To undo the change, remove that line and reload.
+For the file locations and validation command, see <a href="configuration.html">Configuration files</a>.</p>
+<p>If you get stuck, open <a href="troubleshooting.html">Troubleshoot by symptom</a>. To learn more about the editor or file manager, see <a href="editor-workspace.html">Neovim, tmux and Yazi</a>.</p>
 
 </article>
 </div>
@@ -130,7 +83,7 @@ configuration, or inspect the current boot with <strong>journalctl -b</strong>. 
 <section class="box"><h2>Package search</h2><form class="search" action="../packages/index.html"><input type="search" name="q" aria-label="Package name or description" placeholder="Name or description"><button>Search</button></form></section>
 
 
-<section class="box directory"><h2>Documentation</h2><h3>Getting started</h3><ul><li><a href="../wiki/installation.html" >Installation guide</a></li><li><a href="../wiki/first-session.html" aria-current="page">Your first ten minutes in archelinux</a></li><li><a href="../wiki/verify.html" >Verify the ISO</a></li><li><a href="../wiki/about.html" >About archelinux</a></li><li><a href="../wiki/shortcuts.html" >Your first few shortcuts</a></li><li><a href="../wiki/hardware.html" >Hardware compatibility</a></li><li><a href="../wiki/benchmarks.html" >Desktop performance baseline</a></li></ul><h3>Your workspace</h3><ul><li><a href="../wiki/desktop.html" >SwayFX and Litho Dark</a></li><li><a href="../wiki/shell.html" >The Zsh workspace</a></li><li><a href="../wiki/arch-tools.html" >Standalone tools on Arch Linux</a></li><li><a href="../wiki/configuration.html" >Packages and configuration</a></li><li><a href="../wiki/rolling-updates.html" >Rolling updates</a></li><li><a href="../wiki/recovery.html" >Recovery and maintenance</a></li><li><a href="../wiki/maintenance.html" >Recovery and local inference</a></li></ul><h3>Building archelinux</h3><ul><li><a href="../wiki/system.html" >System architecture</a></li><li><a href="../wiki/installer-internals.html" >Guided installer internals</a></li><li><a href="../wiki/build.html" >Build the ISO</a></li><li><a href="../wiki/publication.html" >CI and package signing</a></li><li><a href="../wiki/mirrors.html" >Package repository mirrors</a></li><li><a href="../wiki/security.html" >Security reports and advisories</a></li><li><a href="../wiki/acceptance.html" >Release acceptance checks</a></li><li><a href="../wiki/qemu.html" >Disposable UEFI installation acceptance</a></li></ul>
+<section class="box directory"><h2>Documentation</h2><h3>Install and get started</h3><ul><li><a href="../wiki/install-media.html" >Prepare a bootable USB or VM</a></li><li><a href="../wiki/verify.html" >Verify the ISO</a></li><li><a href="../wiki/installation.html" >Install archelinux</a></li><li><a href="../wiki/software.html" >Choose software</a></li><li><a href="../wiki/first-session.html" aria-current="page">Your first ten minutes in archelinux</a></li><li><a href="../wiki/about.html" >About archelinux</a></li></ul><h3>Use and customize</h3><ul><li><a href="../wiki/shortcuts.html" >Keyboard shortcuts</a></li><li><a href="../wiki/desktop.html" >Use and customize the Sway desktop</a></li><li><a href="../wiki/configuration.html" >Configuration files</a></li><li><a href="../wiki/networking.html" >Connect to the network</a></li><li><a href="../wiki/audio.html" >Audio and Bluetooth</a></li><li><a href="../wiki/storage.html" >Removable drives and Android phones</a></li><li><a href="../wiki/shell.html" >The Zsh workspace</a></li><li><a href="../wiki/editor-workspace.html" >Neovim, tmux and Yazi</a></li><li><a href="../wiki/agent-workflows.html" >Work with coding agents</a></li><li><a href="../wiki/maintenance.html" >Run local inference</a></li></ul><h3>Maintain and recover</h3><ul><li><a href="../wiki/rolling-updates.html" >Rolling updates</a></li><li><a href="../wiki/backups.html" >Back up files and settings</a></li><li><a href="../wiki/troubleshooting.html" >Troubleshoot by symptom</a></li><li><a href="../wiki/recovery.html" >Recovery and maintenance</a></li><li><a href="../wiki/hardware.html" >Hardware compatibility</a></li><li><a href="../wiki/benchmarks.html" >Desktop performance baseline</a></li></ul><h3>Build and contribute</h3><ul><li><a href="../wiki/system.html" >System architecture</a></li><li><a href="../wiki/installer-internals.html" >Guided installer internals</a></li><li><a href="../wiki/build.html" >Build the ISO</a></li><li><a href="../wiki/publication.html" >CI and package signing</a></li><li><a href="../wiki/mirrors.html" >Package repository mirrors</a></li><li><a href="../wiki/security.html" >Security reports and advisories</a></li><li><a href="../wiki/acceptance.html" >Release acceptance checks</a></li><li><a href="../wiki/qemu.html" >Disposable UEFI installation acceptance</a></li><li><a href="../wiki/arch-tools.html" >Standalone tools on Arch Linux</a></li></ul>
 <a href="../wiki/index.html">Browse the wiki →</a></section>
 </aside></div></main>
 <footer><a class="footbrand" href="../index.html">archelinux</a><span>Independent Arch-based distribution</span><a href="../issues/index.html">Report an issue</a><a href="../wiki/about.html">About the project</a></footer>

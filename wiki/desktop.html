@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SwayFX and Litho Dark · archelinux</title>
-<meta name="description" content="SwayFX and Litho Dark for the archelinux distribution.">
+<title>Use and customize the Sway desktop · archelinux</title>
+<meta name="description" content="Use and customize the Sway desktop for the archelinux distribution.">
 <link rel="icon" href="../assets/arche-logo.svg"><link rel="stylesheet" href="../style.css">
 <link rel="alternate" type="application/atom+xml" title="archelinux releases" href="../news/feed.xml">
 <link rel="canonical" href="https://archelinux.github.io/archelinux.org/wiki/desktop.html">
@@ -18,30 +18,33 @@
 <a href="../community/index.html" >Forum</a>
 <a href="../download/index.html" >Download</a></nav></div></header>
 <main id="main">
-<div class="crumb"><a href="../index.html">Home</a> / <a href="index.html">Wiki</a> / SwayFX and Litho Dark</div>
+<div class="crumb"><a href="../index.html">Home</a> / <a href="index.html">Wiki</a> / Use and customize the Sway desktop</div>
 <div class="layout"><div class="column">
 <article class="prose">
-<h1>SwayFX and Litho Dark</h1>
+<h1>Use and customize the Sway desktop</h1>
 
 <p><img src="../assets/archelinux-desktop.jpg" alt="SwayFX desktop with Waybar and Twin Blades wallpaper" /></p>
-<p>The selected desktop adapts <a href="https://github.com/okubax/dotfiles">okubax/dotfiles</a>'s
-Litho Dark palette and inset Waybar panel with a centered clock. Provenance and the upstream
-license are installed in <code>/usr/share/doc/arche-tui-stack/</code>. Tiled and floating windows have a one-pixel outline. The recommended SwayFX compositor adds backdrop blur and gives Waybar and windows a nine-pixel corner radius. The workspace highlight sits eight pixels inside the panel and has a three-pixel radius. Applications that draw their own
-internal chrome remain responsible for that chrome.</p>
-<p>Super+Return opens Foot; Super+d opens Fuzzel; Super+Shift+q closes a window;
-Super+h/j/k/l moves focus; Super+r enters resize mode; Super+Shift+c reloads
-configuration; Super+Shift+e exits Sway. No upstream dotfile installer or personal
-cloud/service configuration is run. Media keys use WirePlumber and playerctl.</p>
-<p>Login hooks exist for Zsh, Bash and Fish. They require a local non-root TTY1
-session, no existing display, and no SSH connection. NVIDIA/nouveau detection
-sets <code>WLR_NO_HARDWARE_CURSORS=1</code> and passes <code>--unsupported-gpu</code>; this is a fallback,
-not a guarantee for every driver. No hook is added to the live root installer.
-<code>useradd -m -U -k /usr/share/arche/skel</code> copies all templates directly into the
-new user's home and assigns their ownership. Package templates never claim
-Bash-owned <code>/etc/skel</code> files.</p>
-<p>Sway fills the output with Twin Blades from <code>/usr/share/arche/twin-blades.jpg</code>. The artwork comes from the <a href="https://github.com/dharmx/walls/blob/e8d8a42e4fbecb2cf9619995edbc7ce19610bbd8/anime/aeb9uhrbr41a1.webp">dharmx/walls collection</a>. The <a href="https://github.com/dharmx/walls/blob/e8d8a42e4fbecb2cf9619995edbc7ce19610bbd8/.github/README.md#sources">collection’s credits</a> attribute the images to their respective artists. We could not verify an artist credit or a redistribution license for this image.</p>
-<p>For automated UEFI installation acceptance on a disposable qcow2 disk, see
-<a href="qemu.html">QEMU installation tests</a>.</p>
+<p>Sway manages windows. Foot is the terminal, Fuzzel launches apps, and Waybar shows workspace and system status. Learn the defaults in <a href="shortcuts.html">Keyboard shortcuts</a> or practice them in <a href="first-session.html">Your first session</a>.</p>
+<h2>Inspect monitors and adjust scale</h2>
+<p>Run <code>swaymsg -t get_outputs</code> inside the desktop to see output names, positions and modes. To try a different scale, use the output name shown on your machine. This example uses an internal panel called <code>eDP-1</code>:</p>
+<pre><code class="language-sh">swaymsg output eDP-1 scale 1.25
+</code></pre>
+<p>If it looks right, put <code>output eDP-1 scale 1.25</code> in your user Sway configuration. Use the <a href="configuration.html">configuration guide</a> to validate and reload the change. Consult <code>man 5 sway-output</code> for placement, rotation and resolution. The <a href="hardware.html">hardware matrix</a> records physical display tests.</p>
+<h2>Add a second keyboard layout</h2>
+<p>Create or edit <code>~/.config/sway/keyboard.conf</code>, which the shipped Sway config includes. This example keeps US English first and adds German. Substitute the second XKB layout code you want.</p>
+<pre><code class="language-text">input type:keyboard xkb_layout us,de
+</code></pre>
+<p>Reload Sway, then use the layout shortcut in the <a href="shortcuts.html">keyboard reference</a> or click the layout indicator in Waybar. Run <code>swaymsg -t get_inputs</code> to inspect the active layout.</p>
+<h2>Copy a selected region to the clipboard</h2>
+<p>Open a terminal and run:</p>
+<pre><code class="language-sh">grim -g &quot;$(slurp)&quot; - | wl-copy --type image/png
+</code></pre>
+<p>Drag over the region you want, release, then paste into an app that accepts clipboard images. Use Escape to cancel the selection. Screen sharing is a separate feature handled by the Wayland portal. Open a browser or meeting app that supports it and select the output in its sharing prompt.</p>
+<h2>Lock, idle and suspend</h2>
+<p>For a manual lock, use the <a href="shortcuts.html">lock shortcut</a>. The shipped session locks after 15 minutes of inactivity, then powers off the outputs five seconds later. Wake the display with input. Before sleep, the session runs the lock command.</p>
+<p>On supported hardware you can suspend from the terminal with <code>systemctl suspend</code>. Save your work first. On resume, check that the lock is active and that networking, audio and brightness still work. See the <a href="hardware.html">hardware matrix</a> for what has been exercised on physical machines.</p>
+<h2>Theme and wallpaper</h2>
+<p>SwayFX uses the Litho Dark palette and adds blur and rounded corners. It draws on <a href="https://github.com/okubax/dotfiles">okubax/dotfiles</a>. The package includes provenance and licensing under <code>/usr/share/doc/arche-tui-stack/</code>. The Twin Blades wallpaper comes from the <a href="https://github.com/dharmx/walls/blob/e8d8a42e4fbecb2cf9619995edbc7ce19610bbd8/anime/aeb9uhrbr41a1.webp">dharmx/walls collection</a>. To personalize it, update the background path in your user configuration.</p>
 
 </article>
 </div>
@@ -50,7 +53,7 @@ Bash-owned <code>/etc/skel</code> files.</p>
 <section class="box"><h2>Package search</h2><form class="search" action="../packages/index.html"><input type="search" name="q" aria-label="Package name or description" placeholder="Name or description"><button>Search</button></form></section>
 
 
-<section class="box directory"><h2>Documentation</h2><h3>Getting started</h3><ul><li><a href="../wiki/installation.html" >Installation guide</a></li><li><a href="../wiki/first-session.html" >Your first ten minutes in archelinux</a></li><li><a href="../wiki/verify.html" >Verify the ISO</a></li><li><a href="../wiki/about.html" >About archelinux</a></li><li><a href="../wiki/shortcuts.html" >Your first few shortcuts</a></li><li><a href="../wiki/hardware.html" >Hardware compatibility</a></li><li><a href="../wiki/benchmarks.html" >Desktop performance baseline</a></li></ul><h3>Your workspace</h3><ul><li><a href="../wiki/desktop.html" aria-current="page">SwayFX and Litho Dark</a></li><li><a href="../wiki/shell.html" >The Zsh workspace</a></li><li><a href="../wiki/arch-tools.html" >Standalone tools on Arch Linux</a></li><li><a href="../wiki/configuration.html" >Packages and configuration</a></li><li><a href="../wiki/rolling-updates.html" >Rolling updates</a></li><li><a href="../wiki/recovery.html" >Recovery and maintenance</a></li><li><a href="../wiki/maintenance.html" >Recovery and local inference</a></li></ul><h3>Building archelinux</h3><ul><li><a href="../wiki/system.html" >System architecture</a></li><li><a href="../wiki/installer-internals.html" >Guided installer internals</a></li><li><a href="../wiki/build.html" >Build the ISO</a></li><li><a href="../wiki/publication.html" >CI and package signing</a></li><li><a href="../wiki/mirrors.html" >Package repository mirrors</a></li><li><a href="../wiki/security.html" >Security reports and advisories</a></li><li><a href="../wiki/acceptance.html" >Release acceptance checks</a></li><li><a href="../wiki/qemu.html" >Disposable UEFI installation acceptance</a></li></ul>
+<section class="box directory"><h2>Documentation</h2><h3>Install and get started</h3><ul><li><a href="../wiki/install-media.html" >Prepare a bootable USB or VM</a></li><li><a href="../wiki/verify.html" >Verify the ISO</a></li><li><a href="../wiki/installation.html" >Install archelinux</a></li><li><a href="../wiki/software.html" >Choose software</a></li><li><a href="../wiki/first-session.html" >Your first ten minutes in archelinux</a></li><li><a href="../wiki/about.html" >About archelinux</a></li></ul><h3>Use and customize</h3><ul><li><a href="../wiki/shortcuts.html" >Keyboard shortcuts</a></li><li><a href="../wiki/desktop.html" aria-current="page">Use and customize the Sway desktop</a></li><li><a href="../wiki/configuration.html" >Configuration files</a></li><li><a href="../wiki/networking.html" >Connect to the network</a></li><li><a href="../wiki/audio.html" >Audio and Bluetooth</a></li><li><a href="../wiki/storage.html" >Removable drives and Android phones</a></li><li><a href="../wiki/shell.html" >The Zsh workspace</a></li><li><a href="../wiki/editor-workspace.html" >Neovim, tmux and Yazi</a></li><li><a href="../wiki/agent-workflows.html" >Work with coding agents</a></li><li><a href="../wiki/maintenance.html" >Run local inference</a></li></ul><h3>Maintain and recover</h3><ul><li><a href="../wiki/rolling-updates.html" >Rolling updates</a></li><li><a href="../wiki/backups.html" >Back up files and settings</a></li><li><a href="../wiki/troubleshooting.html" >Troubleshoot by symptom</a></li><li><a href="../wiki/recovery.html" >Recovery and maintenance</a></li><li><a href="../wiki/hardware.html" >Hardware compatibility</a></li><li><a href="../wiki/benchmarks.html" >Desktop performance baseline</a></li></ul><h3>Build and contribute</h3><ul><li><a href="../wiki/system.html" >System architecture</a></li><li><a href="../wiki/installer-internals.html" >Guided installer internals</a></li><li><a href="../wiki/build.html" >Build the ISO</a></li><li><a href="../wiki/publication.html" >CI and package signing</a></li><li><a href="../wiki/mirrors.html" >Package repository mirrors</a></li><li><a href="../wiki/security.html" >Security reports and advisories</a></li><li><a href="../wiki/acceptance.html" >Release acceptance checks</a></li><li><a href="../wiki/qemu.html" >Disposable UEFI installation acceptance</a></li><li><a href="../wiki/arch-tools.html" >Standalone tools on Arch Linux</a></li></ul>
 <a href="../wiki/index.html">Browse the wiki →</a></section>
 </aside></div></main>
 <footer><a class="footbrand" href="../index.html">archelinux</a><span>Independent Arch-based distribution</span><a href="../issues/index.html">Report an issue</a><a href="../wiki/about.html">About the project</a></footer>

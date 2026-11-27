@@ -1,16 +1,23 @@
-# Recovery and local inference
+# Run local inference
 
-Use the [installation guide](installation.html) for the current console ISO and the earlier published image. The former unattended XFS installer is exercised by the [legacy boot test](qemu.html).
+Select Ollama or llama.cpp in **Arche software** to get a local runtime and archelinux's user-service definitions. The services start when you enable them, and you choose which models to download. On an existing system, install `arche-inference-defaults` alongside the runtime using the [rolling update guide](rolling-updates.html).
 
-Use the LTS boot entry when Zen fails after an update. Use `sudo arche-rollback PACKAGE` for a cached older package. Reflink workspaces can be created with `cp -a --reflink=always SOURCE DESTINATION` on the same XFS filesystem.
-
-Inference is opt-in, with no models downloaded:
+## Ollama
 
 ```sh
-sudo pacman -S ollama
 systemctl --user enable --now ollama.service
-# Alternatively install llama.cpp, set LLAMA_MODEL to an absolute GGUF path in
-# ~/.config/arche/llama-server.env, then enable llama-server.service.
+ollama list
 ```
 
-Both servers bind to loopback. User units normally stop at logout; enable lingering explicitly if desired. For supported NVIDIA hardware, choose `arche-cuda` in the installer or run `sudo pacman -S arche-cuda` after installation.
+Choose and pull a model that fits your hardware, then use `ollama run MODEL` with the model name. The service binds to loopback.
+
+## llama.cpp
+
+Save a model on disk and put `LLAMA_MODEL=/absolute/path/to/model.gguf` in `~/.config/arche/llama-server.env`. Then start the service:
+
+```sh
+systemctl --user enable --now llama-server.service
+systemctl --user status llama-server.service
+```
+
+For startup errors, read `journalctl --user -u llama-server -n 40` and check the model path. To stop and disable a runtime, use `systemctl --user disable --now` with its service name. For NVIDIA compute, see the optional bundle in [Choose software](software.html).

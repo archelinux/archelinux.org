@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Installation guide · archelinux</title>
-<meta name="description" content="Installation guide for the archelinux distribution.">
+<title>Install archelinux · archelinux</title>
+<meta name="description" content="Install archelinux for the archelinux distribution.">
 <link rel="icon" href="../assets/arche-logo.svg"><link rel="stylesheet" href="../style.css">
 <link rel="alternate" type="application/atom+xml" title="archelinux releases" href="../news/feed.xml">
 <link rel="canonical" href="https://archelinux.github.io/archelinux.org/wiki/installation.html">
@@ -18,27 +18,27 @@
 <a href="../community/index.html" >Forum</a>
 <a href="../download/index.html" >Download</a></nav></div></header>
 <main id="main">
-<div class="crumb"><a href="../index.html">Home</a> / <a href="index.html">Wiki</a> / Installation guide</div>
+<div class="crumb"><a href="../index.html">Home</a> / <a href="index.html">Wiki</a> / Install archelinux</div>
 <div class="layout"><div class="column">
 <article class="prose">
-<h1>Installation guide</h1>
+<h1>Install archelinux</h1>
 
-<p>The recommended system is a keyboard-driven Sway desktop with Zsh, Oh My Zsh, Neovim and tmux. The USB boots to a console and needs internet access to install. Arche uses XFS for root. You can enable LUKS and choose your software. If you depend on booting filesystem snapshots, factor that into your choice: Arche provides individual cached-package rollback.</p>
-<h2>Install from USB</h2>
-<p>The ISO starts the guided archinstall installer on TTY1. The USB boots Linux LTS and includes Wi-Fi firmware. Once you choose your tools, the installer verifies the signed stable channel before modifying the disk, then downloads the selected packages. After your first login, run <code>sudo pacman -Syu</code> to update the installed system.</p>
+<p>Use this walkthrough to go from the boot menu to your first login. You need an x86_64 computer, a <a href="install-media.html">verified installation USB</a>, an internet connection, and a <a href="backups.html">backup of any files on the target disk</a>.</p>
+<h2>Boot and get online</h2>
 <ol>
-<li><a href="../download/index.html">Download the signed ISO</a> and verify it using the <a href="verify.html">verification guide</a>, then write it to installation media.</li>
-<li>Boot the console and connect to the network. Use NetworkManager or <code>nmcli</code> if needed.</li>
-<li>Open <strong>Arche software</strong> to keep the recommended SwayFX workspace or toggle individual tools with Space. SwayFX supplies nine-pixel window corners and terminal background blur. For stock Sway, clear <strong>arche-swayfx</strong> and select <strong>sway</strong>. Both compositors use a slim mauve focus outline, small gaps and a floating Waybar panel. Optional tools include <strong>github-cli</strong> (<code>gh</code>), <strong>yazi</strong> (file manager) and <strong>btop</strong> (system monitor). For unread GitHub PRs and issues on the Sway bar, select <strong>arche-waybar-github</strong>, then run <code>gh auth login</code> after login. If your token needs notification access, run <code>gh auth refresh -h github.com -s notifications</code>. Hover for thread titles or click to open your inbox. Choose <strong>spotify</strong> for the desktop app from Flathub or <strong>spotify-player</strong> for the terminal client (Spotify Premium required). You can select both. Clear the list for a console system. Selecting Sway includes its terminal, launcher, bar, lock, media controls and region screenshots (<code>grim -g &quot;$(slurp)&quot; - | wl-copy --type image/png</code>). Select other packages in <strong>Additional packages</strong>.</li>
-<li>New accounts start in Zsh with Oh My Zsh, the <code>bureau</code> theme and the <a href="shell.html">shell plugins and shortcuts</a>. Edit <code>~/.zshrc</code> to personalize them.</li>
-<li>In <strong>Disk configuration</strong>, select the target and layout. Archelinux uses XFS for the root filesystem. UEFI uses a separate FAT32 EFI partition. Configure LUKS encryption here if wanted and retain your passphrase. The installer does not choose a target disk for you.</li>
-<li>Review kernels, bootloader, networking, locale, time zone and authentication. Check the final configuration and selected disk before confirming. Formatting erases the selected partitions.</li>
+<li>Open your computer's firmware boot menu and choose the USB. On a UEFI machine, select its UEFI entry. You should see a text console and the archelinux installer.</li>
+<li>Connect Ethernet or follow <a href="networking.html">Connect to the network</a> to join Wi-Fi with <code>iwctl</code>. Check that a hostname resolves before continuing. The installer verifies the signed stable channel before changing the target disk.</li>
+<li>Open <strong>Arche software</strong>. Space toggles a selection. Keep the recommended SwayFX workspace for a keyboard-driven desktop, or clear the selections for a console install. Use <a href="software.html">Choose software</a> to decide what else to select.</li>
 </ol>
-<p>Release signing-key fingerprint:</p>
-<pre><code>E446 C26A 0B7B A1A6 6A3D CC9F 7EC5 6400 3573 C80B
+<h2>Choose the disk and review</h2>
+<p>Use <strong>Disk configuration</strong> to select the target. If you have similar drives, switch to a text console and compare their sizes and models with:</p>
+<pre><code class="language-sh">lsblk -d -o NAME,SIZE,MODEL,TRAN
 </code></pre>
-<p>See the <a href="verify.html">verification commands</a> and <a href="publication.html">signed package-repository setup</a>. Download the <a href="../assets/archelinux-release-public.asc">public key</a>.</p>
-<p>On first launch, Neovim downloads the LazyVim plugins. Keep the internet connection active until setup finishes. Change the default <code>archevim</code> colorscheme in <code>~/.config/nvim/lua/plugins/colors.lua</code>.</p>
+<p>A guided layout uses XFS for root. On UEFI the boot files use a separate EFI system partition. Select LUKS in disk configuration if you want encryption, keep the passphrase somewhere safe, and read the final review for the partitions the installer will encrypt.</p>
+<p>At the final review, check the target device, each partition's action, user account, bootloader, locale, kernels, software, and networking mode. <strong>Create</strong>, <strong>reformat</strong>, and <strong>delete</strong> can destroy existing data. For a disk shared with another operating system, inspect every action before confirming.</p>
+<h2>Boot the installed system</h2>
+<p>When the installer finishes, reboot and remove the USB. Start from the installed disk and sign in with the account you created. If you selected a Sway desktop, signing in on the local first console launches it. Use the <a href="first-session.html">first session walk-through</a> to get oriented, then <a href="rolling-updates.html">run the first system update</a>.</p>
+<p>If you return to the USB installer, check the firmware boot order. If the installed system boots to a login but the desktop fails, start with <a href="troubleshooting.html">desktop troubleshooting</a>. If it cannot boot, keep the USB for <a href="recovery.html">system recovery</a>.</p>
 
 </article>
 </div>
@@ -47,7 +47,7 @@
 <section class="box"><h2>Package search</h2><form class="search" action="../packages/index.html"><input type="search" name="q" aria-label="Package name or description" placeholder="Name or description"><button>Search</button></form></section>
 
 
-<section class="box directory"><h2>Documentation</h2><h3>Getting started</h3><ul><li><a href="../wiki/installation.html" aria-current="page">Installation guide</a></li><li><a href="../wiki/first-session.html" >Your first ten minutes in archelinux</a></li><li><a href="../wiki/verify.html" >Verify the ISO</a></li><li><a href="../wiki/about.html" >About archelinux</a></li><li><a href="../wiki/shortcuts.html" >Your first few shortcuts</a></li><li><a href="../wiki/hardware.html" >Hardware compatibility</a></li><li><a href="../wiki/benchmarks.html" >Desktop performance baseline</a></li></ul><h3>Your workspace</h3><ul><li><a href="../wiki/desktop.html" >SwayFX and Litho Dark</a></li><li><a href="../wiki/shell.html" >The Zsh workspace</a></li><li><a href="../wiki/arch-tools.html" >Standalone tools on Arch Linux</a></li><li><a href="../wiki/configuration.html" >Packages and configuration</a></li><li><a href="../wiki/rolling-updates.html" >Rolling updates</a></li><li><a href="../wiki/recovery.html" >Recovery and maintenance</a></li><li><a href="../wiki/maintenance.html" >Recovery and local inference</a></li></ul><h3>Building archelinux</h3><ul><li><a href="../wiki/system.html" >System architecture</a></li><li><a href="../wiki/installer-internals.html" >Guided installer internals</a></li><li><a href="../wiki/build.html" >Build the ISO</a></li><li><a href="../wiki/publication.html" >CI and package signing</a></li><li><a href="../wiki/mirrors.html" >Package repository mirrors</a></li><li><a href="../wiki/security.html" >Security reports and advisories</a></li><li><a href="../wiki/acceptance.html" >Release acceptance checks</a></li><li><a href="../wiki/qemu.html" >Disposable UEFI installation acceptance</a></li></ul>
+<section class="box directory"><h2>Documentation</h2><h3>Install and get started</h3><ul><li><a href="../wiki/install-media.html" >Prepare a bootable USB or VM</a></li><li><a href="../wiki/verify.html" >Verify the ISO</a></li><li><a href="../wiki/installation.html" aria-current="page">Install archelinux</a></li><li><a href="../wiki/software.html" >Choose software</a></li><li><a href="../wiki/first-session.html" >Your first ten minutes in archelinux</a></li><li><a href="../wiki/about.html" >About archelinux</a></li></ul><h3>Use and customize</h3><ul><li><a href="../wiki/shortcuts.html" >Keyboard shortcuts</a></li><li><a href="../wiki/desktop.html" >Use and customize the Sway desktop</a></li><li><a href="../wiki/configuration.html" >Configuration files</a></li><li><a href="../wiki/networking.html" >Connect to the network</a></li><li><a href="../wiki/audio.html" >Audio and Bluetooth</a></li><li><a href="../wiki/storage.html" >Removable drives and Android phones</a></li><li><a href="../wiki/shell.html" >The Zsh workspace</a></li><li><a href="../wiki/editor-workspace.html" >Neovim, tmux and Yazi</a></li><li><a href="../wiki/agent-workflows.html" >Work with coding agents</a></li><li><a href="../wiki/maintenance.html" >Run local inference</a></li></ul><h3>Maintain and recover</h3><ul><li><a href="../wiki/rolling-updates.html" >Rolling updates</a></li><li><a href="../wiki/backups.html" >Back up files and settings</a></li><li><a href="../wiki/troubleshooting.html" >Troubleshoot by symptom</a></li><li><a href="../wiki/recovery.html" >Recovery and maintenance</a></li><li><a href="../wiki/hardware.html" >Hardware compatibility</a></li><li><a href="../wiki/benchmarks.html" >Desktop performance baseline</a></li></ul><h3>Build and contribute</h3><ul><li><a href="../wiki/system.html" >System architecture</a></li><li><a href="../wiki/installer-internals.html" >Guided installer internals</a></li><li><a href="../wiki/build.html" >Build the ISO</a></li><li><a href="../wiki/publication.html" >CI and package signing</a></li><li><a href="../wiki/mirrors.html" >Package repository mirrors</a></li><li><a href="../wiki/security.html" >Security reports and advisories</a></li><li><a href="../wiki/acceptance.html" >Release acceptance checks</a></li><li><a href="../wiki/qemu.html" >Disposable UEFI installation acceptance</a></li><li><a href="../wiki/arch-tools.html" >Standalone tools on Arch Linux</a></li></ul>
 <a href="../wiki/index.html">Browse the wiki →</a></section>
 </aside></div></main>
 <footer><a class="footbrand" href="../index.html">archelinux</a><span>Independent Arch-based distribution</span><a href="../issues/index.html">Report an issue</a><a href="../wiki/about.html">About the project</a></footer>

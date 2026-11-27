@@ -1,17 +1,17 @@
 # Release acceptance checks
 
-`tests/check.sh` checks shell syntax, source checksums, rollback edge cases, and formats a disposable sparse file to inspect XFS geometry. `arche-smoke-test` checks image binaries, LSP registration and parser loading and measures warm interactive shell startup over 20 samples. The median must stay below 15 ms for Bash and Fish and below 100 ms for Zsh with Oh My Zsh, the bureau theme and the default plugins.
+`tests/check.sh` checks shell syntax, source checksums, rollback edge cases, and formats a disposable sparse file to inspect XFS geometry. `arche-smoke-test` checks image binaries, LSP registration and parser loading and measures warm interactive shell startup over 20 samples. The median budget is 15 ms for Bash and 100 ms for Zsh with Oh My Zsh, its theme and the default plugins.
 
-Before publishing an ISO, install in a disposable QEMU VM with both UEFI and BIOS firmware. Verify both kernel entries boot, then run:
+On a disposable installed guest, use these commands when checking release behavior:
 
 ```sh
 findmnt -no FSTYPE,OPTIONS /
-xfs_info /                         # agcount=16, isize=512, reflink=1, crc=1
+xfs_info /
 cat /etc/fstab
 printf 'reflink test\n' > ~/clone-source
 cp --reflink=always ~/clone-source ~/clone-copy
 zramctl
-systemctl is-enabled paccache.timer NetworkManager
+systemctl is-enabled paccache.timer iwd systemd-networkd systemd-resolved
 systemctl --user is-enabled ollama llama-server  # disabled
 nvim example.lua                   # :checkhealth vim.lsp, :InspectTree
 ```
