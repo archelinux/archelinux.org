@@ -35,7 +35,7 @@ jobs:
       - name: Stage public pages and assets
         run: |
           mkdir public
-          cp -r index.html style.css assets community docs download issues news packages wiki LICENSE public/
+          cp -r index.html llms.txt style.css assets community docs download issues news packages wiki LICENSE public/
           python scripts/stage_mirror.py public/mirror/stable
       - id: name
         run: echo "artifact=site-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}" >> "$GITHUB_OUTPUT"

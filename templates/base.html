@@ -7,7 +7,7 @@
 <link rel="icon" href="{{ root }}assets/arche-logo.svg"><link rel="stylesheet" href="{{ root }}style.css">
 <link rel="alternate" type="application/atom+xml" title="archelinux releases" href="{{ root }}news/feed.xml">
 <link rel="canonical" href="{{ site_url }}{{ path|replace('index.html','') }}">
-</head><body>
+{% block head_links %}{% endblock %}</head><body>
 <a class="skip" href="#main">Skip to content</a>
 <header><div class="mast"><a class="brand" aria-label="archelinux home" href="{{ root }}index.html"><img src="{{ root }}assets/arche-logo.svg" alt="">arche<span>linux</span></a>
 <nav aria-label="Primary">{% for name,url in [('Home','index.html'),('Packages','packages/index.html'),('Wiki','wiki/index.html'),('News','news/index.html'),('Forum','community/index.html'),('Download','download/index.html')] %}

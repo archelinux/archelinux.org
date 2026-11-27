@@ -1,0 +1,28 @@
+# archelinux
+
+> archelinux is an independent, rolling-release Arch-based workstation for x86_64. Its recommended desktop uses SwayFX and Waybar with Foot, Zsh, tmux, and Neovim. You can choose your tools at installation and edit the configuration files in your home directory.
+
+The signed installation ISO boots Linux LTS and needs internet access to fetch packages. The installer offers XFS with optional LUKS encryption and can install a console-only system. System updates use pacman with Arch repositories and the signed archelinux stable channel.
+
+Optional developer tooling includes `arche-agentic-core`. It supplies development runtimes, code search tools, and opt-in user services for Ollama and llama.cpp. Local inference services are disabled by default.
+
+## Install and get started
+
+- [Download](https://archelinux.github.io/archelinux.org/download/): Current stable installation ISO and verification files.
+- [Installation guide](https://archelinux.github.io/archelinux.org/wiki/installation.html): Network setup, disk choices, and software selection.
+- [Verify the ISO](https://archelinux.github.io/archelinux.org/wiki/verify.html): Release key, signatures, and checksums.
+- [First session](https://archelinux.github.io/archelinux.org/wiki/first-session.html): Desktop, terminal, and editor basics.
+- [Hardware notes](https://archelinux.github.io/archelinux.org/wiki/hardware.html): Graphics and hardware considerations.
+
+## Updates, packages, and recovery
+
+- [Rolling updates](https://archelinux.github.io/archelinux.org/wiki/rolling-updates.html): Keep an installed system current.
+- [Recovery](https://archelinux.github.io/archelinux.org/wiki/recovery.html): Alternate console and boot options, and cached package rollback.
+- [Package directory](https://archelinux.github.io/archelinux.org/packages/): Current archelinux package catalog.
+- [Release news](https://archelinux.github.io/archelinux.org/news/): Release announcements and changes.
+
+## Source and support
+
+- [Distribution source](https://github.com/archelinux/archelinux): Installer, ISO profile, package recipes, and tests.
+- [Architecture and optional tools](https://raw.githubusercontent.com/archelinux/archelinux/main/docs/architecture.md): Build layout, developer packages, and local model services in Markdown.
+- [Report an issue](https://archelinux.github.io/archelinux.org/issues/): Report a bug or share hardware compatibility details.

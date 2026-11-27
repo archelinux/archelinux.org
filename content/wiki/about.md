@@ -1,6 +1,6 @@
 # About archelinux
 
-archelinux is an Arch-based distro for people who still think in i3 keybindings. Boot the USB, pick a disk and your tools, and log in to a SwayFX desktop with Zsh, tmux and Neovim. The configs are ordinary files in your home directory.
+archelinux is a rolling-release Arch-based workstation with a lightweight tiling desktop. Boot the USB, choose your tools, and log in to a SwayFX desktop with Zsh, tmux and Neovim. You can edit the configuration files in your home directory.
 
 [Download 2.0.0](../download/index.html) · [Install guide](installation.html) · [Build it yourself](system.html)
 
